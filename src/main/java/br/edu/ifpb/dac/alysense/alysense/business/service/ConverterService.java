@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import br.edu.ifpb.dac.alysense.alysense.model.entity.Product;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
+import br.edu.ifpb.dac.alysense.alysense.presentation.dto.ProductDTO;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.UserDTO;
 
 @Service
@@ -34,4 +36,56 @@ public class ConverterService {
 		UserDTO dto = new UserDTO(user);
 		return dto;
 	}
+
+
+	/*-------------------------- product to DTO -------------------------*/
+	public ProductDTO ProductToDTO(Product entity){
+		ProductDTO dto = new ProductDTO();
+		dto.setId(entity.getId());
+		dto.setCategory(entity.getCategory());
+		dto.setExpirationDate(entity.getExpirationDate());
+		dto.setName(entity.getName());
+		dto.setOwner(entity.getOwner());
+
+		return dto;
+		
+	}
+
+	public List<ProductDTO> ProductToDTO(List<Product> entities){
+		List<ProductDTO> dtos = new ArrayList<>();
+
+		for (Product entity : entities) {
+			ProductDTO dto = ProductToDTO(entity);
+			dtos.add(dto);
+		}
+		return dtos;
+	}
+	/*-------------------------- product to DTO -------------------------*/
+
+
+
+	/*-------------------------- DTO to product -------------------------*/
+	public Product DTOToProduct(ProductDTO dto) {
+		Product entity = new Product();
+		entity.setId(dto.getId());
+		entity.setCategory(dto.getCategory());
+		entity.setExpirationDate(dto.getExpirationDate());
+		entity.setName(dto.getName());
+		entity.setOwner(dto.getOwner());
+
+		return entity;
+
+	}
+
+	public List<Product> DTOToProduct(List<ProductDTO> dtos) {
+		List<Product> entities = new ArrayList<>();
+
+		for (ProductDTO dto : dtos) {
+			Product entity = DTOToProduct(dto);
+			entities.add(entity);
+		}
+		return entities;
+	}
+	/*-------------------------- DTO to product -------------------------*/
+
 }
