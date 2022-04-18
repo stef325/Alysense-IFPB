@@ -14,7 +14,7 @@ public class User {
 
 	private String name;
 
-	private LocalDate age;
+	private LocalDate birthDate;
 	
 	private String email;
 	
@@ -36,12 +36,12 @@ public class User {
 		this.name = name;
 	}
 
-	public LocalDate getAge() {
-		return age;
+	public LocalDate getBirthDate() {
+		return birthDate;
 	}
 
-	public void setAge(LocalDate age) {
-		this.age = age;
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public String getEmail() {

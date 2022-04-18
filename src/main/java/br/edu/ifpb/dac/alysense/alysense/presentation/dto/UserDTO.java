@@ -9,7 +9,7 @@ public class UserDTO {
 
 	private String name;
 	
-	private LocalDate age;
+	private LocalDate birthDate;
 	
 	private String email;
 	
@@ -22,12 +22,13 @@ public class UserDTO {
 	public UserDTO(User user) {
 		id = user.getId();
 		name = user.getName();
-		age = user.getAge();
+		birthDate = user.getBirthDate();
 		email = user.getEmail();
 	}
 
+
 	public Long getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Long id) {
@@ -35,23 +36,23 @@ public class UserDTO {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public LocalDate getAge() {
-		return age;
+	public LocalDate getBirthDate() {
+		return this.birthDate;
 	}
 
-	public void setAge(LocalDate age) {
-		this.age = age;
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public void setEmail(String email) {
@@ -59,11 +60,12 @@ public class UserDTO {
 	}
 
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 
 }

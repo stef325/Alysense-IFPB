@@ -17,7 +17,7 @@ public class ConverterService {
 		User user = new User();
 		user.setId(dto.getId());
 		user.setName(dto.getName());
-		user.setAge(dto.getAge());
+		user.setBirthDate(dto.getBirthDate());
 		user.setEmail(dto.getEmail());
 		user.setPassword(dto.getPassword());
 		return user;
