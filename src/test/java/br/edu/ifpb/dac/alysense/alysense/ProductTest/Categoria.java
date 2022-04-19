@@ -1,6 +1,14 @@
 package br.edu.ifpb.dac.alysense.alysense.ProductTest;
 
+import br.edu.ifpb.dac.alysense.alysense.model.entity.Product;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Categoria {
+
+    private Product produto;
 
     public String getGosto() {
         return "medio";
