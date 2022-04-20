@@ -15,10 +15,15 @@ import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Order;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.aggregator.ArgumentsAccessor;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import br.edu.ifpb.dac.alysense.alysense.business.service.ConverterService;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Product;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.ProductDTO;
+import br.edu.ifpb.dac.alysense.alysense.util.ProductWithSV;
+import net.bytebuddy.asm.Advice.Local;
 
 
 public class ProductTestService{
@@ -123,5 +128,23 @@ public class ProductTestService{
        assertEquals(dto.getCategory(), product.getCategory());
        assertEquals(dto.getExpirationDate(), product.getExpirationDate());
        assertEquals(dto.getOwner(), product.getOwner());
+    }
+
+    @ParameterizedTest
+    @Order(9)
+    @CsvSource({
+        "Macarrão,2022-07-09, False",
+        "Chocolate,2022-07-09, True",
+        "Garrafa,2022-07-09, False"
+
+    })
+    public void sanitaryVigillance(ArgumentsAccessor arguments){
+        ProductWithSV prod= new ProductWithSV();
+        prod.setName(arguments.getString(0));
+        prod.setExpirationDate(arguments.get(1, LocalDate.class));
+        prod.setSVverified(arguments.get(2, Boolean.class));
+        
+        assertEquals(true, prod.getSVverified());
+        
     }
 }
