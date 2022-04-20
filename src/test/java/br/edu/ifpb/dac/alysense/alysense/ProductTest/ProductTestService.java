@@ -133,18 +133,36 @@ public class ProductTestService{
     @ParameterizedTest
     @Order(9)
     @CsvSource({
-        "Macarrão,2022-07-09, False",
+        "Macarrão,2022-07-09, True",
         "Chocolate,2022-07-09, True",
-        "Garrafa,2022-07-09, False"
+        "Garrafa,2022-07-09, True"
 
     })
-    public void sanitaryVigillance(ArgumentsAccessor arguments){
+    public void sanitaryVigillanceTrue(ArgumentsAccessor arguments){
         ProductWithSV prod= new ProductWithSV();
         prod.setName(arguments.getString(0));
         prod.setExpirationDate(arguments.get(1, LocalDate.class));
         prod.setSVverified(arguments.get(2, Boolean.class));
         
-        assertEquals(true, prod.getSVverified());
+        assertTrue(prod.getSVverified());
+        
+    }
+
+    @ParameterizedTest
+    @Order(9)
+    @CsvSource({
+        "Macarrão,2022-07-09, False",
+        "Chocolate,2022-07-09, False",
+        "Garrafa,2022-07-09, False"
+
+    })
+    public void sanitaryVigillanceFalse(ArgumentsAccessor arguments){
+        ProductWithSV prod= new ProductWithSV();
+        prod.setName(arguments.getString(0));
+        prod.setExpirationDate(arguments.get(1, LocalDate.class));
+        prod.setSVverified(arguments.get(2, Boolean.class));
+        
+        assertFalse(prod.getSVverified());
         
     }
 }
