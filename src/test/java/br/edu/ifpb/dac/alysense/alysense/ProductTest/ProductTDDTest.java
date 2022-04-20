@@ -41,4 +41,26 @@ public class ProductTDDTest{
         avaliar.setProduto(new Product());
         assertNotNull(avaliar.getProduto());
     }
+
+     /*@Test
+        @ValueSource(strings = { "bolo", "coxinha", "pastel", "ovo de chocolate", "panetone" })
+    public void testAula(String name){
+        product.setName(name);
+        assertNotNull(product.getName())
+        assertNotEquals(prego, product.getName());
+        assertEquals(name, product.getName());
+    }
+    @Test
+    public void testAltDatesBefore(){
+        assertAll(() -> assertEquals(LocalDate.now().isBefore("2022-10-10") ,product.getExpirationDate()
+        , () -> assertEquals(LocalDate.now().isBefore("2022-9-9") ,product.getExpirationDate(),
+        () -> assertEquals(LocalDate.now().isBefore("2022-10-10") ,product.getExpirationDate()))
+    }
+    public void testAltDatesAfter(){
+        assertAll(() -> assertEquals(LocalDate.now().isBefore("2022-10-10") ,product.getExpirationDate()
+        , () -> assertEquals(LocalDate.now().isAfter("2021-9-9") ,product.getExpirationDate(),
+        () -> assertEquals(LocalDate.now().isAfter("2021-10-10") ,product.getExpirationDate()))
+    }
+
+    */
 }
