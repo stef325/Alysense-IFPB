@@ -1,5 +1,6 @@
 package br.edu.ifpb.dac.alysense.alysense.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ public class Avaliation{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private List<Float> avaliacoes;
+    private ArrayList<Float> avaliacoes;
 
     private float avaliacaoMedia = 0;
 

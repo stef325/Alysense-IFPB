@@ -1,6 +1,6 @@
 package br.edu.ifpb.dac.alysense.alysense.model.entity;
 
-import java.util.List;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,19 +15,19 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
+
 public class Characteristic {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String name;
-    private List<String> atributes;
+    private String atributes;
     
 
-    public void setAtributes(String atribute){
+   /* public void setAtributes(String atribute){
         if (!atributes.contains(atribute)) {
            atributes.add(atribute); 
         }
-    }
+    }*/
 }
