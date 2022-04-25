@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifpb.dac.alysense.alysense.business.service.ConverterService;
 import br.edu.ifpb.dac.alysense.alysense.business.service.ProductService;
+import br.edu.ifpb.dac.alysense.alysense.model.entity.Characteristic;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Product;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.ProductDTO;
 
@@ -54,11 +55,11 @@ public class ProductController {
         @RequestParam(value = "name", required = false) String name,
         @RequestParam(value = "expirationDate", required = false) LocalDate expirationDate,
         @RequestParam(value = "owner", required = false) String owner,
-        @RequestParam(value = "category", required = false) String category
+        @RequestParam(value = "characteristic", required = false) Characteristic characteristic
         ){
         try {
             Product filter = new Product();
-            filter.setCategory(category);
+            filter.setCharacteristic(characteristic);
             filter.setExpirationDate(expirationDate);
             filter.setId(id);
             filter.setName(name);
