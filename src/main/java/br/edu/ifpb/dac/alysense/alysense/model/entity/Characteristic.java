@@ -15,7 +15,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
-
 public class Characteristic {
     
     @Id
