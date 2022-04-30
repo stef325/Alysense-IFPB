@@ -23,5 +23,6 @@ public class AspectAvaliation {
     private float paladar;
     private float audicao;
     
-    private Avaliation avaliation;
+    
+    //private Avaliation avaliation;
 }

@@ -5,14 +5,62 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import br.edu.ifpb.dac.alysense.alysense.model.entity.EvaluateItem;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Product;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
+import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EvaluateItemDTO;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.ProductDTO;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.UserDTO;
 
 @Service
 public class ConverterService {
+	
+	/*-------------------------- EvaluateItem to DTO -------------------------*/
+	public EvaluateItemDTO EvaluateItemToDTO(EvaluateItem entity){
+		EvaluateItemDTO dto = new EvaluateItemDTO();
+		dto.setId(entity.getId());
+		dto.setAspectAvaliation(entity.getAspectAvaliation());
+		dto.setProduct(entity.getProduct());
+		return dto;
+		
+	}
 
+	public List<EvaluateItemDTO> EvaluateItemToDTO(List<EvaluateItem> entities){
+		List<EvaluateItemDTO> dtos = new ArrayList<>();
+
+		for (EvaluateItem entity : entities) {
+			EvaluateItemDTO dto = EvaluateItemToDTO(entity);
+			dtos.add(dto);
+		}
+		return dtos;
+	}
+	/*-------------------------- EvaluateItem to DTO -------------------------*/
+
+
+
+	/*-------------------------- DTO to EvaluateItem -------------------------*/
+	public EvaluateItem DTOToEvaluateItem(EvaluateItemDTO dto) {
+		EvaluateItem entity = new EvaluateItem();
+		entity.setId(dto.getId());
+		entity.setAspectAvaliation(dto.getAspectAvaliation());
+		entity.setProduct(dto.getProduct());
+
+		return entity;
+
+	}
+
+	public List<EvaluateItem> DTOToEvaluateItem(List<EvaluateItemDTO> dtos) {
+		List<EvaluateItem> entities = new ArrayList<>();
+
+		for (EvaluateItemDTO dto : dtos) {
+			EvaluateItem entity = DTOToEvaluateItem(dto);
+			entities.add(entity);
+		}
+		return entities;
+	}
+	/*-------------------------- DTO to EvaluateItem -------------------------*/
+
+	/*-------------------------- USER -------------------------*/
 	public static User conversorToUser(UserDTO dto) {
 		User user = new User();
 		user.setId(dto.getId());
@@ -36,6 +84,7 @@ public class ConverterService {
 		UserDTO dto = new UserDTO(user);
 		return dto;
 	}
+	/*-------------------------- USER -------------------------*/
 
 
 	/*-------------------------- product to DTO -------------------------*/
