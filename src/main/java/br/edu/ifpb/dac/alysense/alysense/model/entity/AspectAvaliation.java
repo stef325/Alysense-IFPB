@@ -22,7 +22,5 @@ public class AspectAvaliation {
     private float tato;
     private float paladar;
     private float audicao;
-    
-    
-    //private Avaliation avaliation;
+
 }

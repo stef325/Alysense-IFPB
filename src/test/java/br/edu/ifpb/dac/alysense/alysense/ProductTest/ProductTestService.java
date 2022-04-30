@@ -32,6 +32,7 @@ public class ProductTestService{
  
     private Product product;
     private ProductDTO dto;
+    private Characteristic characteristic;
 
     
 
@@ -39,7 +40,9 @@ public class ProductTestService{
     public void setUp(){
         product = new Product();
         product.setName("bolo");
-        //product.setCategory("doce");
+        characteristic = new Characteristic();
+        characteristic.setAtributes("doce");
+        product.setCharacteristic(characteristic);
         product.setExpirationDate(LocalDate.now());
         product.setOwner("qualquer");
     }
@@ -48,7 +51,9 @@ public class ProductTestService{
     public void setUpDTO(){
         dto = new ProductDTO();
         dto.setName("coxinha");
-        //dto.setCategory("salgado");
+        characteristic.setAtributes("salgado");
+        product.setCharacteristic(characteristic);
+        dto.setCharacteristic(characteristic);
         dto.setExpirationDate(LocalDate.now());
         dto.setOwner("qualquer");
     }
@@ -68,7 +73,7 @@ public class ProductTestService{
     public void convertorTest(){
         ProductDTO dto = converter.ProductToDTO(product);
         assertAll(() -> assertEquals("bolo",dto.getName()),
-        //() -> assertEquals("doce",dto.getCategory()),
+        () -> assertEquals("doce",dto.getCharacteristic().getAtributes()),
         () ->assertEquals("qualquer",dto.getOwner()),
         () -> assertEquals(LocalDate.now(),dto.getExpirationDate()));
         
@@ -79,7 +84,7 @@ public class ProductTestService{
     public void notNullTest(){
         ProductDTO dto = converter.ProductToDTO(product);
         assertAll(() -> assertNotNull(dto.getName()),
-        //() -> assertNotNull(dto.getCategory()),
+        () -> assertNotNull(dto.getCharacteristic()),
         () ->assertNotNull(dto.getOwner()),
         () -> assertNotNull(dto.getExpirationDate()));
     }
@@ -116,7 +121,7 @@ public class ProductTestService{
        dto = converter.ProductToDTO(product);
        assertEquals(dto.getId(), product.getId());
        assertEquals(dto.getName(), product.getName());
-       //assertEquals(dto.getCategory(), product.getCategory());
+       assertEquals(dto.getCharacteristic(), product.getCharacteristic());
        assertEquals(dto.getExpirationDate(), product.getExpirationDate());
        assertEquals(dto.getOwner(), product.getOwner());
     }
@@ -127,7 +132,7 @@ public class ProductTestService{
        product = converter.DTOToProduct(dto);
        assertEquals(dto.getId(), product.getId());
        assertEquals(dto.getName(), product.getName());
-       //assertEquals(dto.getCategory(), product.getCategory());
+       assertEquals(dto.getCharacteristic(), product.getCharacteristic());
        assertEquals(dto.getExpirationDate(), product.getExpirationDate());
        assertEquals(dto.getOwner(), product.getOwner());
     }

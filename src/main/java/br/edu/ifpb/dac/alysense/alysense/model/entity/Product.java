@@ -16,7 +16,6 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode
 public class Product {
-    
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -28,8 +27,4 @@ public class Product {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Characteristic characteristic;
     
-
-
-    
-
 }
