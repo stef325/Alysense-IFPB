@@ -55,7 +55,7 @@ public class ProductController {
         @RequestParam(value = "name", required = false) String name,
         @RequestParam(value = "expirationDate", required = false) LocalDate expirationDate,
         @RequestParam(value = "owner", required = false) String owner,
-        @RequestParam(value = "characteristic", required = false) Characteristic characteristic
+        @RequestParam(value = "characteristic", required = false) List<Characteristic> characteristic
         ){
         try {
             Product filter = new Product();
