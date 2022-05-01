@@ -1,5 +1,7 @@
 package br.edu.ifpb.dac.alysense.alysense.model.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,10 +19,10 @@ public class AspectAvaliation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private float olfato;
-    private float visao;
-    private float tato;
-    private float paladar;
-    private float audicao;
+    private List<Avaliation> olfato;
+    private List<Avaliation> visao;
+    private List<Avaliation> tato;
+    private List<Avaliation> paladar;
+    private List<Avaliation> audicao;
 
 }
