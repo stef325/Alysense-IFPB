@@ -2,6 +2,7 @@ package br.edu.ifpb.dac.alysense.alysense.presentation.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -55,11 +56,11 @@ public class ProductController {
         @RequestParam(value = "name", required = false) String name,
         @RequestParam(value = "expirationDate", required = false) LocalDate expirationDate,
         @RequestParam(value = "owner", required = false) String owner,
-        @RequestParam(value = "characteristic", required = false) List<Characteristic> characteristic
+        @RequestParam(value = "characteristic", required = false) Set<Characteristic> characteristics
         ){
         try {
             Product filter = new Product();
-            filter.setCharacteristic(characteristic);
+            filter.setCharacteristics(characteristics);
             filter.setExpirationDate(expirationDate);
             filter.setId(id);
             filter.setName(name);

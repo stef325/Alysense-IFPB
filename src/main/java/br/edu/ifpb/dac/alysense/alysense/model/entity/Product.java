@@ -2,6 +2,7 @@ package br.edu.ifpb.dac.alysense.alysense.model.entity;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -28,6 +29,6 @@ public class Product {
     private String owner;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Characteristic> characteristic;
+    private Set<Characteristic> characteristics;
     
 }

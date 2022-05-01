@@ -2,6 +2,7 @@ package br.edu.ifpb.dac.alysense.alysense.presentation.dto;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Characteristic;
 import lombok.Getter;
@@ -16,5 +17,5 @@ public class ProductDTO {
 	private String name;
     private LocalDate expirationDate;
     private String owner;
-    private List<Characteristic> characteristic; 
+    private Set<Characteristic> characteristics; 
 }
