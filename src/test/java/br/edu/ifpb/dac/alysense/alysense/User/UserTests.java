@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.mockito.Mockito.mock;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import br.edu.ifpb.dac.alysense.alysense.business.service.ConverterService;
+import br.edu.ifpb.dac.alysense.alysense.business.service.ValidationAgeUserService;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.UserDTO;
 import br.edu.ifpb.dac.alysense.alysense.util.UserToTest;
@@ -23,20 +25,21 @@ import br.edu.ifpb.dac.alysense.alysense.util.UserValidations;
 
 public class UserTests {
     final UserToTest NotImplementedUser = new UserToTest();
-    final User implementedUser = new User();
+    final User implementedUser = mock(User.class);
     final UserDTO dto = new UserDTO();
 
-    ConverterService converter = new ConverterService();
+
+    ValidationAgeUserService UserValidationService = new ValidationAgeUserService();
 
     @Before
     public final void initUser(){
-        List<String> okProducts = new ArrayList<>();
-        okProducts.add("Macarrão");
-        okProducts.add("Shampoo");
-        okProducts.add("Garrafa");
-        okProducts.add("Peruca");
+        List<String> okProductsMock = new ArrayList<>();
+        okProductsMock.add("Macarrão");
+        okProductsMock.add("Shampoo");
+        okProductsMock.add("Garrafa");
+        okProductsMock.add("Peruca");
 
-        NotImplementedUser.setOkProducts(okProducts);
+        NotImplementedUser.setOkProducts(okProductsMock);
 
         implementedUser.setName("james");
         implementedUser.setPassword("1234");
@@ -50,9 +53,11 @@ public class UserTests {
     @Test
     @DisplayName("Age should be higher than")
     public void UserAge() {
-        assertEquals(true, UserValidations.isAgeEnoughToVote(19, LocalDate.of(2003, 03, 19)));
-        assertEquals(true, UserValidations.isAgeEnoughToVote(19, LocalDate.of(2003, 04, 19)));
-        assertEquals(false, UserValidations.isAgeEnoughToVote(19, LocalDate.of(2003, 05, 19)));
+        LocalDate birthDate = LocalDate.now().minusYears(19);
+        System.out.println(birthDate.toString());
+        assertEquals(true, UserValidationService.isAgeEnoughToVote(19, LocalDate.of(2003, 03, 19)));
+        assertEquals(true, UserValidationService.isAgeEnoughToVote(19, birthDate));
+        assertEquals(false, UserValidationService.isAgeEnoughToVote(19, birthDate.plusMonths(1)));
     }
 
     @Test
@@ -67,15 +72,15 @@ public class UserTests {
     @Test
     @DisplayName("To DTO & ToUser")
     public void convertionPass(){
-        assertNull(converter.conversorToDTO(implementedUser).getPassword());
-        assertNotNull(converter.conversorToUser(dto).getPassword());
+        assertNull(ConverterService.conversorToDTO(implementedUser).getPassword());
+        assertNotNull(ConverterService.conversorToUser(dto).getPassword());
     }
 
     @Test
     @DisplayName("To DTO & To User class")
     public void convertionClass(){
-        assertInstanceOf(UserDTO.class, converter.conversorToDTO(implementedUser));
-        assertInstanceOf(User.class, converter.conversorToUser(dto));
+        assertInstanceOf(UserDTO.class, ConverterService.conversorToDTO(implementedUser));
+        assertInstanceOf(User.class, ConverterService.conversorToUser(dto));
     }
 
 

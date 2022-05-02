@@ -1,4 +1,4 @@
-
+/*
 public class ProductTestMockito{
 
     @mock
@@ -14,4 +14,4 @@ public void mockExceptiontest(){
     assertAll(() -> assertThrows(NullpointException.class, () -> product.getName()), () -> assertThrows(NullpointException.class, () ->product.getId()),
     assertThrows(NullpointException.class, ()-> product.getOwner()), assertThrows(NullpointException.class,()-> product.getCharacteristic()));
 }
-}
+}*/

@@ -27,7 +27,7 @@ import net.bytebuddy.asm.Advice.Local;
 
 
 public class ProductTestService{
-
+/*
     final ConverterService converter = new ConverterService();
  
     private Product product;
@@ -171,5 +171,5 @@ public class ProductTestService{
         
         assertFalse(prod.getSVverified());
         
-    }
+    }*/
 }
