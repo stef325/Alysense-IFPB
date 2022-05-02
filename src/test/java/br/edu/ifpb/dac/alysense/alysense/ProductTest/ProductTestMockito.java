@@ -1,10 +1,10 @@
 /*
 public class ProductTestMockito{
 
-    @mock
-    Produtct product 
+    @Mock
+    Product product;
 
-@Test(expected = NullpointException.class)
+/*@Test(expected= NullPointerException.class)
 public void mockExceptiontest(){
     when(product.getId()).themThrow(new NullpointException())
     when(product.getName()).themThrow(new NullpointException())
