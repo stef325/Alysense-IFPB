@@ -147,6 +147,11 @@ public class ConverterService {
 	public EventDTO EventToDTO(Event entity){
 		EventDTO dto = new EventDTO();
 		dto.setId(entity.getId());
+		dto.setTitle(entity.getTitle());
+		dto.setDate(entity.getDate());
+		dto.setPeopleLimit(entity.getPeopleLimit());
+		dto.setItems(entity.getItems());
+		dto.setLocal(entity.getLocal());
 
 		return dto;
 		
@@ -169,6 +174,11 @@ public class ConverterService {
 	public Event DTOToEvent(EventDTO dto) {
 		Event entity = new Event();
 		entity.setId(dto.getId());
+		entity.setTitle(dto.getTitle());
+		entity.setDate(dto.getDate());
+		entity.setPeopleLimit(dto.getPeopleLimit());
+		entity.setItems(dto.getItems());
+		entity.setLocal(dto.getLocal());
 
 		return entity;
 

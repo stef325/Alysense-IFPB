@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,13 +29,14 @@ public class Event {
     private Long id;
     private String title;
     private LocalDate date;
-    private int peopleLimit;
+    private String local;
+    private Integer peopleLimit;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "users_avaliation", joinColumns = @JoinColumn(name= "eventid"), inverseJoinColumns = @JoinColumn(name = "userid"))
     private List<User> evaluators;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<EvaluateItem> items;
 
 

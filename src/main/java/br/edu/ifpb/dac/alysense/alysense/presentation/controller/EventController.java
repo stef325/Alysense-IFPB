@@ -53,10 +53,16 @@ public class EventController {
         @RequestParam(value = "id", required = false) Long id,
         @RequestParam(value = "title", required = false) String title,
         @RequestParam(value = "date", required = false) LocalDate date,
-        @RequestParam(value = "peopleLimit", required = false) int peopleLimit
+        @RequestParam(value = "peopleLimit", required = false) Integer peopleLimit,
+        @RequestParam(value = "local", required = false) String local
         ){
         try {
             Event filter = new Event();
+            filter.setId(id);
+            filter.setDate(date);
+            filter.setPeopleLimit(peopleLimit);
+            filter.setTitle(title);
+            filter.setLocal(local);
 
             List<Event> entities = service.find(filter);
             List<EventDTO> dtos = converter.EventToDTO(entities);

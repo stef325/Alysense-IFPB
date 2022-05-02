@@ -14,7 +14,8 @@ public class EventDTO {
     private Long id;
     private String title;
     private LocalDate date;
-    private int peopleLimit;
+    private String local;
+    private Integer peopleLimit;
     private List<User> evaluators;
     private List<EvaluateItem> items;
     
