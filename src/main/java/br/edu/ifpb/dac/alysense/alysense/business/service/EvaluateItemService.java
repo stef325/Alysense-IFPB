@@ -43,8 +43,8 @@ public class EvaluateItemService {
 		return evaluateItemDAO.findAll(example);
 	}
 	
-	public EvaluateItem update(EvaluateItem user) {
-		return evaluateItemDAO.save(user);
+	public EvaluateItem update(EvaluateItem evaluateItem) {
+		return evaluateItemDAO.save(evaluateItem);
 	}
 	
 	public void delete(Long id) {

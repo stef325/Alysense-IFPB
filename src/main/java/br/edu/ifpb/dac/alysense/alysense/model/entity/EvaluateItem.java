@@ -3,6 +3,7 @@ package br.edu.ifpb.dac.alysense.alysense.model.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,10 +21,12 @@ public class EvaluateItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(cascade = { CascadeType.ALL}, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.EAGER,
+     cascade = { CascadeType.ALL}, orphanRemoval = true)
     private Product product;
 
-    @OneToOne(cascade = { CascadeType.ALL}, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.EAGER,
+     cascade = { CascadeType.ALL}, orphanRemoval = true)
     private AspectAvaliation aspectAvaliation;
 
     

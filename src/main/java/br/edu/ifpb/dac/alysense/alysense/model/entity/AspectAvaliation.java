@@ -8,10 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,19 +21,19 @@ public class AspectAvaliation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(cascade = { CascadeType.ALL})
+    @OneToMany(cascade = { CascadeType.ALL}, orphanRemoval = true)
     private Set<Avaliation> olfato;
 
-    @OneToMany(cascade = { CascadeType.ALL})
+    @OneToMany(cascade = { CascadeType.ALL}, orphanRemoval = true)
     private Set<Avaliation> visao;
 
-    @OneToMany(cascade = { CascadeType.ALL})
+    @OneToMany(cascade = { CascadeType.ALL}, orphanRemoval = true)
     private Set<Avaliation> tato;
 
-    @OneToMany(cascade = { CascadeType.ALL})
+    @OneToMany(cascade = { CascadeType.ALL}, orphanRemoval = true)
     private Set<Avaliation> paladar;
 
-    @OneToMany(cascade = { CascadeType.ALL})
+    @OneToMany(cascade = { CascadeType.ALL}, orphanRemoval = true)
     private Set<Avaliation> audicao;
 
 }
