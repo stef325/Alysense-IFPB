@@ -6,9 +6,11 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.alysense.alysense.model.entity.EvaluateItem;
+import br.edu.ifpb.dac.alysense.alysense.model.entity.Event;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Product;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EvaluateItemDTO;
+import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EventDTO;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.ProductDTO;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.UserDTO;
 
@@ -136,4 +138,62 @@ public class ConverterService {
 	}
 	/*-------------------------- DTO to product -------------------------*/
 
+
+	/*--------------------------------------------------- Event ---------------------------------------------------*/
+
+	
+	/*-------------------------- Event to DTO -------------------------*/
+	public EventDTO EventToDTO(Event entity){
+		EventDTO dto = new EventDTO();
+		dto.setId(entity.getId());
+		dto.setTitle(entity.getTitle());
+		dto.setDate(entity.getDate());
+		dto.setPeopleLimit(entity.getPeopleLimit());
+		dto.setItems(entity.getItems());
+		dto.setLocal(entity.getLocal());
+
+		return dto;
+		
+	}
+
+	public List<EventDTO> EventToDTO(List<Event> entities){
+		List<EventDTO> dtos = new ArrayList<>();
+
+		for (Event entity : entities) {
+			EventDTO dto = EventToDTO(entity);
+			dtos.add(dto);
+		}
+		return dtos;
+	}
+	/*-------------------------- Event to DTO -------------------------*/
+
+
+
+	/*-------------------------- DTO to Event -------------------------*/
+	public Event DTOToEvent(EventDTO dto) {
+		Event entity = new Event();
+		entity.setId(dto.getId());
+		entity.setTitle(dto.getTitle());
+		entity.setDate(dto.getDate());
+		entity.setPeopleLimit(dto.getPeopleLimit());
+		entity.setItems(dto.getItems());
+		entity.setLocal(dto.getLocal());
+
+		return entity;
+
+	}
+
+	public List<Event> DTOToEvent(List<EventDTO> dtos) {
+		List<Event> entities = new ArrayList<>();
+
+		for (EventDTO dto : dtos) {
+			Event entity = DTOToEvent(dto);
+			entities.add(entity);
+		}
+		return entities;
+	}
+	/*-------------------------- DTO to Event -------------------------*/
+
+	
+	/*--------------------------------------------------- Event ---------------------------------------------------*/
 }

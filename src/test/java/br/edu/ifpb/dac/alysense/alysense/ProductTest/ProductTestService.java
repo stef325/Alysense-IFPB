@@ -28,7 +28,7 @@ import br.edu.ifpb.dac.alysense.alysense.util.ProductWithSV;
 
 
 public class ProductTestService{
-
+/*
     final ConverterService converter = new ConverterService();
  
     private Product product;
@@ -174,5 +174,5 @@ public class ProductTestService{
         
         assertFalse(prod.getSVverified());
         
-    }
+    }*/
 }
