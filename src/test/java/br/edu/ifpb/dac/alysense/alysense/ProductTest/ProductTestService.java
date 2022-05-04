@@ -34,10 +34,10 @@ public class ProductTestService{
 
     final ConverterService converter = new ConverterService();
  
-    final Product product= new Product();
-    final ProductDTO dto = new ProductDTO();;
-    final Set<Characteristic> characteristics = new HashSet<Characteristic>();
-    final Characteristic characteristic= new Characteristic();;
+    Product product= new Product();
+    ProductDTO dto = new ProductDTO();;
+    Set<Characteristic> characteristics = new HashSet<Characteristic>();
+    Characteristic characteristic= new Characteristic();;
 
     
 
