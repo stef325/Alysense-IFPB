@@ -30,5 +30,7 @@ public class Product {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Characteristic> characteristics;
+
+    
     
 }

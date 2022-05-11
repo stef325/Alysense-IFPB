@@ -4,10 +4,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-import br.edu.ifpb.dac.alysense.alysense.Event.EventsTests;
-import br.edu.ifpb.dac.alysense.alysense.ProductTest.ProductTestExceptionAndRequest;
-import br.edu.ifpb.dac.alysense.alysense.ProductTest.ProductTestService;
-import br.edu.ifpb.dac.alysense.alysense.User.UserTests;
+import br.edu.ifpb.dac.alysense.alysense.UnitaryTests.Event.EventsTests;
+import br.edu.ifpb.dac.alysense.alysense.UnitaryTests.Product.ProductTestExceptionAndRequest;
+import br.edu.ifpb.dac.alysense.alysense.UnitaryTests.Product.ProductTestService;
+import br.edu.ifpb.dac.alysense.alysense.UnitaryTests.User.UserTests;
 
 @RunWith(Suite.class)
 @SuiteClasses({ProductTestExceptionAndRequest.class,

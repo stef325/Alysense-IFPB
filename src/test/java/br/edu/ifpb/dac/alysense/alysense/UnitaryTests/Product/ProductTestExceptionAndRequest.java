@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.alysense.alysense.ProductTest;
+package br.edu.ifpb.dac.alysense.alysense.UnitaryTests.Product;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
