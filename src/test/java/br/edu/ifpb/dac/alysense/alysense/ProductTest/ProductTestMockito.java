@@ -1,6 +1,7 @@
 package br.edu.ifpb.dac.alysense.alysense.ProductTest;
 
-
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer.Random;
 
 @TestMethodOrder(Random.class)
 public class ProductTestMockito{
