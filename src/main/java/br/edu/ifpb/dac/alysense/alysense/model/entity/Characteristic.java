@@ -21,12 +21,10 @@ public class Characteristic {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String atributes;
+    private String atribute;
     
 
-   /* public void setAtributes(String atribute){
-        if (!atributes.contains(atribute)) {
-           atributes.add(atribute); 
-        }
-    }*/
+    public void setAtribute(String atribute){
+        
+    }
 }

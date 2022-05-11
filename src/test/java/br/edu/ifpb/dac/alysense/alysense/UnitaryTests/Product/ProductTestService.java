@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.alysense.alysense.ProductTest;
+package br.edu.ifpb.dac.alysense.alysense.UnitaryTests.Product;
 
 
 import static org.junit.Assert.assertEquals;
@@ -34,17 +34,17 @@ public class ProductTestService{
 
     final ConverterService converter = new ConverterService();
  
-    Product product= new Product();
-    ProductDTO dto = new ProductDTO();;
-    Set<Characteristic> characteristics = new HashSet<Characteristic>();
-    Characteristic characteristic= new Characteristic();;
+    final Product product= new Product();
+    final ProductDTO dto = new ProductDTO();
+    final Set<Characteristic> characteristics = new HashSet<Characteristic>();
+    final Characteristic characteristic= new Characteristic();;
 
     
 
     @Before
     public void setUp(){
         product.setName("bolo");
-        characteristic.setAtributes("doce");
+        characteristic.setAtribute("doce");
         characteristics.add(characteristic);
         product.setCharacteristics(characteristics);
         product.setExpirationDate(LocalDate.now());
@@ -54,7 +54,7 @@ public class ProductTestService{
     @Before
     public void setUpDTO(){
         dto.setName("coxinha");
-        characteristic.setAtributes("salgado");
+        characteristic.setAtribute("salgado");
         characteristics.add(characteristic);
        product.setCharacteristics(characteristics);
        dto.setCharacteristics(characteristics);
@@ -78,7 +78,7 @@ public class ProductTestService{
         ProductDTO dto = converter.ProductToDTO(product);
         Iterator<Characteristic> ite = dto.getCharacteristics().iterator();
         assertAll(() -> assertEquals("bolo",dto.getName()),
-        () -> assertEquals("doce",ite.next().getAtributes()),
+        () -> assertEquals("doce",ite.next().getAtribute()),
         () ->assertEquals("qualquer",dto.getOwner()),
         () -> assertEquals(LocalDate.now(),dto.getExpirationDate()));
         

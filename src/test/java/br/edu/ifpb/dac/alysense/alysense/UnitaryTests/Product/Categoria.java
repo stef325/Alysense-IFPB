@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.alysense.alysense.ProductTest;
+package br.edu.ifpb.dac.alysense.alysense.UnitaryTests.Product;
 
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Product;
 import lombok.Getter;
