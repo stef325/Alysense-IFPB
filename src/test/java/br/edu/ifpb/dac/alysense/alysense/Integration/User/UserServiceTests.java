@@ -1,38 +1,138 @@
 package br.edu.ifpb.dac.alysense.alysense.Integration.User;
 
-import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.time.LocalDate;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
+import br.edu.ifpb.dac.alysense.alysense.business.service.ConverterService;
 import br.edu.ifpb.dac.alysense.alysense.business.service.UserService;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
+import br.edu.ifpb.dac.alysense.alysense.model.repository.UserRepository;
+import br.edu.ifpb.dac.alysense.alysense.presentation.controller.UserController;
+import br.edu.ifpb.dac.alysense.alysense.presentation.dto.UserDTO;
 
+@SpringBootTest
 public class UserServiceTests {
     
+    @Autowired
     private UserService service;
 
-    @Before
-    public void initService(){
-        service = new UserService();
+    @Autowired
+    private UserController controller;
 
-    }
+    @Autowired
+    private UserRepository repository;
 
-    //@Test
-    public void serviceCreate(){
-        User user = new User();
+   
+
+    private User user;
+
+    @BeforeEach
+    public void init(){
+        user = new User();
         user.setName("Bruna");
         user.setBirthDate(LocalDate.of(2003, 03, 29));
         user.setPassword("123123123123");
-        user.setId(1l);
+        user.setEmail("bruna@gmail.com");
+    }
+
+    @Test
+    @Order(1)
+    public void DB(){
+        
+        User savedUser = repository.save(user);
+        
+        assertEquals(savedUser.getEmail(), user.getEmail());
+
+        UserDTO DBUser = service.findById(savedUser.getId());
+
+        assertAll(
+            () -> assertEquals(savedUser.getName(), DBUser.getName()),
+            () -> assertEquals(savedUser.getId(), DBUser.getId()),
+            () -> assertEquals(savedUser.getEmail(), DBUser.getEmail()),
+            () -> assertNull(DBUser.getPassword())
+        );
+    }
+
+
+
+    @Test
+    @Order(2)
+    public void service(){
+        User savedUser = service.save(user);
+        assertEquals(savedUser.getEmail(), user.getEmail());
+        //assertNull(savedUser.getPassword());
+
+        UserDTO DBUser = service.findById(savedUser.getId());
+
+        assertAll(
+            () -> assertEquals(savedUser.getName(), DBUser.getName()),
+            () -> assertEquals(savedUser.getId(), DBUser.getId()),
+            () -> assertEquals(savedUser.getEmail(), DBUser.getEmail()),
+            () -> assertNull(DBUser.getPassword())
+        );
+    }
+
+    @Test
+    @Order(3)
+    public void serviceAndController(){
+        UserDTO user = new UserDTO();
+        user.setName("Bruna");
+        user.setBirthDate(LocalDate.of(2003, 03, 29));
+        user.setPassword("123123123123");
         user.setEmail("bruna@gmail.com");
 
-        User savedUser = service.save(user);
+        ResponseEntity response = controller.save(user);
 
-        assertSame(savedUser, user);
+        
+        assertEquals(HttpStatus.CREATED.value(), response.getStatusCodeValue());
+        //assertNull(savedUser.getPassword());
 
+        UserDTO BodyResponse = (UserDTO) response.getBody();
+        UserDTO DBUser = service.findById(BodyResponse.getId());
+
+        assertAll(
+            () -> assertEquals(BodyResponse.getName(), DBUser.getName()),
+            () -> assertEquals(BodyResponse.getId(), DBUser.getId()),
+            () -> assertEquals(BodyResponse.getEmail(), DBUser.getEmail()),
+            () -> assertNull(BodyResponse.getPassword()),
+            () -> assertNull(DBUser.getPassword())
+        );
     }
+
+    @Test
+    @Order(4)
+    public void serviceControllerAndConverter(){
+        UserDTO userdto = ConverterService.conversorToDTO(user);
+
+        ResponseEntity response = controller.save(userdto);
+
+        
+        assertEquals(HttpStatus.CREATED.value(), response.getStatusCodeValue());
+        //assertNull(savedUser.getPassword());
+
+        UserDTO BodyResponse = (UserDTO) response.getBody();
+        UserDTO DBUser = service.findById(BodyResponse.getId());
+
+        assertAll(
+            () -> assertEquals(BodyResponse.getName(), DBUser.getName()),
+            () -> assertEquals(BodyResponse.getId(), DBUser.getId()),
+            () -> assertEquals(BodyResponse.getEmail(), DBUser.getEmail()),
+            () -> assertNull(BodyResponse.getPassword()),
+            () -> assertNull(DBUser.getPassword())
+        );
+    }
+
+
 
 }
