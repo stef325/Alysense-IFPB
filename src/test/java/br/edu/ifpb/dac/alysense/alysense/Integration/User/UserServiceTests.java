@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -71,7 +72,6 @@ public class UserServiceTests {
     public void service(){
         User savedUser = service.save(user);
         assertEquals(savedUser.getEmail(), user.getEmail());
-        //assertNull(savedUser.getPassword());
 
         UserDTO DBUser = service.findById(savedUser.getId());
 
@@ -96,7 +96,6 @@ public class UserServiceTests {
 
         
         assertEquals(HttpStatus.CREATED.value(), response.getStatusCodeValue());
-        //assertNull(savedUser.getPassword());
 
         UserDTO BodyResponse = (UserDTO) response.getBody();
         UserDTO DBUser = service.findById(BodyResponse.getId());
@@ -119,7 +118,6 @@ public class UserServiceTests {
 
         
         assertEquals(HttpStatus.CREATED.value(), response.getStatusCodeValue());
-        //assertNull(savedUser.getPassword());
 
         UserDTO BodyResponse = (UserDTO) response.getBody();
         UserDTO DBUser = service.findById(BodyResponse.getId());
@@ -133,6 +131,36 @@ public class UserServiceTests {
         );
     }
 
+    @Test
+    @Order(5)
+    public void update(){
+        UserDTO userdto = ConverterService.conversorToDTO(user);
+        userdto.setEmail("bruna123321@gmail.com");
+
+        ResponseEntity response = controller.update(11L,userdto);
+
+        assertEquals(200, response.getStatusCodeValue());
+
+        UserDTO DBUser = service.findById(11L);
+
+        assertEquals(userdto.getEmail(), DBUser.getEmail());
+
+    }
+
+    @Test
+    @Order(6)
+    public void delete(){
+        UserDTO userdto = ConverterService.conversorToDTO(user);
+
+        ResponseEntity response = controller.delete(17L);
+
+        assertEquals(204, response.getStatusCodeValue());
+
+        ResponseEntity response2 = controller.delete(17L);
+
+        assertEquals(400, response2.getStatusCodeValue());
+
+    }
 
 
 }
