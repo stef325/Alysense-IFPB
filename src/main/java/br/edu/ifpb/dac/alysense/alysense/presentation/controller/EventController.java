@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifpb.dac.alysense.alysense.business.service.ConverterService;
 import br.edu.ifpb.dac.alysense.alysense.business.service.EventService;
-import br.edu.ifpb.dac.alysense.alysense.model.entity.Event;
+import br.edu.ifpb.dac.alysense.alysense.model.entity.EventSense;
+import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EventDTO;
 
 @RestController
@@ -36,7 +37,7 @@ public class EventController {
     @PostMapping
     public ResponseEntity save(@RequestBody EventDTO dto){
         try {
-            Event entity = converter.DTOToEvent(dto);
+            EventSense entity = converter.DTOToEvent(dto);
             service.save(entity);
             dto = converter.EventToDTO(entity);
 
@@ -54,17 +55,19 @@ public class EventController {
         @RequestParam(value = "title", required = false) String title,
         @RequestParam(value = "date", required = false) LocalDate date,
         @RequestParam(value = "peopleLimit", required = false) Integer peopleLimit,
-        @RequestParam(value = "local", required = false) String local
+        @RequestParam(value = "local", required = false) String local,
+        @RequestParam(value = "admUser", required = false) User admUser
         ){
         try {
-            Event filter = new Event();
+            EventSense filter = new EventSense();
             filter.setId(id);
             filter.setDate(date);
             filter.setPeopleLimit(peopleLimit);
             filter.setTitle(title);
             filter.setLocal(local);
+            filter.setAdmUser(admUser);
 
-            List<Event> entities = service.find(filter);
+            List<EventSense> entities = service.find(filter);
             List<EventDTO> dtos = converter.EventToDTO(entities);
 
             return ResponseEntity.ok(dtos);
@@ -76,7 +79,7 @@ public class EventController {
     @GetMapping("/all")
     public ResponseEntity findAll(){
         try {
-            List<Event> entities = service.findAll();
+            List<EventSense> entities = service.findAll();
             List<EventDTO> dtos = converter.EventToDTO(entities);
 
             return ResponseEntity.ok(dtos);
@@ -88,7 +91,7 @@ public class EventController {
     @GetMapping("{id}")
     public ResponseEntity findById(@PathVariable("id") Long id){
         try {
-            Event entity = service.findById(id);
+            EventSense entity = service.findById(id);
             EventDTO dto = converter.EventToDTO(entity);
 
             return ResponseEntity.ok(dto);
@@ -103,7 +106,7 @@ public class EventController {
     public ResponseEntity update(@PathVariable("id") Long id, @RequestBody EventDTO dto){
         try {
             dto.setId(id);
-            Event entity = converter.DTOToEvent(dto);
+            EventSense entity = converter.DTOToEvent(dto);
             service.update(entity);
             dto = converter.EventToDTO(entity);
 

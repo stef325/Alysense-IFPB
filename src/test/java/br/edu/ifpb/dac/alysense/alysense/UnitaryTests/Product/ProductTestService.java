@@ -67,7 +67,7 @@ public class ProductTestService{
     @Test
     @Order(1)
     public void typeClassTest(){
-        assertInstanceOf(ProductDTO.class, converter.ProductToDTO(new Product()));
+        assertInstanceOf(ProductDTO.class, converter.productToDTO(new Product()));
         assertInstanceOf(Product.class, converter.DTOToProduct(new ProductDTO()));
         assertFalse(product.getClass().equals(ProductDTO.class));
     }
@@ -75,7 +75,7 @@ public class ProductTestService{
     @Test
     @Order(3)
     public void convertorTest(){
-        ProductDTO dto = converter.ProductToDTO(product);
+        ProductDTO dto = converter.productToDTO(product);
         Iterator<Characteristic> ite = dto.getCharacteristics().iterator();
         assertAll(() -> assertEquals("bolo",dto.getName()),
         () -> assertEquals("doce",ite.next().getAtribute()),
@@ -87,7 +87,7 @@ public class ProductTestService{
     @Test
     @Order(2)
     public void notNullTest(){
-        ProductDTO dto = converter.ProductToDTO(product);
+        ProductDTO dto = converter.productToDTO(product);
         assertAll(() -> assertNotNull(dto.getName()),
         () -> assertNotNull(dto.getCharacteristics()),
         () ->assertNotNull(dto.getOwner()),
@@ -123,7 +123,7 @@ public class ProductTestService{
     @Test
     @Order(7)
     public void atribuTestsToDTO(){
-       ProductDTO dto = converter.ProductToDTO(product);
+       ProductDTO dto = converter.productToDTO(product);
        assertEquals(dto.getId(), product.getId());
        assertEquals(dto.getName(), product.getName());
      assertEquals(dto.getCharacteristics(), product.getCharacteristics());

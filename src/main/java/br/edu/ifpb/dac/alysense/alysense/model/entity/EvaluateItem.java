@@ -1,6 +1,8 @@
 package br.edu.ifpb.dac.alysense.alysense.model.entity;
 
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import br.edu.ifpb.dac.alysense.alysense.model.Enum.Aspect;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,14 +24,19 @@ public class EvaluateItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private Aspect question;
+    
     @OneToOne(fetch = FetchType.EAGER,
-     cascade = { CascadeType.ALL}, orphanRemoval = true)
-    private Product product;
+    cascade = { CascadeType.ALL}, orphanRemoval = true)
+   private User evaluator;
 
-    @OneToOne(fetch = FetchType.EAGER,
-     cascade = { CascadeType.ALL}, orphanRemoval = true)
-    private AspectAvaliation aspectAvaliation;
+   @OneToOne(fetch = FetchType.EAGER,
+    cascade = { CascadeType.ALL}, orphanRemoval = true)
+   private Sample sample; 
 
+   @OneToOne(fetch = FetchType.EAGER,
+   cascade = { CascadeType.ALL}, orphanRemoval = true)
+   private Note note;
     
 
 

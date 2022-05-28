@@ -8,7 +8,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.stereotype.Service;
 
-import br.edu.ifpb.dac.alysense.alysense.model.entity.Event;
+import br.edu.ifpb.dac.alysense.alysense.model.entity.EventSense;
 import br.edu.ifpb.dac.alysense.alysense.model.repository.EventRepository;
 
 @Service
@@ -18,28 +18,28 @@ public class EventService {
     private EventRepository repository;
 
     /*-----Create-----*/
-    public void save(Event event){
+    public void save(EventSense event){
         repository.save(event);
     }
 
 
     /*-----Read-----*/
-    public List<Event> find(Event filter ){
-        Example<Event> example = Example.of(filter, ExampleMatcher.matching().withIgnoreCase().withStringMatcher(StringMatcher.CONTAINING));
+    public List<EventSense> find(EventSense filter ){
+        Example<EventSense> example = Example.of(filter, ExampleMatcher.matching().withIgnoreCase().withStringMatcher(StringMatcher.CONTAINING));
         return repository.findAll(example);
     }
 
-    public List<Event> findAll(){
+    public List<EventSense> findAll(){
         return repository.findAll();
     }
 
-    public Event findById(Long id){
+    public EventSense findById(Long id){
         return repository.getById(id);
     }
 
 
     /*-----Update-----*/
-    public Event update(Event entity){
+    public EventSense update(EventSense entity){
         return repository.save(entity);
     }
     

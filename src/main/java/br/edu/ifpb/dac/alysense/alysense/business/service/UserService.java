@@ -1,6 +1,7 @@
 package br.edu.ifpb.dac.alysense.alysense.business.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -34,11 +35,11 @@ public class UserService {
 		return userDAO.findAll();
 	}
 	
-	public List<User> find(User filter){
+	public Set<User> find(User filter){
 		Example example = Example.of(filter,
 				ExampleMatcher.matching().withIgnoreCase()
 				.withStringMatcher(StringMatcher.CONTAINING));
-		return userDAO.findAll(example);
+		return (Set<User>) userDAO.findAll(example);
 	}
 	
 	public User update(User user) {

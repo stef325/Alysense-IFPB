@@ -1,6 +1,7 @@
 package br.edu.ifpb.dac.alysense.alysense.presentation.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,30 +16,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.edu.ifpb.dac.alysense.alysense.business.service.AvaliationService;
 import br.edu.ifpb.dac.alysense.alysense.business.service.ConverterService;
-import br.edu.ifpb.dac.alysense.alysense.business.service.EvaluateItemService;
 import br.edu.ifpb.dac.alysense.alysense.model.Enum.Aspect;
+import br.edu.ifpb.dac.alysense.alysense.model.entity.Avaliation;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.EvaluateItem;
-import br.edu.ifpb.dac.alysense.alysense.model.entity.Note;
-import br.edu.ifpb.dac.alysense.alysense.model.entity.Sample;
-import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
+import br.edu.ifpb.dac.alysense.alysense.presentation.dto.AvaliationDTO;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EvaluateItemDTO;
 
 @RestController
-@RequestMapping("/api/evaluete_item")
-public class EvalueteItemController {
+@RequestMapping("/api/avaliation")
+public class AvaliationController {
     @Autowired
-	private EvaluateItemService evaluateItemService;
+	private AvaliationService avaliationService;
 
     @Autowired
     private ConverterService converterService;
 	
 	@PostMapping
-	public ResponseEntity save(@RequestBody EvaluateItemDTO dto) {
+	public ResponseEntity save(@RequestBody AvaliationDTO dto) {
 		try {
-			EvaluateItem evaluateItem = converterService.DTOToEvaluateItem(dto);
-			evaluateItem = evaluateItemService.save(evaluateItem);
-			dto = converterService.EvaluateItemToDTO(evaluateItem);
+			Avaliation avaliation = converterService.DTOToAvaliation(dto);
+			avaliation = avaliationService.save(avaliation);
+			dto = converterService.AvaliationToDTO(avaliation);
 			return new ResponseEntity(dto, HttpStatus.CREATED);
 		}catch(Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
@@ -46,12 +46,12 @@ public class EvalueteItemController {
 	}
 
 	@PutMapping("{id}")
-	public ResponseEntity update(@PathVariable("id") Long id,@RequestBody EvaluateItemDTO dto) {
+	public ResponseEntity update(@PathVariable("id") Long id,@RequestBody AvaliationDTO dto) {
 		try {
 			dto.setId(id);
-			EvaluateItem evaluateItem = converterService.DTOToEvaluateItem(dto);
-			evaluateItem = evaluateItemService.update(evaluateItem);
-			dto = converterService.EvaluateItemToDTO(evaluateItem);
+			Avaliation avaliation = converterService.DTOToAvaliation(dto);
+			avaliation = avaliationService.update(avaliation);
+			dto = converterService.AvaliationToDTO(avaliation);
 			return ResponseEntity.ok(dto);
 		}catch(Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
@@ -61,7 +61,7 @@ public class EvalueteItemController {
 	@DeleteMapping("{id}")
 	public ResponseEntity delete(@PathVariable("id") Long id){
 		try {
-			evaluateItemService.delete(id);
+			avaliationService.delete(id);
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}catch(Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
@@ -71,21 +71,17 @@ public class EvalueteItemController {
 	
 	@GetMapping
 	public ResponseEntity find( @RequestParam(value = "id", required = false) Long id,
-			@RequestParam(value = "evaluator", required = false) User evaluator,
-			@RequestParam(value = "sample", required = false) Sample sample,
-			@RequestParam(value = "note", required = false) Note note,
-			@RequestParam(value = "question", required = false) Aspect question) {
+			@RequestParam(value = "aspect", required = false) Aspect answer,
+			@RequestParam(value = "evaluateItems", required = false) Set<EvaluateItem> evaluateItems) {
 		try {
-			EvaluateItem filter = new EvaluateItem();
+			Avaliation filter = new Avaliation();
 			filter.setId(id);
-			filter.setEvaluator(evaluator);
-			filter.setSample(sample);
-			filter.setNote(note);
-			filter.setQuestion(question);
+            filter.setAnswer(answer);
+            filter.setEvaluateItems(evaluateItems);
 			
 			
-			List<EvaluateItem> entities = evaluateItemService.find(filter);
-			List<EvaluateItemDTO> dtos = converterService.EvaluateItemToDTO(entities);
+			List<Avaliation> entities = avaliationService.find(filter);
+			List<AvaliationDTO> dtos = converterService.AvaliationToDTO(entities);
 			return ResponseEntity.ok(dtos);
 		}catch(Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());

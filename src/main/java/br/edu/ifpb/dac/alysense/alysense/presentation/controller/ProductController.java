@@ -21,6 +21,7 @@ import br.edu.ifpb.dac.alysense.alysense.business.service.ConverterService;
 import br.edu.ifpb.dac.alysense.alysense.business.service.ProductService;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Characteristic;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Product;
+import br.edu.ifpb.dac.alysense.alysense.model.entity.Sample;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.ProductDTO;
 
 @RestController
@@ -40,7 +41,7 @@ public class ProductController {
         try {
             Product entity = converter.DTOToProduct(dto);
             service.save(entity);
-            dto = converter.ProductToDTO(entity);
+            dto = converter.productToDTO(entity);
 
             return new ResponseEntity(dto, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -56,7 +57,8 @@ public class ProductController {
         @RequestParam(value = "name", required = false) String name,
         @RequestParam(value = "expirationDate", required = false) LocalDate expirationDate,
         @RequestParam(value = "owner", required = false) String owner,
-        @RequestParam(value = "characteristic", required = false) Set<Characteristic> characteristics
+        @RequestParam(value = "characteristic", required = false) Set<Characteristic> characteristics,
+        @RequestParam(value = "samples", required = false) Set<Sample> samples
         ){
         try {
             Product filter = new Product();
@@ -65,9 +67,10 @@ public class ProductController {
             filter.setId(id);
             filter.setName(name);
             filter.setOwner(owner);
+            filter.setSamples(samples);
 
             List<Product> entities = service.find(filter);
-            List<ProductDTO> dtos = converter.ProductToDTO(entities);
+            List<ProductDTO> dtos = converter.productToDTO(entities);
 
             return ResponseEntity.ok(dtos);
         } catch (Exception e) {
@@ -79,7 +82,7 @@ public class ProductController {
     public ResponseEntity findAll(){
         try {
             List<Product> entities = service.findAll();
-            List<ProductDTO> dtos = converter.ProductToDTO(entities);
+            List<ProductDTO> dtos = converter.productToDTO(entities);
 
             return ResponseEntity.ok(dtos);
         } catch (Exception e) {
@@ -91,7 +94,7 @@ public class ProductController {
     public ResponseEntity findById(@PathVariable("id") Long id){
         try {
             Product entity = service.findById(id);
-            ProductDTO dto = converter.ProductToDTO(entity);
+            ProductDTO dto = converter.productToDTO(entity);
 
             return ResponseEntity.ok(dto);
         } catch (Exception e) {
@@ -107,7 +110,7 @@ public class ProductController {
             dto.setId(id);
             Product entity = converter.DTOToProduct(dto);
             service.update(entity);
-            dto = converter.ProductToDTO(entity);
+            dto = converter.productToDTO(entity);
 
             return ResponseEntity.ok(dto);
         } catch (Exception e) {

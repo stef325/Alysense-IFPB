@@ -112,7 +112,7 @@ public class UserServiceTests {
     @Test
     @Order(4)
     public void serviceControllerAndConverter(){
-        UserDTO userdto = ConverterService.conversorToDTO(user);
+        UserDTO userdto = ConverterService.converterToDTO(user);
 
         ResponseEntity response = controller.save(userdto);
 
@@ -134,7 +134,7 @@ public class UserServiceTests {
     @Test
     @Order(5)
     public void update(){
-        UserDTO userdto = ConverterService.conversorToDTO(user);
+        UserDTO userdto = ConverterService.converterToDTO(user);
         userdto.setEmail("bruna123321@gmail.com");
 
         ResponseEntity response = controller.update(11L,userdto);
@@ -150,7 +150,7 @@ public class UserServiceTests {
     @Test
     @Order(6)
     public void delete(){
-        UserDTO userdto = ConverterService.conversorToDTO(user);
+        UserDTO userdto = ConverterService.converterToDTO(user);
 
         ResponseEntity response = controller.delete(17L);
 

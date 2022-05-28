@@ -16,7 +16,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.mockito.Mockito;
 
 import br.edu.ifpb.dac.alysense.alysense.business.service.ConverterService;
-import br.edu.ifpb.dac.alysense.alysense.model.entity.Event;
+import br.edu.ifpb.dac.alysense.alysense.model.entity.EventSense;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EventDTO;
 import br.edu.ifpb.dac.alysense.alysense.util.EventTest;
 import br.edu.ifpb.dac.alysense.alysense.util.OutOfLimitException;
@@ -62,7 +62,7 @@ public class EventsTests {
     public void eventDTOConverter(){
         ConverterService converter = new ConverterService();
 
-        Event evento = new Event();
+        EventSense evento = new EventSense();
 
         EventDTO eventodto = converter.EventToDTO(evento);
 

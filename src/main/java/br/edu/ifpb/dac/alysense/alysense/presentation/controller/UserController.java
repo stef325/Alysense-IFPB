@@ -1,6 +1,7 @@
 package br.edu.ifpb.dac.alysense.alysense.presentation.controller;
 
-import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,9 +31,9 @@ public class UserController {
 	@PostMapping
 	public ResponseEntity save(@RequestBody UserDTO dto) {
 		try {
-			User user = ConverterService.conversorToUser(dto);
+			User user = ConverterService.converterToUser(dto);
 			user = userService.save(user);
-			dto = ConverterService.conversorToDTO(user);
+			dto = ConverterService.converterToDTO(user);
 			return new ResponseEntity(dto, HttpStatus.CREATED);
 		}catch(Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
@@ -43,9 +44,9 @@ public class UserController {
 	public ResponseEntity update(@PathVariable("id") Long id,@RequestBody UserDTO dto) {
 		try {
 			dto.setId(id);
-			User user = ConverterService.conversorToUser(dto);
+			User user = ConverterService.converterToUser(dto);
 			user = userService.update(user);
-			dto = ConverterService.conversorToDTO(user);
+			dto = ConverterService.converterToDTO(user);
 			return ResponseEntity.ok(dto);
 		}catch(Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
@@ -73,8 +74,8 @@ public class UserController {
 			filter.setName(name);
 			filter.setEmail(email);
 			
-			List<User> entities = userService.find(filter);
-			List<UserDTO> dtos = ConverterService.conversorToDTO(entities);
+			Set<User> entities = userService.find(filter);
+			Set<UserDTO> dtos = ConverterService.converterToDTO(entities);
 			return ResponseEntity.ok(dtos);
 		}catch(Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());

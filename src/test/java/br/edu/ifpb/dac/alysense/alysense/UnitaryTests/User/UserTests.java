@@ -72,7 +72,7 @@ public class UserTests {
         assertEquals(true, ValidationAgeUserService.isAgeEnoughToVote(19, birthDate));
         assertEquals(false, ValidationAgeUserService.isAgeEnoughToVote(19, birthDate.plusMonths(1)));
     }
-
+/*
     @Test
     @DisplayName("products restrictions")
     public void UserCanUse(){
@@ -105,5 +105,5 @@ public class UserTests {
     }
 
     
-
+*/
 }
