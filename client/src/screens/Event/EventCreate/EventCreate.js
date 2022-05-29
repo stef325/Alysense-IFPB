@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bootswatch/dist/journal/bootstrap.css';
 import BigForm from '../../../components/forms/BigForm';
 import './EventCreate.css';
 import FormGroup from '../../../components/forms/FormGroup';
@@ -66,7 +65,7 @@ export default class EventCreate extends React.Component{
                                     </FormGroup>
                                 </div>
                             </div>
-                            <div>
+                            <div className='CardTable'>
                                 <CardTable action='Adicionar' collection={this.state.products} remove={this.remove} 
                                 label='Produtos'>
                                 </CardTable>

@@ -1,3 +1,9 @@
+.EventCreate-header{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .main-container{
     width: 60vw;
     height: 100vh;
@@ -7,12 +13,6 @@
 
 .title{
     text-align: center;
-}
-
-.EventCreate-header{
-    display:flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .half-container{
@@ -30,4 +30,22 @@
 
 .samples{
     margin-right:43%;
+}
+
+.CardTable{
+    display: flex;
+}
+
+.CardTable .card-body{
+    height: 20vh;
+    width: 20vw;
+}
+
+.action-button {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
+.action-button .btn{
+    width: 30%;
 }
