@@ -1,5 +1,6 @@
 import React from 'react';
 
+import "../forms/forms.css"
 export default class BigForm extends React.Component{
 
     render() {
@@ -9,7 +10,11 @@ export default class BigForm extends React.Component{
                 <h1 className="title">{this.props.title}</h1>
                 <form>
                     {this.props.children}
-                    <button onClick={this.props.submit()}>{this.props.action}</button>
+
+                    <div className="action-button">
+                        <button onClick={this.props.submit()} type="button" className="btn btn-primary">{this.props.action}</button>
+                    </div>
+                    
                 </form>
             </div>
         );
