@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,6 +31,7 @@ public class EventSense {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     private String local;
     private Integer peopleLimit;

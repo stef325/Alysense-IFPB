@@ -3,20 +3,43 @@ import BigForm from '../../../components/forms/BigForm';
 import './EventCreate.css';
 import FormGroup from '../../../components/forms/FormGroup';
 import CardTable from '../../../components/tables/CardTable';
+import axios from 'axios'
 
 export default class EventCreate extends React.Component{
 
     state={
         title:'',
         local:'',
-        dateEvent:'aaaa-mm-dd',
+        dateEvent:'',
         qtdParticipants:0,
         qtdSamples:0,
-        products: []
+        products: [],
+        admUser: null,
+        avaliators:[]
     }
 
-    submit = () =>{
-
+    submit = async() =>{
+        await axios.post('http://localhost:8080/api/event',{
+            title: this.state.title,
+            date: this.state.dateEvent,
+            local:this.state.local,
+            peopleLimit: this.state.qtdParticipants,
+            numberSample: this.state.qtdSamples,
+            items: this.state.products,
+            evaluators: this.state.avaliators,
+            admUser: this.state.admUser
+            
+      
+          }).then(response =>{
+            console.log(response)
+            alert("Evento criado!")
+          }).catch(error =>{
+            console.log(error.response)
+            alert("Erro!")
+          });
+      
+          console.log("request finished");
+          
     }
 
     remove = () =>{
