@@ -4,12 +4,21 @@ import 'bootswatch/dist/journal/bootstrap.css'
 
 import NavBar from './components/nav/NavBar';
 import AppRoutes from './main/AppRoutes'
+import Register from './screens/User/Register/Register';
+import {BrowserRouter as Router, Route, Switch, withRouter} from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <NavBar userType="ADMIN"></NavBar>
-      <AppRoutes></AppRoutes>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Register} />
+              <div>
+                <NavBar userType="ADMIN"></NavBar>
+                <AppRoutes></AppRoutes>
+              </div>
+          </Switch>
+      </Router>
     </div>
   );
 }

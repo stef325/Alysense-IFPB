@@ -15,8 +15,13 @@ export default class EventCreate extends React.Component{
         qtdSamples:0,
         products: [],
         admUser: null,
-        avaliators:[]
+        avaliators:[],
+
+
+        id:'',
+        name:''
     }
+
 
     submit = async() =>{
         await axios.post('http://localhost:8080/api/event',{
@@ -29,22 +34,48 @@ export default class EventCreate extends React.Component{
             evaluators: this.state.avaliators,
             admUser: this.state.admUser
             
-      
+        
           }).then(response =>{
             console.log(response)
             alert("Evento criado!")
           }).catch(error =>{
+            console.log(this.state.products)
             console.log(error.response)
             alert("Erro!")
           });
-      
           console.log("request finished");
           
     }
 
-    remove = () =>{
+    find = () => {
+       var params = '?';
 
+        if(this.state.id != ''){
+            if(params != '?'){
+                params = `${params}&`;
+            }
+        params = `${params}id=${this.state.id}`;
+        }
+
+        if(this.state.name != ''){
+            if(params != '?'){
+                params = `${params}&`;
+            }
+        params = `${params}name=${this.state.name}`;
+        }
+        
+        axios.get(`http://localhost:8080/api/product/filter/${params}`)
+        .then(response => {
+            const products = response.data;
+            this.setState({products})
+            console.log(products)
+        }).catch(error =>{
+            console.log(error.response);
+        })
+        
     }
+
+    remove = () =>{}
 
     render(){
         return (
@@ -89,8 +120,8 @@ export default class EventCreate extends React.Component{
                                 </div>
                             </div>
                             <div className='CardTable'>
-                                <CardTable action='Adicionar' collection={this.state.products} remove={this.remove} 
-                                label='Produtos'>
+                                <CardTable  action='Adicionar' find={this.find} collection={this.state.products} remove={this.remove} 
+                                label='Produtos' >
                                 </CardTable>
                             </div>
                         </BigForm>
