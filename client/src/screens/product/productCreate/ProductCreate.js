@@ -1,5 +1,6 @@
 import React from 'react';
 
+import axios from 'axios'
 import BigForm from '../../../components/forms/BigForm'
 import FormGroup from '../../../components/forms/FormGroup'
 import CardTable from '../../../components/tables/CardTable'
@@ -11,11 +12,32 @@ export default class ProductCreate extends React.Component {
     name: '',
     owner: '',
     date: '',
+    ingredients:'',
     charact: [],
     slices: []
   }
 
-  submit = () => {
+
+  submit = async() => {
+      await axios.post('http://localhost:8080/api/product',{
+      name: this.state.name,
+      expirationDate: this.state.date,
+      owner:this.state.owner,
+      ingredients: this.state.ingredients,
+      characteristics: this.state.charact,
+      samples: this.state.slices
+
+    }).then(response =>{
+      console.log(response)
+      alert("Produto adicionado!")
+    }).catch(error =>{
+      console.log(error.response)
+      alert("Erro!")
+    });
+
+    console.log("request finished");
+    
+
   }
 
   remove = () => {

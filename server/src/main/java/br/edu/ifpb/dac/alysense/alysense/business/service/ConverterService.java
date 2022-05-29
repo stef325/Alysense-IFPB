@@ -134,6 +134,16 @@ public class ConverterService {
 		}
 		return dtos;
 	}
+
+	public static Set<User> DTOToUser(Set<UserDTO> dtos) {
+		Set<User> entities = new HashSet<>();
+
+		for (UserDTO dto : dtos) {
+			User entity = converterToUser(dto);
+			entities.add(entity);
+		}
+		return entities;
+	}
 	
 	public static UserDTO converterToDTO(User user) {
 		UserDTO dto = new UserDTO(user);
@@ -208,7 +218,7 @@ public class ConverterService {
 		dto.setPeopleLimit(entity.getPeopleLimit());
 		dto.setItems(entity.getItems());
 		dto.setLocal(entity.getLocal());
-		dto.getAdmUser().setPassword(null);
+		//dto.getAdmUser().setPassword(null);
 		dto.setAdmUser(entity.getAdmUser());
 		dto.setEvaluators(converterToDTO(entity.getEvaluators()));
 		dto.setNumberSample(entity.getNumberSample());
@@ -240,6 +250,7 @@ public class ConverterService {
 		entity.setLocal(dto.getLocal());
 		entity.setAdmUser(dto.getAdmUser());
 		entity.setNumberSample(dto.getNumberSample());
+		entity.setEvaluators(ConverterService.DTOToUser(dto.getEvaluators()));
 		return entity;
 
 	}

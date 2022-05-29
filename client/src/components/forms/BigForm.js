@@ -12,7 +12,7 @@ export default class BigForm extends React.Component{
                     {this.props.children}
 
                     <div className="action-button">
-                        <button onClick={this.props.submit()} type="button" className="btn btn-primary">{this.props.action}</button>
+                        <button onClick={this.props.submit} type="button" className="btn btn-primary">{this.props.action}</button>
                     </div>
                     
                 </form>
