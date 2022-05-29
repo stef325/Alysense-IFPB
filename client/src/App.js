@@ -1,14 +1,15 @@
 
 import './App.css';
 import 'bootswatch/dist/journal/bootstrap.css'
-import Register from './screens/User/Register/Register';
+
+import NavBar from './components/nav/NavBar';
+import AppRoutes from './main/AppRoutes'
 
 function App() {
   return (
     <div className="App">
-
-      <Register></Register>
-
+      <NavBar userType="ADMIN"></NavBar>
+      <AppRoutes></AppRoutes>
     </div>
   );
 }
