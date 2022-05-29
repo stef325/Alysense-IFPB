@@ -1,10 +1,14 @@
+
 import './App.css';
-import EventCreate from "./screens/Event/EventCreate/EventCreate"
+import 'bootswatch/dist/journal/bootstrap.css'
+import ProductCreate from './screens/product/productCreate/ProductCreate';
 
 function App() {
   return (
     <div className="App">
-      <EventCreate/>
+
+      <ProductCreate></ProductCreate>
+
     </div>
   );
 }

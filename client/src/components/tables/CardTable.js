@@ -1,15 +1,25 @@
 import React from 'react';
 
 import DinamicTable from './DinamicTable';
-export default class CardTable extends React.Component{
+
+import '../tables/tables.css'
+export default class CardTable extends React.Component {
 
     render() {
         return (
-            
+
             <div className="card-table">
-                <label className="form-label mt-4" htmlFor={this.props.htmlFor}>{this.props.label}</label>
-                <button className='' >{this.props.action}</button>
-                <DinamicTable collection={this.props.collection} remove={this.props.remove(item.name)}></DinamicTable>
+                <div className="half-head">
+                    <label className="form-label mt-4" htmlFor={this.props.htmlFor}>{this.props.label}</label>
+                    <button type="button" className="btn btn-primary">{this.props.action}</button>
+                </div>
+
+                <div className="card border-primary mb-3" >
+                    <div className="card-body">
+                        <DinamicTable collection={this.props.collection} remove={this.props.remove}></DinamicTable>
+                    </div>
+                </div>
+
             </div>
         );
     }

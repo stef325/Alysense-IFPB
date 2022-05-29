@@ -1,0 +1,45 @@
+.main-container{
+    padding-top: 15%;
+    padding-bottom: 5%;
+    width: 60vw;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+}
+.action-button {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
+.action-button .btn{
+    width: 50%;
+}
+
+.title{
+    text-align: center;
+}
+.owner{
+    width: 63%;
+}
+.expiration-date{
+    width: 35%;
+}
+.half-container{
+    display: flex;
+    justify-content: space-between;
+}
+.characterist{
+    width: 48%;
+    height: px;
+}
+.slices{
+    width: 48%;
+}
+
+.txt-ingred{
+    resize: none;
+}
+.half-container .card-body{
+    height: 30vh;
+}
+
