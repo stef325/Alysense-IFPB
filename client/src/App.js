@@ -1,13 +1,13 @@
 
 import './App.css';
 import 'bootswatch/dist/journal/bootstrap.css'
-import ProductCreate from './screens/product/productCreate/ProductCreate';
+import Register from './screens/User/Register/Register';
 
 function App() {
   return (
     <div className="App">
 
-      <ProductCreate></ProductCreate>
+      <Register></Register>
 
     </div>
   );
