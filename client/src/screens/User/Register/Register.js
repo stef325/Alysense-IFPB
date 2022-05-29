@@ -10,9 +10,35 @@ import { RiLockPasswordFill } from "react-icons/ri";
 
 import FormGroup from '../../../components/forms/FormGroup'
 import BigForm from '../../../components/forms/BigForm'
+import axios from 'axios'
 export default class Register extends React.Component {
 
-    submit = () => { }
+    state={
+        name:'',
+        date:'',
+        email:'',
+        password:''
+    }
+
+    submit = async() => { 
+        await axios.post('http://localhost:8080/api/user',{
+      name: this.state.name,
+      birthDate: this.state.date,
+      email:this.state.email,
+      password: this.state.password,
+
+
+    }).then(response =>{
+      console.log(response)
+      alert("Conta criada!")
+    }).catch(error =>{
+      console.log(error.response)
+      alert("Erro!")
+    });
+
+    console.log("request finished");
+    
+    }
     render() {
         return (
 
@@ -43,7 +69,7 @@ export default class Register extends React.Component {
                             <div className="input-container">
                                 <FormGroup htmlFor="" label="">
                                     <RiLockPasswordFill />
-                                    <input className='form-control' type="password" placeholder='Senha' id='password' onChange={(e) => { this.setState({ name: e.target.value }) }} />
+                                    <input className='form-control' type="password" placeholder='Senha' id='password' onChange={(e) => { this.setState({ password: e.target.value }) }} />
                                 </FormGroup>
                             </div>
 
@@ -52,7 +78,7 @@ export default class Register extends React.Component {
                         
 
                     </div>
-                    <h6>Já tem uma conta? <a href="">clique aqui</a> para fazer Login</h6>
+                    <h6>Já tem uma conta? <a href="url">clique aqui</a> para fazer Login</h6>
                 </div>
 
             </div>

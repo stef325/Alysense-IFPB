@@ -11,7 +11,7 @@ export default class CardTable extends React.Component {
             <div className="card-table">
                 <div className="half-head">
                     <label className="form-label mt-4" htmlFor={this.props.htmlFor}>{this.props.label}</label>
-                    <button type="button" className="btn btn-primary">{this.props.action}</button>
+                    <button  onClick={this.props.find} type="button" className="btn btn-primary">{this.props.action}</button>
                 </div>
 
                 <div className="card border-primary mb-3" >
