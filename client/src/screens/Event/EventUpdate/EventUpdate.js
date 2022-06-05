@@ -3,12 +3,12 @@ import BigForm from '../../../components/forms/BigForm';
 import FormGroup from '../../../components/forms/FormGroup';
 import CardProduct from '../../../components/tables/Product/CardProduct';
 import axios from 'axios'
-import './EventUpdate.css';
+import "./EventUpdate.css";
 
 export default class EventUpdate extends React.Component{
 
     state={
-        idEvent: '',
+        idEvent: 0,
         title:'',
         dateEvent:'',
         local:'',
@@ -41,7 +41,6 @@ export default class EventUpdate extends React.Component{
             alert("Erro!")
         });
         console.log("request finished");
-        
     }
 
     componentDidMount(){
@@ -51,8 +50,14 @@ export default class EventUpdate extends React.Component{
 
     }
 
+    cancel =()=>{
+        this.props.history.push(`/EventFeed/`);
+        window.location.reload();
+    }
+
+
     findById = async(eventId) =>{
-        await axios.get(`http://localhost:8080/api/event/filter?id:${eventId}`)
+        await axios.get(`http://localhost:8080/api/event/filter?id=${eventId}`)
         .then(response=>{
             const event = response.data[0];
             const idEvent = event.id;
@@ -86,6 +91,9 @@ export default class EventUpdate extends React.Component{
             <div className='EventUpdate'>
                 <header className="EventUpdate-header">
                     <div className="main-container">
+                            <div className='button-test'>
+                                <button type="button" class="btn btn-primary" onClick={this.cancel}>Voltar</button>
+                            </div>
                         <BigForm title="ATUALIZAR EVENTO" submit={this.submit} action="Alterar">
                             <div className='titulo'>
                                 <FormGroup label ="Titulo">
@@ -128,7 +136,9 @@ export default class EventUpdate extends React.Component{
                                 label='Produtos' >
                                 </CardProduct>
                             </div>
+                           
                         </BigForm>
+
                     </div>
                 </header>
             </div>

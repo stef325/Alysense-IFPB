@@ -22,7 +22,7 @@ export default class NavBar extends React.Component {
                                 <NavBarItem href="/newProduct" label="Adicionar Produto"/>
                                 <NavBarItem href="/ProductView" label="Seus Produtos"/>
                                 <NavBarItem href="/newEvent" label="Criar Evento"/>
-                                <NavBarItem href="/FeedEvent" label="Seus Eventos"/>
+                                <NavBarItem href="/EventFeed" label="Seus Eventos"/>
                                 
                             </ul>
                            

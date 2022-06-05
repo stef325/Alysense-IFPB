@@ -22,14 +22,20 @@ export default class EventFeed extends React.Component{
         }).catch(error =>{
             console.log(error.response)
         });
+        window.location.reload();
     };
 
     edit =(idEvent)=>{
         this.props.history.push(`/EventUpdate/${idEvent}`);
+        window.location.reload();
     }
 
     componentDidMount(){
         this.submit();
+    }
+
+    componentWillUnmount(){
+        this.clear();
     }
 
     submit =async ()=>{
