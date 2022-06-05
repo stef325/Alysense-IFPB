@@ -11,27 +11,28 @@ import "./ProductUpdade.css"
 export default class ProductUpdate extends React.Component {
 
   state = {
+    id:0,
     name: '',
     owner: '',
     date: '',
     ingredients: '',
     charact: [],
-    slices: []
+    samples: []
   }
 
 
   submit = async () => {
-    await axios.post('http://localhost:8080/api/product', {
+    await axios.put(`http://localhost:8080/api/product/${this.state.id}`, {
       name: this.state.name,
       expirationDate: this.state.date,
       owner: this.state.owner,
       ingredients: this.state.ingredients,
       characteristics: this.state.charact,
-      samples: this.state.slices
+      samples: this.state.samples
 
     }).then(response => {
       console.log(response)
-      alert("Produto adicionado!")
+      alert("Produto editado!")
     }).catch(error => {
       console.log(error.response)
       alert("Erro!")
@@ -83,7 +84,7 @@ export default class ProductUpdate extends React.Component {
               </div>
 
               <div className="slices">
-                <CardSample action="Adicionar" collection={this.state.slices} remove={this.remove} label="Amostras"></CardSample>
+                <CardSample action="Adicionar" collection={this.state.samples} remove={this.remove} label="Amostras"></CardSample>
 
               </div>
 
