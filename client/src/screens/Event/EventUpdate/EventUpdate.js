@@ -50,15 +50,15 @@ export default class EventUpdate extends React.Component{
 
     componentDidMount(){
         const params = this.props.match.params;
-        const id = params.id;
-        this.findById(id);
+        const idEvent = params.id;
+        this.findById(idEvent);
     }
 
-    findById = (eventId) =>{
-        axios.get(`http://localhost:8080/api/event?id=${eventId}`)
+    findById = async(eventId) =>{
+        await axios.get(`http://localhost:8080/api/event/filter?id:${eventId}`)
         .then(response=>{
             const event = response.data[0];
-            const id = event.id;
+            const idEvent = event.id;
             const title = event.title;
             const date = event.date;
             const local = event.local;
@@ -68,7 +68,7 @@ export default class EventUpdate extends React.Component{
             const evaluators= event.avaliators;
             const admUser= event.admUser;
 
-            this.setState({id,title, date,local,peopleLimit,numberSample,items,evaluators,admUser});
+            this.setState({idEvent,title, date,local,peopleLimit,numberSample,items,evaluators,admUser});
         }).catch(error=>{
             console.log(error.response);
         })
@@ -78,7 +78,7 @@ export default class EventUpdate extends React.Component{
 
     render(){
         return (
-            <div className='EventFeed'>
+            <div className='EventUpdate'>
                 <header className="EventUpdate-header">
                     <div className="main-container">
                         <BigForm title="ATUALIZAR EVENTO" submit={this.submit} action="Alterar">
