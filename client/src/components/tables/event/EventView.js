@@ -4,15 +4,15 @@ export default props =>{
 
     const rows = props.collection.map(item=>{
             return(
-                <tr key={item.title}>
+                <tr key={item.id}>
                     <td>{item.title}</td>
                     <td>{item.local}</td>
                     <td>{item.date}</td>
                     <td>
-                        <button type='button' title='Editar' className='btn btn-info' onClick={e =>props.edit()}>
+                        <button type='button' title='Editar' className='btn btn-info' onClick={e =>props.edit(item.id)}>
                             <i className='pi pi-pencil'></i>
                         </button>
-                        <button type='button' title='Excluir' className='btn btn-danger' onClick={e =>props.remove(item.name)}>
+                        <button type='button' title='Excluir' className='btn btn-danger' onClick={e =>props.remove(item.id)}>
                             <i className='pi pi-trash'></i>
                         </button>
                         
