@@ -1,9 +1,9 @@
 import React from 'react';
 
-import DinamicTable from './DinamicTable';
+import ProductSamples from './ProductSamples';
 
-import '../tables/tables.css'
-export default class CardTable extends React.Component {
+import '../tables.css'
+export default class CardSample extends React.Component {
 
     render() {
         return (
@@ -16,7 +16,7 @@ export default class CardTable extends React.Component {
 
                 <div className="card border-primary mb-3" >
                     <div className="card-body">
-                        <DinamicTable collection={this.props.collection} remove={this.props.remove}></DinamicTable>
+                        <ProductSamples collection={this.props.collection} remove={this.props.remove}></ProductSamples>
                     </div>
                 </div>
 
