@@ -7,7 +7,8 @@ import CardCharact from '../../../components/tables/charact/CardCharact'
 import CardSample from '../../../components/tables/samples/CardSample'
 
 import "../../../styles/createForms.css"
-export default class ProductCreate extends React.Component {
+import "./ProductUpdade.css"
+export default class ProductUpdate extends React.Component {
 
   state = {
     name: '',
@@ -47,9 +48,9 @@ export default class ProductCreate extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='product-update'>
         <div className="main-container">
-          <BigForm title="ADICIONAR NOVO PRODUTO" submit={this.submit} action="Adicionar">
+          <BigForm title="ATUALIZAR PRODUTO" submit={this.submit} action="Alterar">
             <div className="name">
               <FormGroup htmlFor="name" label="Nome" className="name">
                 <input className='form-control' type="text" placeholder='Nome' id='name' onChange={(e) => { this.setState({ name: e.target.value }) }} />
