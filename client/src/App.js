@@ -20,7 +20,6 @@ function App() {
           <Route component={EventUpdate} path="/EventUpdate/:id"/>
               <div>
                 <NavBar userType="ADMIN"></NavBar>
-                <Route path="/ProductView" component={ProductView} />
                 <AppRoutes></AppRoutes>
               </div>
           </Switch>

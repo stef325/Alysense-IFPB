@@ -14,7 +14,7 @@ export default props =>{
                         <  FiEdit size={20} />
                         
                         </button>
-                        <button type='button' title='Excluir' className='btn btn-danger' onClick={e =>props.remove(item.name)}>
+                        <button type='button' title='Excluir' className='btn btn-danger' onClick={e =>props.remove(item.id)}>
                         < MdDeleteForever size={25}/>
                         </button>
                         

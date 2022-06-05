@@ -78,7 +78,17 @@ export default class ProductView extends React.Component {
     }
 
     
-    remove = () => {
+    remove = (ProdID) => {
+        axios.delete(`http://localhost:8080/api/product/${ProdID}`)
+    .then(response =>
+        {
+            this.findFilter()
+        }
+    ).catch(error =>
+        {
+            console.log(error.response)
+        }
+    )
 
     }
     edit = (ProductId) => {
