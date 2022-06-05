@@ -1,7 +1,7 @@
 import React from 'react';
 import BigForm from '../../../components/forms/BigForm';
 import FormGroup from '../../../components/forms/FormGroup';
-import CardTable from '../../../components/tables/CardTable';
+import CardProduct from '../../../components/tables/Product/CardProduct';
 import axios from 'axios'
 import './EventUpdate.css';
 
@@ -119,9 +119,9 @@ export default class EventUpdate extends React.Component{
                                 </div>
                             </div>
                             <div className='CardTable'>
-                                <CardTable  action='Adicionar' find={this.find} collection={this.state.products} remove={this.remove} 
+                                <CardProduct  action='Adicionar' find={this.find} collection={this.state.products} remove={this.remove} 
                                 label='Produtos' >
-                                </CardTable>
+                                </CardProduct>
                             </div>
                         </BigForm>
                     </div>
