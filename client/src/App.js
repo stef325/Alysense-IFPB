@@ -8,6 +8,7 @@ import Register from './screens/User/Register/Register';
 import EventUpdate from './screens/Event/EventUpdate/EventUpdate';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
+
 function App() {
   return (
     <div className="App">

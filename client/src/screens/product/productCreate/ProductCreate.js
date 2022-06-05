@@ -3,7 +3,8 @@ import React from 'react';
 import axios from 'axios'
 import BigForm from '../../../components/forms/BigForm'
 import FormGroup from '../../../components/forms/FormGroup'
-import CardTable from '../../../components/tables/CardTable'
+import CardCharact from '../../../components/tables/charact/CardCharact'
+import CardSample from '../../../components/tables/samples/CardSample'
 
 import "../../../styles/createForms.css"
 export default class ProductCreate extends React.Component {
@@ -12,31 +13,31 @@ export default class ProductCreate extends React.Component {
     name: '',
     owner: '',
     date: '',
-    ingredients:'',
+    ingredients: '',
     charact: [],
     slices: []
   }
 
 
-  submit = async() => {
-      await axios.post('http://localhost:8080/api/product',{
+  submit = async () => {
+    await axios.post('http://localhost:8080/api/product', {
       name: this.state.name,
       expirationDate: this.state.date,
-      owner:this.state.owner,
+      owner: this.state.owner,
       ingredients: this.state.ingredients,
       characteristics: this.state.charact,
       samples: this.state.slices
 
-    }).then(response =>{
+    }).then(response => {
       console.log(response)
       alert("Produto adicionado!")
-    }).catch(error =>{
+    }).catch(error => {
       console.log(error.response)
       alert("Erro!")
     });
 
     console.log("request finished");
-    
+
 
   }
 
@@ -77,11 +78,11 @@ export default class ProductCreate extends React.Component {
 
             <div className="half-container">
               <div className='characterist'>
-                <CardTable action="Adicionar" collection={this.state.charact} remove={this.remove} label="Características"></CardTable>
+                <CardCharact action="Adicionar" collection={this.state.charact} remove={this.remove} label="Características"></CardCharact>
               </div>
 
               <div className="slices">
-                <CardTable action="Adicionar" collection={this.state.slices} remove={this.remove} label="Amostras"></CardTable>
+                <CardSample action="Adicionar" collection={this.state.slices} remove={this.remove} label="Amostras"></CardSample>
 
               </div>
 

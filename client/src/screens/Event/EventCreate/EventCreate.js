@@ -2,7 +2,7 @@ import React from 'react';
 import BigForm from '../../../components/forms/BigForm';
 import './EventCreate.css';
 import FormGroup from '../../../components/forms/FormGroup';
-import CardTable from '../../../components/tables/CardTable';
+import CardProduct from '../../../components/tables/Product/CardProduct';
 import axios from 'axios'
 
 export default class EventCreate extends React.Component{
@@ -120,9 +120,9 @@ export default class EventCreate extends React.Component{
                                 </div>
                             </div>
                             <div className='CardTable'>
-                                <CardTable  action='Adicionar' find={this.find} collection={this.state.products} remove={this.remove} 
+                                <CardProduct  action='Adicionar' find={this.find} collection={this.state.products} remove={this.remove} 
                                 label='Produtos' >
-                                </CardTable>
+                                </CardProduct>
                             </div>
                         </BigForm>
                     </div>
