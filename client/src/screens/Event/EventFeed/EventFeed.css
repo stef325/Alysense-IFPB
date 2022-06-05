@@ -1,0 +1,44 @@
+
+
+.main-container{
+    padding-top: 15%;
+    padding-bottom: 5%;
+    width: 60vw;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.half-container{
+    justify-content: space-between;
+    display: flex;
+}
+
+.title{
+    text-align: center;
+}
+
+.EventFeed titulo{
+    width: 30%;
+}
+
+.EventFeed .local{
+    width: 30%;
+}
+
+.EventFeed dateEvent{
+    width: 30%;
+}
+
+.action-button {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
+
+.action-button button{
+    margin-top: 2%;
+    padding: 0%;
+
+}
