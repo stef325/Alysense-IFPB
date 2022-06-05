@@ -1,0 +1,45 @@
+.product-view .name{
+    width: 38%;
+}
+.product-view .owner{
+    width: 38%;
+}
+.product-view .expiration-date{
+    width: 22%;
+}
+.form-line{
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-view .action-button .btn{
+    width: 25%;
+}
+.product-view .action-button{
+    padding-top: 2%;
+}
+.product-view .main-container{
+    padding-top: 7%;
+}
+.product-view .big-form{
+    padding-bottom: 8%;
+}
+.product-view .btn-info{
+    width:30px;
+    height: 30px;
+    padding: 3px 0px 0px 2px;
+}
+.product-view .btn-danger{
+    width:30px;
+    height: 30px;
+    padding: 1px 1px 0px 0px;
+}
+.product-view svg{
+    vertical-align: baseline;
+}
+.product-view td{
+    padding:3px;
+    vertical-align: middle;
+}
+
+
