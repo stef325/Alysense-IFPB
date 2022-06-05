@@ -43,11 +43,11 @@
     width: 25vw;
 }
 
-.action-button {
+.EventCreate .action-button {
     display: flex;
     flex-direction:column;
     align-items: center;
 }
-.action-button .btn{
+.EventCreate .action-button .btn{
     width: 30%;
 }
