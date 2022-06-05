@@ -4,7 +4,6 @@ import FormGroup from '../../../components/forms/FormGroup';
 import axios from 'axios'
 import './EventFeed.css'
 import EventTable from '../../../components/tables/event/EventView'
-import {withRouter} from 'react-router-dom';
 
 export default class EventFeed extends React.Component{
 
@@ -26,7 +25,7 @@ export default class EventFeed extends React.Component{
     };
 
     edit =(idEvent)=>{
-        this.props.history.push(`/EventUpdate/${idEvent}`)
+        this.props.history.push(`/EventUpdate/${idEvent}`);
     }
 
     componentDidMount(){
@@ -79,7 +78,7 @@ export default class EventFeed extends React.Component{
             <div className='EventFeed'>
                 <header className="EventFeed-header">
                     <div className="main-container">
-                        <BigForm title="ATUALIZAR EVENTO" submit={this.submit} action="Buscar">
+                        <BigForm title="SEUS EVENTO" submit={this.submit} action="Buscar">
                             <div className='half-container'>
                                     <div className='titulo'>
                                         <FormGroup label ="Titulo">
@@ -103,8 +102,7 @@ export default class EventFeed extends React.Component{
                                 </div>
                             </BigForm>
                             <div className='EventTable'>
-                                <EventTable  action='Adicionar' collection={this.state.events} remove={this.remove} edit={this.edit}
-                                label='Produtos' >
+                                <EventTable collection={this.state.events} remove={this.remove} edit={this.edit}>
                                 </EventTable>
                             </div>
                     </div>

@@ -8,24 +8,20 @@ import './EventUpdate.css';
 export default class EventUpdate extends React.Component{
 
     state={
-        idEvent: 0,
+        idEvent: '',
         title:'',
-        local:'',
         dateEvent:'',
+        local:'',
         qtdParticipants:0,
         qtdSamples:0,
         products: [],
         admUser: null,
         avaliators:[],
-
-
-        id:'',
-        name:''
     }
 
 
     submit = async() =>{
-        await axios.put('http://localhost:8080/api/event',{
+        await axios.put(`http://localhost:8080/api/event/${this.state.idEvent}`,{
             title: this.state.title,
             date: this.state.dateEvent,
             local:this.state.local,
@@ -38,7 +34,7 @@ export default class EventUpdate extends React.Component{
         
         }).then(response =>{
             console.log(response)
-            alert("Evento criado!")
+            alert("Evento atualizado!")
         }).catch(error =>{
             console.log(this.state.products)
             console.log(error.response)
@@ -52,6 +48,7 @@ export default class EventUpdate extends React.Component{
         const params = this.props.match.params;
         const idEvent = params.id;
         this.findById(idEvent);
+
     }
 
     findById = async(eventId) =>{
@@ -60,18 +57,26 @@ export default class EventUpdate extends React.Component{
             const event = response.data[0];
             const idEvent = event.id;
             const title = event.title;
-            const date = event.date;
+            const dateEvent = this.convertFromStringToDate(event.date);
             const local = event.local;
-            const peopleLimit= event.qtdParticipants;
-            const numberSample= event.qtdSamples;
-            const items= event.products;
-            const evaluators= event.avaliators;
-            const admUser= event.admUser;
-
-            this.setState({idEvent,title, date,local,peopleLimit,numberSample,items,evaluators,admUser});
+            const qtdParticipants= event.peopleLimit;
+            const qtdSamples= event.numberSample;
+            this.setState({idEvent,title, dateEvent,local, qtdParticipants,qtdSamples});
         }).catch(error=>{
             console.log(error.response);
         })
+    };
+
+     convertFromStringToDate= (args) =>{
+         var veri = args[1]
+         if(veri<10){
+             veri= "-0"+args[1];
+         }
+         else{
+            veri= "-"+args[1];
+         }
+        const result = args[0]+veri+"-"+args[2];
+       return result;
     };
 
     remove = () =>{}
