@@ -20,8 +20,10 @@ export default class NavBar extends React.Component {
                                 <NavBarItem href="/home" label="Home"/>
 
                                 <NavBarItem href="/newProduct" label="Adicionar Produto"/>
+                                <NavBarItem href="/ProductView" label="Seus Produtos"/>
                                 <NavBarItem href="/newEvent" label="Criar Evento"/>
                                 <NavBarItem href="/FeedEvent" label="Seus Eventos"/>
+                                
                             </ul>
                            
                         </div>
