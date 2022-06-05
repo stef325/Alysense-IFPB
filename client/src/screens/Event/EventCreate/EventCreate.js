@@ -79,7 +79,7 @@ export default class EventCreate extends React.Component{
 
     render(){
         return (
-            <div>
+            <div className="event-create">
                 <header className="EventCreate-header">
                     <div className="main-container">
                         <BigForm title="CRIAR NOVO EVENTO" submit={this.submit} action="Adicionar">

@@ -1,6 +1,6 @@
 
 
-.main-container{
+.EventFeed .main-container{
     padding-top: 15%;
     padding-bottom: 5%;
     width: 60vw;
@@ -10,12 +10,12 @@
     
 }
 
-.half-container{
+.EventFeed .half-container{
     justify-content: space-between;
     display: flex;
 }
 
-.title{
+.EventFeed .title{
     text-align: center;
 }
 

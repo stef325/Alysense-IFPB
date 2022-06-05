@@ -7,7 +7,7 @@
 .product-view .expiration-date{
     width: 22%;
 }
-.form-line{
+.product-view .form-line{
     display: flex;
     justify-content: space-between;
 }
