@@ -78,7 +78,7 @@ export default class EventUpdate extends React.Component{
 
     render(){
         return (
-            <div className='EventUpdate'>
+            <div className='EventFeed'>
                 <header className="EventUpdate-header">
                     <div className="main-container">
                         <BigForm title="ATUALIZAR EVENTO" submit={this.submit} action="Alterar">
