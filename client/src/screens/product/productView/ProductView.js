@@ -10,14 +10,30 @@ import "./ProductView.css"
 export default class ProductView extends React.Component {
 
     state = {
+        id:0,
         name: '',
         owner: '',
         date: '',
         products: []
     }
 
+    componentDidMount(){
+        this.findAll();
+    }
 
-    find = async () =>{
+    findAll = async () => {
+        await axios.get(`http://localhost:8080/api/product/all`)
+        .then(response=>{
+            const products = response.data;
+            this.setState({products});
+            console.log(products);
+
+        }).catch(error=>{
+            console.log(error.response)
+        })
+    }
+
+    findFilter = async () =>{
         let params = "?";
 
         if (this.state.id != '') {
@@ -61,18 +77,19 @@ export default class ProductView extends React.Component {
 
     }
 
+    
     remove = () => {
 
     }
-    edit = () => {
-
+    edit = (ProductId) => {
+        this.props.history.push(`/updateproduct/${ProductId}`)
     }
 
     render() {
         return (
             <div className='product-view'>
                 <div className="main-container">
-                    <BigForm submit={this.find} action="Buscar">
+                    <BigForm submit={this.findFilter} action="Buscar">
                         <div className="form-line">
                             <div className="name">
                                 <FormGroup htmlFor="name" label="Nome" className="name">
