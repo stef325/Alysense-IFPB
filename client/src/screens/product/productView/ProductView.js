@@ -10,47 +10,86 @@ import "./ProductView.css"
 export default class ProductView extends React.Component {
 
     state = {
+        id:0,
         name: '',
         owner: '',
         date: '',
         products: []
     }
 
+    componentDidMount(){
+        this.findAll();
+    }
 
-    submit = async () => {
-        await axios.post('http://localhost:8080/api/product', {
-            name: this.state.name,
-            expirationDate: this.state.date,
-            owner: this.state.owner,
-            ingredients: this.state.ingredients,
-            characteristics: this.state.charact,
-            samples: this.state.slices
+    findAll = async () => {
+        await axios.get(`http://localhost:8080/api/product/all`)
+        .then(response=>{
+            const products = response.data;
+            this.setState({products});
+            console.log(products);
 
-        }).then(response => {
-            console.log(response)
-            alert("Produto adicionado!")
-        }).catch(error => {
+        }).catch(error=>{
             console.log(error.response)
-            alert("Erro!")
-        });
+        })
+    }
 
-        console.log("request finished");
+    findFilter = async () =>{
+        let params = "?";
 
+        if (this.state.id != '') {
+            if (params != "?") {
+                params = `${params}&`;
+            }
+            params = `${params}id=${this.state.id}`
+        }
+
+        if (this.state.name != '') {
+            if (params != "?") {
+                params = `${params}&`;
+            }
+            params = `${params}name=${this.state.name}`
+        }
+        if (this.state.owner != '') {
+            if (params != "?") {
+                params = `${params}&`;
+            }
+            params = `${params}owner=${this.state.owner}`
+        }
+        if (this.state.date != '') {
+            if (params != "?") {
+                params = `${params}&`;
+            }
+            params = `${params}date=${this.state.date}`
+        }
+
+       
+        await axios.get(`http://localhost:8080/api/product/filter${params}`)
+        .then(response=>{
+            const products = response.data;
+            this.setState({products});
+            console.log(products);
+
+        }).catch(error=>{
+            console.log(error.response)
+        }
+            
+        )
 
     }
 
+    
     remove = () => {
 
     }
-    edit = () => {
-
+    edit = (ProductId) => {
+        this.props.history.push(`/updateproduct/${ProductId}`)
     }
 
     render() {
         return (
             <div className='product-view'>
                 <div className="main-container">
-                    <BigForm action="Buscar">
+                    <BigForm submit={this.findFilter} action="Buscar">
                         <div className="form-line">
                             <div className="name">
                                 <FormGroup htmlFor="name" label="Nome" className="name">
