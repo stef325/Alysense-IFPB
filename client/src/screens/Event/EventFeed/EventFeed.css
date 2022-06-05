@@ -41,3 +41,21 @@
     margin-top: 2%;
     width: 20%;
 }
+
+.EventFeed .btn-info{
+    width:30px;
+    height: 30px;
+    padding: 3px 0px 0px 2px;
+}
+.EventFeed .btn-danger{
+    width:30px;
+    height: 30px;
+    padding: 1px 1px 0px 0px;
+}
+.EventFeed svg{
+    vertical-align: baseline;
+}
+.EventFeed td{
+    padding:3px;
+    vertical-align: middle;
+}

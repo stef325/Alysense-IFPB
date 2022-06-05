@@ -1,4 +1,6 @@
 import React from 'react';
+import { MdDeleteForever } from "react-icons/md";
+import { FiEdit } from "react-icons/fi";
 
 export default props =>{
 
@@ -10,10 +12,10 @@ export default props =>{
                     <td>{item.date}</td>
                     <td>
                         <button type='button' title='Editar' className='btn btn-info' onClick={e =>props.edit(item.id)}>
-                            <i className='pi pi-pencil'></i>
+                        <  FiEdit size={20} />
                         </button>
                         <button type='button' title='Excluir' className='btn btn-danger' onClick={e =>props.remove(item.id)}>
-                            <i className='pi pi-trash'></i>
+                        < MdDeleteForever size={25}/>
                         </button>
                         
                     </td>
