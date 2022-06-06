@@ -8,7 +8,7 @@ export default props =>{
                 <tr key={item.name} className="table-primary">
                     <td>{item.name}</td>
                     <td>{item.owner}</td>
-                    <td>{item.expirationDate}</td>
+                    <td>{`${item.expirationDate[2]<10? "0"+item.expirationDate[2]:item.expirationDate[2]}/${item.expirationDate[1]<10? "0"+item.expirationDate[1]:item.expirationDate[1]}/${item.expirationDate[0]}`}</td>
                     <td>
                         <button type='button' title='Editar' className='btn btn-info' onClick={e =>props.edit(item.id)}>
                         <  FiEdit size={20} />

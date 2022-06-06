@@ -77,6 +77,7 @@ export default class EventFeed extends React.Component{
             console.log(error.response);
         })
     }
+    
 
 
     render(){
@@ -84,7 +85,7 @@ export default class EventFeed extends React.Component{
             <div className='EventFeed'>
                 <header className="EventFeed-header">
                     <div className="main-container">
-                        <BigForm title="SEUS EVENTO" submit={this.submit} action="Buscar">
+                        <BigForm title="SEUS EVENTOS" submit={this.submit} action="Buscar">
                             <div className='half-container'>
                                     <div className='titulo'>
                                         <FormGroup label ="Titulo">

@@ -19,7 +19,7 @@ function App() {
           <Route component={ProductUpdate} path="/updateproduct/:id" />
           <Route component={EventUpdate} path="/EventUpdate/:id"/>
               <div>
-                <NavBar userType="ADMIN"></NavBar>
+                <NavBar userType={localStorage.getItem('typeUser')}></NavBar>
                 <AppRoutes></AppRoutes>
               </div>
           </Switch>

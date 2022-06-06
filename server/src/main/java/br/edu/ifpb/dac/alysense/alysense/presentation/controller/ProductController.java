@@ -56,18 +56,18 @@ public class ProductController {
         @RequestParam(value = "id", required = false) Long id,
         @RequestParam(value = "name", required = false) String name,
         @RequestParam(value = "expirationDate", required = false) LocalDate expirationDate,
-        @RequestParam(value = "owner", required = false) String owner,
-        @RequestParam(value = "characteristic", required = false) Set<Characteristic> characteristics,
-        @RequestParam(value = "samples", required = false) Set<Sample> samples
+        @RequestParam(value = "owner", required = false) String owner
+        //@RequestParam(value = "characteristic", required = false) Set<Characteristic> characteristics,
+        //@RequestParam(value = "samples", required = false) Set<Sample> samples
         ){
         try {
             Product filter = new Product();
-            filter.setCharacteristics(characteristics);
+            //filter.setCharacteristics(characteristics);
             filter.setExpirationDate(expirationDate);
             filter.setId(id);
             filter.setName(name);
             filter.setOwner(owner);
-            filter.setSamples(samples);
+            //filter.setSamples(samples);
 
             List<Product> entities = service.find(filter);
             List<ProductDTO> dtos = converter.productToDTO(entities);

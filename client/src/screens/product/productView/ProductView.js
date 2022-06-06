@@ -13,7 +13,7 @@ export default class ProductView extends React.Component {
         id:0,
         name: '',
         owner: '',
-        date: '',
+        expirationDate: '',
         products: []
     }
 
@@ -55,11 +55,11 @@ export default class ProductView extends React.Component {
             }
             params = `${params}owner=${this.state.owner}`
         }
-        if (this.state.date != '') {
+        if (this.state.expirationDate != '') {
             if (params != "?") {
                 params = `${params}&`;
             }
-            params = `${params}date=${this.state.date}`
+            params = `${params}expirationDate=${this.state.expirationDate}`
         }
 
        
@@ -76,6 +76,7 @@ export default class ProductView extends React.Component {
         )
 
     }
+    
 
     
     remove = (ProdID) => {
@@ -93,6 +94,7 @@ export default class ProductView extends React.Component {
     }
     edit = (ProductId) => {
         this.props.history.push(`/updateproduct/${ProductId}`)
+        window.location.reload();
     }
 
     render() {
@@ -114,7 +116,7 @@ export default class ProductView extends React.Component {
 
                             <div className="expiration-date">
                                 <FormGroup htmlFor="date" label="Data de validade">
-                                    <input className='form-control' type="date" placeholder='Data' id='date' onChange={(e) => { this.setState({ date: e.target.value }) }} />
+                                    <input className='form-control' type="date" placeholder='Data' id='date' onChange={(e) => { this.setState({ expirationDate: e.target.value }) }} />
                                 </FormGroup>
                             </div>
 
