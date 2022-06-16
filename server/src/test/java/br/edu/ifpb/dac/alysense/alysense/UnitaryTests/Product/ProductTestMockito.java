@@ -42,13 +42,13 @@ public class ProductTestMockito{
     public void mockExceptiontest(){
         when(product.getId()).thenThrow(new NullPointerException());
         when(product.getName()).thenThrow(new NullPointerException());
-        when(product.getCharacteristics()).thenThrow(new NullPointerException());
+        //when(product.getCharacteristics()).thenThrow(new NullPointerException());
         when(product.getOwner()).thenThrow(new NullPointerException());
 
         assertThrows(NullPointerException.class, () -> product.getName());
         assertThrows(NullPointerException.class, () ->product.getId());
         assertThrows(NullPointerException.class, ()-> product.getOwner());
-        assertThrows(NullPointerException.class,()-> product.getCharacteristics());
+        //assertThrows(NullPointerException.class,()-> product.getCharacteristics());
     }
 
     @Test

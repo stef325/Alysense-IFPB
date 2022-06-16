@@ -11,7 +11,7 @@ import "./ProductUpdade.css"
 export default class ProductUpdate extends React.Component {
 
   state = {
-    id:0,
+    id: 0,
     name: '',
     owner: '',
     expirationDate: '',
@@ -20,39 +20,62 @@ export default class ProductUpdate extends React.Component {
     samples: []
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const params = this.props.match.params;
     const id = params.id;
     this.findById(id);
-}
 
+  }
+  convertFromStringToDate = (args) => {
+    var veri = args[1]
+    var veri2 = args[2]
+    if (veri < 10) {
+      veri = "-0" + args[1];
+    }
+    else {
+      veri = "-" + args[1];
+    }
+    if (veri2 < 10) {
+      veri2 = "-0" + args[2];
+    }
+    else {
+      veri2 = "-" + args[2];
+    }
+    const result = args[0] + veri+ veri2;
+    return result;
+  };
+
+  cancel = () => {
+    this.props.history.push(`/ProductView/`);
+    window.location.reload();
+  }
   findById = async (productID) => {
     await axios.get(`http://localhost:8080/api/product/${productID}`)
-    .then(response=>{
+      .then(response => {
         const product = response.data;
         const id = product.id;
         const name = product.name;
         const owner = product.owner;
-        const expirationDate = product.expirationDate;
+        const expirationDate = this.convertFromStringToDate(product.expirationDate);
         const ingredients = product.ingredients;
-        const characteristics = product.characteristics;
-        const samples = product.samples;
-        this.setState({id , name,owner, expirationDate, ingredients,characteristics,samples});
+        //const characteristics = product.characteristics;
+        //const samples = product.samples;
+        this.setState({ id, name, owner, expirationDate, ingredients});
         console.log(product);
 
-    }).catch(error=>{
+      }).catch(error => {
         console.log(error.response)
-    })
+      })
   }
 
   submit = async () => {
     await axios.put(`http://localhost:8080/api/product/${this.state.id}`, {
       name: this.state.name,
-      expirationDate: this.state.date,
+      expirationDate: this.state.expirationDate,
       owner: this.state.owner,
       ingredients: this.state.ingredients,
-      characteristics: this.state.charact,
-      samples: this.state.samples
+      //characteristics: this.state.charact,
+      //samples: this.state.samples
 
     }).then(response => {
       console.log(response)
@@ -75,6 +98,9 @@ export default class ProductUpdate extends React.Component {
     return (
       <div className='product-update'>
         <div className="main-container">
+          <div className='button-test'>
+            <button type="button" class="btn btn-primary" onClick={this.cancel}>Voltar</button>
+          </div>
           <BigForm title="ATUALIZAR PRODUTO" submit={this.submit} action="Alterar">
             <div className="name">
               <FormGroup htmlFor="name" label="Nome" className="name">

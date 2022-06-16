@@ -32,11 +32,11 @@ public class Product {
     private String owner;
     private String ingredients;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    /*@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Characteristic> characteristics;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Sample> samples;
+    private Set<Sample> samples;*/
 
 
     
