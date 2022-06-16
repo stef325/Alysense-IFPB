@@ -11,6 +11,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import FormGroup from '../../../components/forms/FormGroup'
 import BigForm from '../../../components/forms/BigForm'
 import axios from 'axios'
+import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
 export default class Register extends React.Component {
 
     state={
@@ -20,7 +21,36 @@ export default class Register extends React.Component {
         password:''
     }
 
+    validate = () =>{
+        const errors = [];
+
+        if(!this.state.name){
+            errors.push('Campo Nome é obrigatório!')
+        }
+        if(!this.state.date){
+            errors.push('informe sua data de nascimento!')
+        }
+        if(!this.state.email){
+            errors.push('Campo E-mail é obrigatório!')
+        }
+        else if(!this.state.email.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]/)){
+            errors.push('Email inválido!')
+        }
+        if(!this.state.password){
+            errors.push('Campo senha é obrigatório!')
+        }
+        
+        return errors;
+    };
+
     submit = async() => { 
+        const errors = this.validate();
+        if(errors.length>0){
+            errors.forEach((message,index)=>{
+                showErrorMessage(message)
+            });
+            return false;
+        }
         await axios.post('http://localhost:8080/api/user',{
       name: this.state.name,
       birthDate: this.state.date,
@@ -29,11 +59,10 @@ export default class Register extends React.Component {
 
 
     }).then(response =>{
+        showSucessMessage("Conta criada!")
       console.log(response)
-      alert("Conta criada!")
     }).catch(error =>{
       console.log(error.response)
-      alert("Erro!")
     });
 
     console.log("request finished");
