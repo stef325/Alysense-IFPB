@@ -59,8 +59,8 @@ export default class Register extends React.Component {
 
 
     }).then(response =>{
-        showSucessMessage("Conta criada!")
-      console.log(response)
+        showSucessMessage("Conta criada!");
+      console.log(response);
     }).catch(error =>{
       console.log(error.response)
     });
