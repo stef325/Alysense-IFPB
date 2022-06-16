@@ -11,7 +11,6 @@ import EventUpdate from './screens/Event/EventUpdate/EventUpdate';
 import 'toastr/build/toastr.css';
 import 'toastr/build/toastr.min.js';
 
-
 function App() {
   return (
     <div className="App">
