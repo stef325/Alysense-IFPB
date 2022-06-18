@@ -4,6 +4,7 @@ import FormGroup from '../../../components/forms/FormGroup';
 import CardProduct from '../../../components/tables/Product/CardProduct';
 import axios from 'axios'
 import "./EventUpdate.css";
+import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
 
 export default class EventUpdate extends React.Component{
 
@@ -19,8 +20,37 @@ export default class EventUpdate extends React.Component{
         avaliators:[],
     }
 
+    validate = () =>{
+        const errors = [];
+    
+        if(!this.state.title){
+            errors.push('Campo titulo é obrigatório!')
+        }
+        if(!this.state.local){
+            errors.push('informe o local do evento!')
+        }
+        if(!this.state.dateEvent){
+            errors.push('informe a data do evento!')
+        }
+        if(!this.state.qtdParticipants){
+            errors.push('Campo da quantidade de participantes é obrigatório!')
+        }
+        if(!this.state.qtdSamples){
+            errors.push('Campo quantidade de amostras é obrigatório!')
+        }
+        
+        return errors;
+    };
+
 
     submit = async() =>{
+        const errors = this.validate();
+        if(errors.length>0){
+            errors.forEach((message,index)=>{
+                showErrorMessage(message)
+            });
+            return false;
+        }
         await axios.put(`http://localhost:8080/api/event/${this.state.idEvent}`,{
             title: this.state.title,
             date: this.state.dateEvent,
@@ -34,11 +64,9 @@ export default class EventUpdate extends React.Component{
         
         }).then(response =>{
             console.log(response)
-            alert("Evento atualizado!")
+            showSucessMessage("Produto Criado!");
         }).catch(error =>{
-            console.log(this.state.products)
             console.log(error.response)
-            alert("Erro!")
         });
         console.log("request finished");
     }

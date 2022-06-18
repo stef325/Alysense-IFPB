@@ -1,5 +1,5 @@
 import React from 'react';
-
+import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
 import axios from 'axios'
 import BigForm from '../../../components/forms/BigForm'
 import FormGroup from '../../../components/forms/FormGroup'
@@ -18,8 +18,31 @@ export default class ProductCreate extends React.Component {
     slices: []
   }
 
+  validate = () =>{
+    const errors = [];
+
+    if(!this.state.name){
+        errors.push('Campo Nome é obrigatório!')
+    }
+    if(!this.state.owner){
+        errors.push('informe o fornecedor!')
+    }
+    if(!this.state.date){
+        errors.push('Campo de validade obrigatório!')
+    }
+    
+    return errors;
+};
+
 
   submit = async () => {
+    const errors = this.validate();
+    if(errors.length>0){
+        errors.forEach((message,index)=>{
+            showErrorMessage(message)
+        });
+        return false;
+    }
     await axios.post('http://localhost:8080/api/product', {
       name: this.state.name,
       expirationDate: this.state.date,
@@ -30,10 +53,9 @@ export default class ProductCreate extends React.Component {
 
     }).then(response => {
       console.log(response)
-      alert("Produto adicionado!")
+      showSucessMessage("Produto Criado!");
     }).catch(error => {
       console.log(error.response)
-      alert("Erro!")
     });
 
     console.log("request finished");

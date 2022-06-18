@@ -5,7 +5,7 @@ import BigForm from '../../../components/forms/BigForm'
 import FormGroup from '../../../components/forms/FormGroup'
 import CardCharact from '../../../components/tables/charact/CardCharact'
 import CardSample from '../../../components/tables/samples/CardSample'
-
+import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
 import "../../../styles/createForms.css"
 import "./ProductUpdade.css"
 export default class ProductUpdate extends React.Component {
@@ -19,6 +19,22 @@ export default class ProductUpdate extends React.Component {
     characteristics: [],
     samples: []
   }
+
+  validate = () =>{
+    const errors = [];
+
+    if(!this.state.name){
+        errors.push('Campo Nome é obrigatório!')
+    }
+    if(!this.state.owner){
+        errors.push('informe o fornecedor!')
+    }
+    if(!this.state.expirationDate){
+        errors.push('Campo de validade obrigatório!')
+    }
+    
+    return errors;
+};
 
   componentDidMount() {
     const params = this.props.match.params;
@@ -69,6 +85,13 @@ export default class ProductUpdate extends React.Component {
   }
 
   submit = async () => {
+    const errors = this.validate();
+    if(errors.length>0){
+        errors.forEach((message,index)=>{
+            showErrorMessage(message)
+        });
+        return false;
+    }
     await axios.put(`http://localhost:8080/api/product/${this.state.id}`, {
       name: this.state.name,
       expirationDate: this.state.expirationDate,
@@ -79,10 +102,9 @@ export default class ProductUpdate extends React.Component {
 
     }).then(response => {
       console.log(response)
-      alert("Produto editado!")
+      showSucessMessage("Produto editado!");
     }).catch(error => {
       console.log(error.response)
-      alert("Erro!")
     });
 
     console.log("request finished");
