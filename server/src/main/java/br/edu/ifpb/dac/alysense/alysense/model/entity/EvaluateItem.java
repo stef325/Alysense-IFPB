@@ -27,7 +27,7 @@ public class EvaluateItem {
     private Aspect question;
     
     @OneToOne(fetch = FetchType.EAGER,
-    cascade = { CascadeType.ALL}, orphanRemoval = true)
+    cascade = { CascadeType.MERGE}, orphanRemoval = true)
    private User evaluator;
 
    @OneToOne(fetch = FetchType.EAGER,

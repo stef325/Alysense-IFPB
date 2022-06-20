@@ -23,6 +23,7 @@ export default class EventCreate extends React.Component{
         name:''
     }
 
+
     validate = () =>{
         const errors = [];
     
@@ -45,8 +46,8 @@ export default class EventCreate extends React.Component{
         return errors;
     };
 
-
     submit = async() =>{
+
         const errors = this.validate();
         if(errors.length>0){
             errors.forEach((message,index)=>{
@@ -54,6 +55,7 @@ export default class EventCreate extends React.Component{
             });
             return false;
         }
+
         await axios.post('http://localhost:8080/api/event',{
             title: this.state.title,
             date: this.state.dateEvent,
@@ -96,7 +98,7 @@ export default class EventCreate extends React.Component{
         .then(response => {
             const products = response.data;
             this.setState({products})
-            console.log(products)
+            console.log(this.state.products)
         }).catch(error =>{
             console.log(error.response);
         })

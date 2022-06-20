@@ -41,7 +41,7 @@ public class EventSense {
     @JoinTable(name = "users_avaliation", joinColumns = @JoinColumn(name= "eventid"), inverseJoinColumns = @JoinColumn(name = "userid"))
     private Set<User> evaluators;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE)
     private Set<Product> items;
 
     @OneToOne(fetch = FetchType.EAGER,
