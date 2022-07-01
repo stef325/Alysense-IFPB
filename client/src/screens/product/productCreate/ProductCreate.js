@@ -1,6 +1,6 @@
 import React from 'react';
 import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
-import axios from 'axios'
+import ProductApiService from '../../../services/ProductApiService';
 import BigForm from '../../../components/forms/BigForm'
 import FormGroup from '../../../components/forms/FormGroup'
 import CardCharact from '../../../components/tables/charact/CardCharact'
@@ -14,8 +14,14 @@ export default class ProductCreate extends React.Component {
     owner: '',
     date: '',
     ingredients: '',
+    userId:'',
     charact: [],
     slices: []
+  }
+
+  constructor(){
+    super();
+    this.service = new ProductApiService();
   }
 
   validate = () =>{
@@ -43,13 +49,14 @@ export default class ProductCreate extends React.Component {
         });
         return false;
     }
-    await axios.post('http://localhost:8080/api/product', {
+    await this.service.create({
       name: this.state.name,
       expirationDate: this.state.date,
       owner: this.state.owner,
       ingredients: this.state.ingredients,
       characteristics: this.state.charact,
-      samples: this.state.slices
+      samples: this.state.slices,
+      userId: this.userId
 
     }).then(response => {
       console.log(response)

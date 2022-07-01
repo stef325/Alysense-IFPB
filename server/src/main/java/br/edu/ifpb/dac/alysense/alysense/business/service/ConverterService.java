@@ -161,6 +161,7 @@ public class ConverterService {
 		dto.setIngredients(entity.getIngredients());
 		dto.setName(entity.getName());
 		dto.setOwner(entity.getOwner());
+		dto.setUserId(entity.getUserId());
 		//dto.setSamples(entity.getSamples());
 		return dto;
 		
@@ -188,6 +189,7 @@ public class ConverterService {
 		entity.setIngredients(dto.getIngredients());
 		entity.setName(dto.getName());
 		entity.setOwner(dto.getOwner());
+		entity.setUserId(dto.getUserId());
 		//entity.setSamples(dto.getSamples());
 
 		return entity;

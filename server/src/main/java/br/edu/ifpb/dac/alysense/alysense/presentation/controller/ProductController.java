@@ -56,7 +56,8 @@ public class ProductController {
         @RequestParam(value = "id", required = false) Long id,
         @RequestParam(value = "name", required = false) String name,
         @RequestParam(value = "expirationDate", required = false) LocalDate expirationDate,
-        @RequestParam(value = "owner", required = false) String owner
+        @RequestParam(value = "owner", required = false) String owner,
+        @RequestParam(value = "userId", required = false) Long userId
         //@RequestParam(value = "characteristic", required = false) Set<Characteristic> characteristics,
         //@RequestParam(value = "samples", required = false) Set<Sample> samples
         ){
@@ -67,6 +68,7 @@ public class ProductController {
             filter.setId(id);
             filter.setName(name);
             filter.setOwner(owner);
+            filter.setUserId(userId);
             //filter.setSamples(samples);
 
             List<Product> entities = service.find(filter);

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import axios from 'axios'
+import ProductApiService from '../../../services/ProductApiService';
 import BigForm from '../../../components/forms/BigForm'
 import FormGroup from '../../../components/forms/FormGroup'
 import CardCharact from '../../../components/tables/charact/CardCharact'
@@ -16,8 +16,14 @@ export default class ProductUpdate extends React.Component {
     owner: '',
     expirationDate: '',
     ingredients: '',
+    userId:'',
     characteristics: [],
     samples: []
+  }
+
+  constructor(){
+    super();
+    this.service = new ProductApiService();
   }
 
   validate = () =>{
@@ -66,7 +72,7 @@ export default class ProductUpdate extends React.Component {
     window.location.reload();
   }
   findById = async (productID) => {
-    await axios.get(`http://localhost:8080/api/product/${productID}`)
+    await this.service.findById(productID)
       .then(response => {
         const product = response.data;
         const id = product.id;
@@ -74,9 +80,10 @@ export default class ProductUpdate extends React.Component {
         const owner = product.owner;
         const expirationDate = this.convertFromStringToDate(product.expirationDate);
         const ingredients = product.ingredients;
+        const userId = product.userId;
         //const characteristics = product.characteristics;
         //const samples = product.samples;
-        this.setState({ id, name, owner, expirationDate, ingredients});
+        this.setState({ id, name, owner, expirationDate, ingredients,userId});
         console.log(product);
 
       }).catch(error => {
@@ -92,11 +99,12 @@ export default class ProductUpdate extends React.Component {
         });
         return false;
     }
-    await axios.put(`http://localhost:8080/api/product/${this.state.id}`, {
+    await this.service.update(this.state.id, {
       name: this.state.name,
       expirationDate: this.state.expirationDate,
       owner: this.state.owner,
       ingredients: this.state.ingredients,
+      userId: this.state.userId
       //characteristics: this.state.charact,
       //samples: this.state.samples
 

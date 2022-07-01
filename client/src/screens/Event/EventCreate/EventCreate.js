@@ -3,8 +3,10 @@ import BigForm from '../../../components/forms/BigForm';
 import './EventCreate.css';
 import FormGroup from '../../../components/forms/FormGroup';
 import CardProduct from '../../../components/tables/Product/CardProduct';
-import axios from 'axios'
+import EventApiService from '../../../services/EventApiService';
+import ProductEvent from '../../../components/tables/Product/ProductEvent';
 import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
+import ProductApiService from '../../../services/ProductApiService';
 
 export default class EventCreate extends React.Component{
 
@@ -21,6 +23,12 @@ export default class EventCreate extends React.Component{
 
         id:'',
         name:''
+    }
+
+    constructor(){
+        super();
+        this.serviceEvent = new EventApiService();
+        this.serviceProduct = new ProductApiService();
     }
 
 
@@ -56,7 +64,7 @@ export default class EventCreate extends React.Component{
             return false;
         }
 
-        await axios.post('http://localhost:8080/api/event',{
+        await this.serviceEvent.create({
             title: this.state.title,
             date: this.state.dateEvent,
             local:this.state.local,
@@ -77,7 +85,7 @@ export default class EventCreate extends React.Component{
           
     }
 
-    find = () => {
+    find = async () => {
        var params = '?';
 
         if(this.state.id != ''){
@@ -94,7 +102,7 @@ export default class EventCreate extends React.Component{
         params = `${params}name=${this.state.name}`;
         }
         
-        axios.get(`http://localhost:8080/api/product/filter/${params}`)
+        await this.serviceProduct.find(`/filter/${params}`)
         .then(response => {
             const products = response.data;
             this.setState({products})

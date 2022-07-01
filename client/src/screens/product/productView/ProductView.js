@@ -1,10 +1,10 @@
 import React from 'react';
 
-import axios from 'axios'
+import ProductApiService from '../../../services/ProductApiService';
 import BigForm from '../../../components/forms/BigForm'
 import FormGroup from '../../../components/forms/FormGroup'
 import ProductViewTable from '../../../components/tables/Product/ProductViewTable'
-
+import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
 import "../../../styles/createForms.css"
 import "./ProductView.css"
 export default class ProductView extends React.Component {
@@ -17,12 +17,17 @@ export default class ProductView extends React.Component {
         products: []
     }
 
+    constructor(){
+        super();
+        this.service = new ProductApiService();
+    }
+
     componentDidMount(){
         this.findAll();
     }
 
     findAll = async () => {
-        await axios.get(`http://localhost:8080/api/product/all`)
+        await this.service.findAll()
         .then(response=>{
             const products = response.data;
             this.setState({products});
@@ -34,6 +39,7 @@ export default class ProductView extends React.Component {
     }
 
     findFilter = async () =>{
+        //trocar tudo pela busca de useId
         let params = "?";
 
         if (this.state.id != '') {
@@ -63,7 +69,7 @@ export default class ProductView extends React.Component {
         }
 
        
-        await axios.get(`http://localhost:8080/api/product/filter${params}`)
+        await this.service.find(`/filter/${params}`)
         .then(response=>{
             const products = response.data;
             this.setState({products});
@@ -79,14 +85,15 @@ export default class ProductView extends React.Component {
     
 
     
-    remove = (ProdID) => {
-        axios.delete(`http://localhost:8080/api/product/${ProdID}`)
+    remove = async (ProdID) => {
+        await this.service.delete(ProdID)
     .then(response =>
         {
             this.findFilter()
         }
     ).catch(error =>
         {
+            showWarningMessage("Produto relacionado a um Evento ainda!")
             console.log(error.response)
         }
     )
