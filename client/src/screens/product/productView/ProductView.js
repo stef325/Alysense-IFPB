@@ -94,7 +94,7 @@ export default class ProductView extends React.Component {
     }
     edit = (ProductId) => {
         this.props.history.push(`/updateproduct/${ProductId}`)
-        window.location.reload();
+        //window.location.reload();
     }
 
     render() {

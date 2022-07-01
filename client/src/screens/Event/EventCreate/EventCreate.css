@@ -51,3 +51,6 @@
 .event-create .EventCreate .action-button .btn{
     width: 30%;
 }
+.event-create .Modal{
+    background-color: aqua;
+}

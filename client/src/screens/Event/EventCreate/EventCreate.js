@@ -5,8 +5,20 @@ import FormGroup from '../../../components/forms/FormGroup';
 import CardProduct from '../../../components/tables/Product/CardProduct';
 import axios from 'axios'
 import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
+import Modal from 'react-modal';
+import { useState } from "react";
+import ProductEvent from '../../../components/tables/Product/ProductEvent';
+
 
 export default class EventCreate extends React.Component{
+    
+
+
+
+    componentDidMount(){
+        Modal.setAppElement('#root');
+        this.setState({isVisible: false})
+    }
 
     state={
         title:'',
@@ -14,14 +26,24 @@ export default class EventCreate extends React.Component{
         dateEvent:'',
         qtdParticipants:0,
         qtdSamples:0,
-        products: [],
+        products: [{
+            name:'aa',
+            owner:'bb',
+            expirationDate:"aaa"
+        }
+        ],
         admUser: null,
         avaliators:[],
 
 
         id:'',
-        name:''
+        name:'',
+        isVisible:false,
+        addedProducts:[]
+        
     }
+
+
 
 
     validate = () =>{
@@ -77,39 +99,58 @@ export default class EventCreate extends React.Component{
           
     }
 
-    find = () => {
-       var params = '?';
+    openProductModal = () => {
+        document.body.style.overflowY = "hidden";
+        this.setState({isVisible:true})
 
-        if(this.state.id != ''){
-            if(params != '?'){
-                params = `${params}&`;
-            }
-        params = `${params}id=${this.state.id}`;
-        }
-
-        if(this.state.name != ''){
-            if(params != '?'){
-                params = `${params}&`;
-            }
-        params = `${params}name=${this.state.name}`;
-        }
-        
-        axios.get(`http://localhost:8080/api/product/filter/${params}`)
-        .then(response => {
-            const products = response.data;
-            this.setState({products})
-            console.log(this.state.products)
-        }).catch(error =>{
-            console.log(error.response);
-        })
-        
     }
+    closeProductModal = () => {
+        document.body.style.overflowY = "scroll";
+        this.setState({isVisible:false})
+
+    }
+
 
     remove = () =>{}
 
     render(){
         return (
             <div className="event-create">
+                <Modal 
+                    isOpen={this.state.isVisible} 
+                    onRequestClose={this.closeProductModal}
+                    style={{
+                        overlay: {
+                            position: 'fixed',
+                            zIndex: 1020,
+                            top: 0,
+                            left: 0,
+                            width: '100vw',
+                            height: '100vh',
+                            background: 'rgba(235,104,100, 0.75)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        },
+                        content: {
+                          background: 'white',
+                          width: '70vw',
+                          height: '80vh',
+                          maxWidth: 'calc(100vw - 2rem)',
+                          maxHeight: 'calc(100vh - 2rem)',
+                          overflowY: 'auto',
+                          position: 'relative',
+                          border: '1px solid #ccc',
+                          borderRadius: '0.3rem',
+                        }
+                    }}
+                >
+                    <button onClick={this.closeProductModal}>x</button>
+                    <div className="modal-table-user-products">
+                    <ProductEvent collection={this.state.products} remove={this.remove}></ProductEvent>
+                    </div>
+
+                </Modal>
                 <header className="EventCreate-header">
                     <div className="main-container">
                         <BigForm title="CRIAR NOVO EVENTO" submit={this.submit} action="Adicionar">
@@ -150,13 +191,15 @@ export default class EventCreate extends React.Component{
                                 </div>
                             </div>
                             <div className='CardTable'>
-                                <CardProduct  action='Adicionar' find={this.find} collection={this.state.products} remove={this.remove} 
+                                <CardProduct  action='Adicionar' find={this.openProductModal} collection={this.state.products} remove={this.remove} 
                                 label='Produtos' >
                                 </CardProduct>
                             </div>
+                            
                         </BigForm>
                     </div>
                 </header>
+
             </div>
         )
     }
