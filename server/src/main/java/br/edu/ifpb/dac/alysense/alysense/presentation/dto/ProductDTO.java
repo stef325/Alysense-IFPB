@@ -18,6 +18,7 @@ public class ProductDTO {
     private LocalDate expirationDate;
     private String owner;
     private String ingredients;
+    private Long userId;
     private Set<Characteristic> characteristics;
     private Set<Sample> samples;
 }

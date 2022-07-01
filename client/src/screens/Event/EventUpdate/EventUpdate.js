@@ -2,7 +2,7 @@ import React from 'react';
 import BigForm from '../../../components/forms/BigForm';
 import FormGroup from '../../../components/forms/FormGroup';
 import CardProduct from '../../../components/tables/Product/CardProduct';
-import axios from 'axios'
+import EventApiService from '../../../services/EventApiService';
 import "./EventUpdate.css";
 import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
 
@@ -18,6 +18,11 @@ export default class EventUpdate extends React.Component{
         products: [],
         admUser: null,
         avaliators:[],
+    }
+
+    constructor(){
+        super();
+        this.service = new EventApiService();
     }
 
     validate = () =>{
@@ -51,7 +56,7 @@ export default class EventUpdate extends React.Component{
             });
             return false;
         }
-        await axios.put(`http://localhost:8080/api/event/${this.state.idEvent}`,{
+        await this.service.update(this.state.idEvent,{
             title: this.state.title,
             date: this.state.dateEvent,
             local:this.state.local,
@@ -85,7 +90,7 @@ export default class EventUpdate extends React.Component{
 
 
     findById = async(eventId) =>{
-        await axios.get(`http://localhost:8080/api/event/filter?id=${eventId}`)
+        await this.service.find(`/filter?id=${eventId}`)
         .then(response=>{
             const event = response.data[0];
             const idEvent = event.id;

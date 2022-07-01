@@ -10,7 +10,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 
 import FormGroup from '../../../components/forms/FormGroup'
 import BigForm from '../../../components/forms/BigForm'
-import axios from 'axios'
+import UserApiService from '../../../services/UserApiService';
 import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
 export default class Register extends React.Component {
 
@@ -19,6 +19,11 @@ export default class Register extends React.Component {
         date:'',
         email:'',
         password:''
+    }
+    
+    constructor(){
+        super();
+        this.service = new UserApiService();
     }
 
     validate = () =>{
@@ -51,7 +56,7 @@ export default class Register extends React.Component {
             });
             return false;
         }
-        await axios.post('http://localhost:8080/api/user',{
+        await this.service.create({
       name: this.state.name,
       birthDate: this.state.date,
       email:this.state.email,

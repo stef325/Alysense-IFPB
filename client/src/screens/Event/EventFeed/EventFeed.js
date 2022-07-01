@@ -1,7 +1,7 @@
 import React from 'react';
 import BigForm from '../../../components/forms/BigForm';
 import FormGroup from '../../../components/forms/FormGroup';
-import axios from 'axios'
+import EventApiService from '../../../services/EventApiService';
 import './EventFeed.css'
 import EventTable from '../../../components/tables/event/EventView'
 
@@ -15,8 +15,13 @@ export default class EventFeed extends React.Component{
         events:[]
     }
 
+    constructor(){
+        super();
+        this.service = new EventApiService();
+    }
+
     remove =(idEvent)=>{
-        axios.delete(`http://localhost:8080/api/event/${idEvent}`)
+        this.service.delete(idEvent)
         .then(response =>{
             this.find();
         }).catch(error =>{
@@ -68,7 +73,7 @@ export default class EventFeed extends React.Component{
         params = `${params}date=${this.state.dateEvent}`;
         }
         
-        await axios.get(`http://localhost:8080/api/event/filter${params}`)
+        await this.service.find(`/filter${params}`)
         .then(response => {
             const events = response.data;
             this.setState({events})

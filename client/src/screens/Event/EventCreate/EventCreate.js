@@ -3,12 +3,13 @@ import BigForm from '../../../components/forms/BigForm';
 import './EventCreate.css';
 import FormGroup from '../../../components/forms/FormGroup';
 import CardProduct from '../../../components/tables/Product/CardProduct';
-import axios from 'axios'
+import EventApiService from '../../../services/EventApiService';
+import ProductEvent from '../../../components/tables/Product/ProductEvent';
 import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
 import Modal from 'react-modal';
 import { useState } from "react";
-import ProductEvent from '../../../components/tables/Product/ProductEvent';
 
+import ProductApiService from '../../../services/ProductApiService';
 
 export default class EventCreate extends React.Component{
     
@@ -41,6 +42,12 @@ export default class EventCreate extends React.Component{
         isVisible:false,
         addedProducts:[]
         
+    }
+
+    constructor(){
+        super();
+        this.serviceEvent = new EventApiService();
+        this.serviceProduct = new ProductApiService();
     }
 
 
@@ -78,7 +85,7 @@ export default class EventCreate extends React.Component{
             return false;
         }
 
-        await axios.post('http://localhost:8080/api/event',{
+        await this.serviceEvent.create({
             title: this.state.title,
             date: this.state.dateEvent,
             local:this.state.local,
