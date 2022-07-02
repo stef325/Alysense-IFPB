@@ -65,14 +65,15 @@ export default class Register extends React.Component {
 
     }).then(response =>{
         showSucessMessage("Conta criada!");
-      console.log(response);
+        localStorage.setItem('loggedUser', JSON.stringify(response.data));
+        this.props.history.push(`/EventFeed/`);
+        console.log(response);
     }).catch(error =>{
       console.log(error.response)
     });
-
     console.log("request finished");
-    
     }
+
     render() {
         return (
 

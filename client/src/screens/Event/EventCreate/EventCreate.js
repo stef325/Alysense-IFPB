@@ -17,7 +17,7 @@ export default class EventCreate extends React.Component{
         qtdParticipants:0,
         qtdSamples:0,
         products: [],
-        admUser: null,
+        admUser: 0,
         avaliators:[],
 
 
@@ -54,8 +54,15 @@ export default class EventCreate extends React.Component{
         return errors;
     };
 
-    submit = async() =>{
+    getLoggedUser=()=>{
+        var value = localStorage.getItem('loggedUser');
+        var user = JSON.parse(value);
+        return user;
+    }
 
+    submit = async() =>{
+        
+        this.state.admUser = this.getLoggedUser().id
         const errors = this.validate();
         if(errors.length>0){
             errors.forEach((message,index)=>{
@@ -78,6 +85,7 @@ export default class EventCreate extends React.Component{
           }).then(response =>{
             console.log(response)
             showSucessMessage("Produto Criado!");
+            this.props.history.push(`/EventFeed/`);
           }).catch(error =>{
             console.log(error.response)
           });

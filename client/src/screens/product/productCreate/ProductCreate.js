@@ -14,7 +14,7 @@ export default class ProductCreate extends React.Component {
     owner: '',
     date: '',
     ingredients: '',
-    userId:'',
+    userId:0,
     charact: [],
     slices: []
   }
@@ -40,8 +40,15 @@ export default class ProductCreate extends React.Component {
     return errors;
 };
 
+getLoggedUser=()=>{
+  var value = localStorage.getItem('loggedUser');
+  var user = JSON.parse(value);
+  return user;
+}
+
 
   submit = async () => {
+    this.state.userId = this.getLoggedUser().id
     const errors = this.validate();
     if(errors.length>0){
         errors.forEach((message,index)=>{
@@ -56,11 +63,12 @@ export default class ProductCreate extends React.Component {
       ingredients: this.state.ingredients,
       characteristics: this.state.charact,
       samples: this.state.slices,
-      userId: this.userId
+      userId: this.state.userId
 
     }).then(response => {
       console.log(response)
       showSucessMessage("Produto Criado!");
+      this.props.history.push(`/ProductView/`);
     }).catch(error => {
       console.log(error.response)
     });

@@ -32,7 +32,7 @@ public class Product {
     private LocalDate expirationDate;
     private String owner;
     private String ingredients;
-    private Long UserId;
+    private Long userId;
     /*@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Characteristic> characteristics;
 

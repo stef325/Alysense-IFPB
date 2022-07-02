@@ -190,6 +190,7 @@ public class ConverterService {
 		entity.setName(dto.getName());
 		entity.setOwner(dto.getOwner());
 		entity.setUserId(dto.getUserId());
+		entity.setUserId(dto.getUserId());
 		//entity.setSamples(dto.getSamples());
 
 		return entity;
@@ -220,7 +221,6 @@ public class ConverterService {
 		dto.setPeopleLimit(entity.getPeopleLimit());
 		dto.setItems(entity.getItems());
 		dto.setLocal(entity.getLocal());
-		//dto.getAdmUser().setPassword(null);
 		dto.setAdmUser(entity.getAdmUser());
 		dto.setEvaluators(converterToDTO(entity.getEvaluators()));
 		dto.setNumberSample(entity.getNumberSample());
