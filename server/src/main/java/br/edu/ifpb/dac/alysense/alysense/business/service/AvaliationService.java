@@ -1,6 +1,8 @@
 package br.edu.ifpb.dac.alysense.alysense.business.service;
 
 import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -38,7 +40,7 @@ public class AvaliationService {
 		Example example = Example.of(filter,
 				ExampleMatcher.matching().withIgnoreCase()
 				.withStringMatcher(StringMatcher.CONTAINING));
-		return avaliationDAO.findAll(example);
+		return  avaliationDAO.findAll(example);
 	}
 	
 	public Avaliation update(Avaliation avaliation) {

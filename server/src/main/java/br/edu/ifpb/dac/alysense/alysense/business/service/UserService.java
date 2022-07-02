@@ -35,11 +35,11 @@ public class UserService {
 		return userDAO.findAll();
 	}
 	
-	public Set<User> find(User filter){
+	public List<User> find(User filter){
 		Example example = Example.of(filter,
 				ExampleMatcher.matching().withIgnoreCase()
 				.withStringMatcher(StringMatcher.CONTAINING));
-		return (Set<User>) userDAO.findAll(example);
+		return  userDAO.findAll(example);
 	}
 	
 	public User update(User user) {

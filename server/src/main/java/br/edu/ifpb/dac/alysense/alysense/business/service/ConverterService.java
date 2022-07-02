@@ -1,19 +1,16 @@
 package br.edu.ifpb.dac.alysense.alysense.business.service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Avaliation;
-import br.edu.ifpb.dac.alysense.alysense.model.entity.EvaluateItem;
+import br.edu.ifpb.dac.alysense.alysense.model.entity.EvalueteItem;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.EventSense;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Product;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.AvaliationDTO;
-import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EvaluateItemDTO;
+import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EvalueteItemDTO;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EventDTO;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.ProductDTO;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.UserDTO;
@@ -26,7 +23,7 @@ public class ConverterService {
 			AvaliationDTO dto = new AvaliationDTO();
 			dto.setId(entity.getId());
 			dto.setAnswer(entity.getAnswer());
-			dto.setEvaluateItems(entity.getEvaluateItems());
+			dto.setEvalueteItems(entity.getEvalueteItems());
 			return dto;
 			
 		}
@@ -49,7 +46,7 @@ public class ConverterService {
 			Avaliation entity = new Avaliation();
 			entity.setId(dto.getId());
 			entity.setAnswer(dto.getAnswer());
-			entity.setEvaluateItems(dto.getEvaluateItems());
+			entity.setEvalueteItems(dto.getEvalueteItems());
 			return entity;
 	
 		}
@@ -68,8 +65,8 @@ public class ConverterService {
 
 	
 	/*-------------------------- EvaluateItem to DTO -------------------------*/
-	public EvaluateItemDTO EvaluateItemToDTO(EvaluateItem entity){
-		EvaluateItemDTO dto = new EvaluateItemDTO();
+	public EvalueteItemDTO EvalueteItemToDTO(EvalueteItem entity){
+		EvalueteItemDTO dto = new EvalueteItemDTO();
 		dto.setId(entity.getId());
 		dto.setEvaluator(entity.getEvaluator());
 		dto.setSample(entity.getSample());
@@ -79,11 +76,11 @@ public class ConverterService {
 		
 	}
 
-	public List<EvaluateItemDTO> EvaluateItemToDTO(List<EvaluateItem> entities){
-		List<EvaluateItemDTO> dtos = new ArrayList<>();
+	public List<EvalueteItemDTO> EvalueteItemToDTO(List<EvalueteItem> entities){
+		List<EvalueteItemDTO> dtos = new ArrayList<>();
 
-		for (EvaluateItem entity : entities) {
-			EvaluateItemDTO dto = EvaluateItemToDTO(entity);
+		for (EvalueteItem entity : entities) {
+			EvalueteItemDTO dto = EvalueteItemToDTO(entity);
 			dtos.add(dto);
 		}
 		return dtos;
@@ -93,8 +90,8 @@ public class ConverterService {
 
 
 	/*-------------------------- DTO to EvaluateItem -------------------------*/
-	public EvaluateItem DTOToEvaluateItem(EvaluateItemDTO dto) {
-		EvaluateItem entity = new EvaluateItem();
+	public EvalueteItem DTOToEvaluateItem(EvalueteItemDTO dto) {
+		EvalueteItem entity = new EvalueteItem();
 		entity.setId(dto.getId());
 		entity.setEvaluator(dto.getEvaluator());
 		entity.setSample(dto.getSample());
@@ -104,11 +101,11 @@ public class ConverterService {
 
 	}
 
-	public List<EvaluateItem> DTOToEvaluateItem(List<EvaluateItemDTO> dtos) {
-		List<EvaluateItem> entities = new ArrayList<>();
+	public List<EvalueteItem> DTOToEvaluateItem(List<EvalueteItemDTO> dtos) {
+		List<EvalueteItem> entities = new ArrayList<>();
 
-		for (EvaluateItemDTO dto : dtos) {
-			EvaluateItem entity = DTOToEvaluateItem(dto);
+		for (EvalueteItemDTO dto : dtos) {
+			EvalueteItem entity = DTOToEvaluateItem(dto);
 			entities.add(entity);
 		}
 		return entities;
@@ -126,8 +123,8 @@ public class ConverterService {
 		return user;
 	}
 	
-	public static Set<UserDTO> converterToDTO(Set<User> users) {
-		Set<UserDTO> dtos = new HashSet<>();
+	public static List<UserDTO> converterToDTO(List<User> users) {
+		List<UserDTO> dtos = new ArrayList<>();
 		for(User user: users) {
 			UserDTO dto = new UserDTO(user);
 			dtos.add(dto);
@@ -135,8 +132,8 @@ public class ConverterService {
 		return dtos;
 	}
 
-	public static Set<User> DTOToUser(Set<UserDTO> dtos) {
-		Set<User> entities = new HashSet<>();
+	public static List<User> DTOToUser(List<UserDTO> dtos) {
+		List<User> entities = new ArrayList<>();
 
 		for (UserDTO dto : dtos) {
 			User entity = converterToUser(dto);
@@ -156,13 +153,13 @@ public class ConverterService {
 	public ProductDTO productToDTO(Product entity){
 		ProductDTO dto = new ProductDTO();
 		dto.setId(entity.getId());
-		//dto.setCharacteristics(entity.getCharacteristics());
+		dto.setCharacteristics(entity.getCharacteristics());
 		dto.setExpirationDate(entity.getExpirationDate());
 		dto.setIngredients(entity.getIngredients());
 		dto.setName(entity.getName());
 		dto.setOwner(entity.getOwner());
 		dto.setUserId(entity.getUserId());
-		//dto.setSamples(entity.getSamples());
+		dto.setSamples(entity.getSamples());
 		return dto;
 		
 	}
@@ -184,14 +181,14 @@ public class ConverterService {
 	public Product DTOToProduct(ProductDTO dto) {
 		Product entity = new Product();
 		entity.setId(dto.getId());
-		//entity.setCharacteristics(dto.getCharacteristics());
+		entity.setCharacteristics(dto.getCharacteristics());
 		entity.setExpirationDate(dto.getExpirationDate());
 		entity.setIngredients(dto.getIngredients());
 		entity.setName(dto.getName());
 		entity.setOwner(dto.getOwner());
 		entity.setUserId(dto.getUserId());
 		entity.setUserId(dto.getUserId());
-		//entity.setSamples(dto.getSamples());
+		entity.setSamples(dto.getSamples());
 
 		return entity;
 

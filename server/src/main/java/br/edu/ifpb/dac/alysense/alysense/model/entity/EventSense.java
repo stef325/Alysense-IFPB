@@ -1,6 +1,7 @@
 package br.edu.ifpb.dac.alysense.alysense.model.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -39,10 +40,10 @@ public class EventSense {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "users_avaliation", joinColumns = @JoinColumn(name= "eventid"), inverseJoinColumns = @JoinColumn(name = "userid"))
-    private Set<User> evaluators;
+    private List<User> evaluators;
 
     @OneToMany(cascade = CascadeType.MERGE)
-    private Set<Product> items;
+    private List<Product> items;
 
     private Long admUser;
 

@@ -15,14 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.edu.ifpb.dac.alysense.alysense.business.service.AvaliationService;
 import br.edu.ifpb.dac.alysense.alysense.business.service.ConverterService;
-import br.edu.ifpb.dac.alysense.alysense.model.Enum.Aspect;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Avaliation;
-import br.edu.ifpb.dac.alysense.alysense.model.entity.EvaluateItem;
+import br.edu.ifpb.dac.alysense.alysense.model.entity.EvalueteItem;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.AvaliationDTO;
-import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EvaluateItemDTO;
+
 
 @RestController
 @RequestMapping("/api/avaliation")
@@ -71,13 +69,13 @@ public class AvaliationController {
 	
 	@GetMapping
 	public ResponseEntity find( @RequestParam(value = "id", required = false) Long id,
-			@RequestParam(value = "aspect", required = false) Aspect answer,
-			@RequestParam(value = "evaluateItems", required = false) Set<EvaluateItem> evaluateItems) {
+			@RequestParam(value = "aspect", required = false) String answer,
+			@RequestParam(value = "evaluateItems", required = false) List<EvalueteItem> evalueteItems) {
 		try {
 			Avaliation filter = new Avaliation();
 			filter.setId(id);
             filter.setAnswer(answer);
-            filter.setEvaluateItems(evaluateItems);
+            filter.setEvalueteItems(evalueteItems);
 			
 			
 			List<Avaliation> entities = avaliationService.find(filter);

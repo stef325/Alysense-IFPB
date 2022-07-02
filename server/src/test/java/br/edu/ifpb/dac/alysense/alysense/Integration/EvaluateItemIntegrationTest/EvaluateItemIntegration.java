@@ -14,12 +14,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import br.edu.ifpb.dac.alysense.alysense.business.service.EvaluateItemService;
-import br.edu.ifpb.dac.alysense.alysense.model.entity.EvaluateItem;
+import br.edu.ifpb.dac.alysense.alysense.business.service.EvalueteItemService;
+import br.edu.ifpb.dac.alysense.alysense.model.entity.EvalueteItem;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Product;
 import br.edu.ifpb.dac.alysense.alysense.model.repository.EvaluateItemRepository;
 import br.edu.ifpb.dac.alysense.alysense.presentation.controller.EvalueteItemController;
-import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EvaluateItemDTO;
+import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EvalueteItemDTO;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -29,19 +29,19 @@ public class EvaluateItemIntegration {
     EvalueteItemController controller;
 
     @Autowired
-    EvaluateItemService service;
+    EvalueteItemService service;
 
     @Autowired
     EvaluateItemRepository repository;
 
-    EvaluateItemDTO dto;
+    EvalueteItemDTO dto;
 
-    EvaluateItem entity;
+    EvalueteItem entity;
 
     @Before
     public void setUp(){
-        dto = new EvaluateItemDTO();
-        entity = new EvaluateItem();
+        dto = new EvalueteItemDTO();
+        entity = new EvalueteItem();
     }
 
 
@@ -49,7 +49,7 @@ public class EvaluateItemIntegration {
     public void createTest(){
         ResponseEntity res = controller.save(dto);
         assertEquals(HttpStatus.CREATED, res.getStatusCode());
-        assertEquals(EvaluateItemDTO.class, res.getBody().getClass());
+        assertEquals(EvalueteItemDTO.class, res.getBody().getClass());
     }
     
 

@@ -1,11 +1,8 @@
 package br.edu.ifpb.dac.alysense.alysense.presentation.dto;
 
 import java.time.LocalDate;
-import java.util.Set;
-
+import java.util.List;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Product;
-import br.edu.ifpb.dac.alysense.alysense.model.entity.Note;
-import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,8 +15,8 @@ public class EventDTO {
     private String local;
     private Integer peopleLimit;
     private Integer numberSample;
-    private Set<UserDTO> evaluators;
-    private Set<Product> items;
+    private List<UserDTO> evaluators;
+    private List<Product> items;
     private Long admUser;
     
 }
