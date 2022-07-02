@@ -14,6 +14,7 @@ export default class ProductView extends React.Component {
         name: '',
         owner: '',
         expirationDate: '',
+        idUser: 0,
         products: []
     }
 
@@ -23,10 +24,11 @@ export default class ProductView extends React.Component {
     }
 
     componentDidMount(){
-        this.findAll();
+        this.findFilter();
     }
 
-    findAll = async () => {
+    //ainda não necessario
+   /* findAll = async () => {
         await this.service.findAll()
         .then(response=>{
             const products = response.data;
@@ -36,11 +38,18 @@ export default class ProductView extends React.Component {
         }).catch(error=>{
             console.log(error.response)
         })
-    }
+    }*/
+
+    getLoggedUser=()=>{
+        var value = localStorage.getItem('loggedUser');
+        var user = JSON.parse(value);
+        return user;
+      }
+
 
     findFilter = async () =>{
-        //trocar tudo pela busca de useId
-        let params = "?";
+        this.state.idUser = this.getLoggedUser().id
+        var params = "?";
 
         if (this.state.id != '') {
             if (params != "?") {
@@ -66,6 +75,13 @@ export default class ProductView extends React.Component {
                 params = `${params}&`;
             }
             params = `${params}expirationDate=${this.state.expirationDate}`
+        }
+
+        if (this.state.idUser != '') {
+            if (params != "?") {
+                params = `${params}&`;
+            }
+            params = `${params}userId=${this.state.idUser}`
         }
 
        

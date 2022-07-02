@@ -5,13 +5,14 @@ import FormGroup from '../../../components/forms/FormGroup';
 import CardProduct from '../../../components/tables/Product/CardProduct';
 import EventApiService from '../../../services/EventApiService';
 import ProductEvent from '../../../components/tables/Product/ProductEvent';
-import { showSucessMessage, showErrorMessage, showWarningMessage } from '../../../components/Toastr/Toastr'
+import { showSucessMessage, showErrorMessage } from '../../../components/Toastr/Toastr'
 import Modal from 'react-modal';
-import { useState } from "react";
 
 import ProductApiService from '../../../services/ProductApiService';
 
 export default class EventCreate extends React.Component {
+
+
 
 
 
@@ -29,51 +30,51 @@ export default class EventCreate extends React.Component {
         qtdSamples: 0,
         products: [
             {
-                name:'aaa'
+                name: 'aaa'
             },
             {
-                name:'aaa'
+                name: 'aaa'
             },
             {
-                name:'aaa'
+                name: 'aaa'
             },
             {
-                name:'aaa'
+                name: 'aaa'
             },
             {
-                name:'aaa'
+                name: 'aaa'
             },
             {
-                name:'aaa'
+                name: 'aaa'
             },
             {
-                name:'aaa'
+                name: 'aaa'
             },
             {
-                name:'aaa'
+                name: 'aaa'
             },
             {
-                name:'aaa'
+                name: 'aaa'
             },
             {
-                name:'aaa'
+                name: 'aaa'
             },
             {
-                name:'aaa'
+                name: 'aaa'
             },
             {
-                name:'aaa'
+                name: 'aaa'
             },
             {
-                name:'aaa'
+                name: 'aaa'
             },
             {
-                name:'aaa'
+                name: 'aaa'
             },
             {
-                name:'aaa'
+                name: 'aaa'
             }
-            
+
         ],
         admUser: null,
         avaliators: [],
@@ -136,8 +137,15 @@ export default class EventCreate extends React.Component {
         return errors;
     };
 
+    getLoggedUser = () => {
+        var value = localStorage.getItem('loggedUser');
+        var user = JSON.parse(value);
+        return user;
+    }
+
     submit = async () => {
 
+        this.state.admUser = this.getLoggedUser().id
         const errors = this.validate();
         if (errors.length > 0) {
             errors.forEach((message, index) => {
@@ -160,6 +168,7 @@ export default class EventCreate extends React.Component {
         }).then(response => {
             console.log(response)
             showSucessMessage("Produto Criado!");
+            this.props.history.push(`/EventFeed/`);
         }).catch(error => {
             console.log(error.response)
         });
@@ -167,13 +176,13 @@ export default class EventCreate extends React.Component {
 
     }
 
-    openProductModal = () => {
+    openModal = () => {
         document.body.style.overflowY = "hidden";
         this.find();
         this.setState({ isVisible: true })
 
     }
-    closeProductModal = () => {
+    closeModal = () => {
         document.body.style.overflowY = "scroll";
         this.setState({ isVisible: false })
 
@@ -182,30 +191,6 @@ export default class EventCreate extends React.Component {
 
     remove = () => { }
     addon = () => {
-        let htmlavaliation = `<div class="conteiner">
-		<h2>Avaliações</h2>
-		<div>
-			<input type="checkbox" id="APARENCIA" name="APARENCIA" value="APARENCIA">
-			<label for="APARENCIA">APARENCIA</label>
-		</div>
-		<div>
-			<input type="checkbox" id="ODOR" name="ODOR" value="ODOR">
-			<label for="ODOR">ODOR</label>
-		</div>
-		<div>
-			<input type="checkbox" id="SABOR" name="SABOR" value="SABOR">
-			<label for="SABOR">SABOR</label>
-		</div>
-		<div>
-			<input type="checkbox" id="SOM" name="SOM" value="SOM">
-			<label for="SOM">SOM</label>
-		</div>
-		<div>
-			<input type="checkbox" id="TEXTURA" name="TEXTURA" value="TEXTURA">
-			<label for="TEXTURA">TEXTURA</label>
-		</div>
-
-	</div>`
         document.getElementById('modalContent').innerHTML = `<div class="conteiner">
 		<h2>Avaliações</h2>
 		<div>
@@ -237,7 +222,7 @@ export default class EventCreate extends React.Component {
             <div className="event-create">
                 <Modal
                     isOpen={this.state.isVisible}
-                    onRequestClose={this.closeProductModal}
+                    onRequestClose={this.closeModal}
                     style={{
                         overlay: {
                             position: 'fixed',
@@ -266,7 +251,7 @@ export default class EventCreate extends React.Component {
                 >
                     <div className="modalContent" id="modalContent">
                         <div className="close-button">
-                            <button onClick={this.closeProductModal }className="btn btn-primary">x</button>
+                            <button onClick={this.closeModal} className="btn btn-primary">x</button>
                         </div>
 
                         <div className="modal-table-user-products">
@@ -316,11 +301,11 @@ export default class EventCreate extends React.Component {
                                 </div>
                             </div>
                             <div className='CardTable'>
-                                <CardProduct action='Adicionar' find={this.openProductModal} collection={this.state.products} remove={this.remove}
+                                <CardProduct action='Adicionar' find={this.openModal} collection={this.state.addedProducts} remove={this.remove}
                                     label='Produtos' >
                                 </CardProduct>
                             </div>
-                            
+
                         </BigForm>
                     </div>
                 </header>

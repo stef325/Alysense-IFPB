@@ -41,5 +41,8 @@
     padding:3px;
     vertical-align: middle;
 }
-
+.product-view td .btn{
+    margin-left: 3px;
+    margin-right: 3px;
+}
 

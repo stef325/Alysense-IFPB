@@ -11,7 +11,7 @@ export default props =>{
                     <td>{item.title}</td>
                     <td>{item.local}</td>
                     <td>{`${item.date[2]<10? "0"+item.date[2]:item.date[2]}/${item.date[1]<10? "0"+item.date[1]:item.date[1]}/${item.date[0]}`}</td>
-                    <td>
+                    <td className="table-buttons">
                         <button type='button' title='Editar' className='btn btn-info' onClick={e =>props.edit(item.id)}>
                         <  FiEdit size={20} />
                         </button>

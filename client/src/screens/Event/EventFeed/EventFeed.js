@@ -12,7 +12,8 @@ export default class EventFeed extends React.Component{
         title:'',
         local:'',
         dateEvent:'',
-        events:[]
+        events:[],
+        admUser: 0
     }
 
     constructor(){
@@ -43,9 +44,23 @@ export default class EventFeed extends React.Component{
         this.clear();
     }
 
-    submit =async ()=>{
+    getLoggedUser=()=>{
+        var value = localStorage.getItem('loggedUser');
+        var user = JSON.parse(value);
+        return user;
+      }
 
+    submit =async ()=>{
+        this.state.admUser = this.getLoggedUser().id
         var params = '?';
+
+        if(this.state.admUser != ''){
+            if(params != '?'){
+                params = `${params}&`;
+            }
+        params = `${params}admUser=${this.state.admUser}`;
+        }
+
         if(this.state.idEvent != ''){
             if(params != '?'){
                 params = `${params}&`;
@@ -53,7 +68,6 @@ export default class EventFeed extends React.Component{
         params = `${params}id=${this.state.idEvent}`;
         }
 
-        var params = '?';
         if(this.state.title != ''){
             if(params != '?'){
                 params = `${params}&`;

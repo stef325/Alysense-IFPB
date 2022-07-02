@@ -20,6 +20,6 @@ public class EventDTO {
     private Integer numberSample;
     private Set<UserDTO> evaluators;
     private Set<Product> items;
-    private User admUser;
+    private Long admUser;
     
 }

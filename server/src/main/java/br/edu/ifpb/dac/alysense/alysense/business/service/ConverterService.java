@@ -156,13 +156,13 @@ public class ConverterService {
 	public ProductDTO productToDTO(Product entity){
 		ProductDTO dto = new ProductDTO();
 		dto.setId(entity.getId());
-		//dto.setCharacteristics(entity.getCharacteristics());
+		dto.setCharacteristics(entity.getCharacteristics());
 		dto.setExpirationDate(entity.getExpirationDate());
 		dto.setIngredients(entity.getIngredients());
 		dto.setName(entity.getName());
 		dto.setOwner(entity.getOwner());
 		dto.setUserId(entity.getUserId());
-		//dto.setSamples(entity.getSamples());
+		dto.setSamples(entity.getSamples());
 		return dto;
 		
 	}
@@ -184,13 +184,14 @@ public class ConverterService {
 	public Product DTOToProduct(ProductDTO dto) {
 		Product entity = new Product();
 		entity.setId(dto.getId());
-		//entity.setCharacteristics(dto.getCharacteristics());
+		entity.setCharacteristics(dto.getCharacteristics());
 		entity.setExpirationDate(dto.getExpirationDate());
 		entity.setIngredients(dto.getIngredients());
 		entity.setName(dto.getName());
 		entity.setOwner(dto.getOwner());
 		entity.setUserId(dto.getUserId());
-		//entity.setSamples(dto.getSamples());
+		entity.setUserId(dto.getUserId());
+		entity.setSamples(dto.getSamples());
 
 		return entity;
 
@@ -220,7 +221,6 @@ public class ConverterService {
 		dto.setPeopleLimit(entity.getPeopleLimit());
 		dto.setItems(entity.getItems());
 		dto.setLocal(entity.getLocal());
-		//dto.getAdmUser().setPassword(null);
 		dto.setAdmUser(entity.getAdmUser());
 		dto.setEvaluators(converterToDTO(entity.getEvaluators()));
 		dto.setNumberSample(entity.getNumberSample());

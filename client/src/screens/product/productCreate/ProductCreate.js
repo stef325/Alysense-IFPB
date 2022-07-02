@@ -1,10 +1,11 @@
 import React from 'react';
-import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
+import { showSucessMessage, showErrorMessage, showWarningMessage } from '../../../components/Toastr/Toastr'
 import ProductApiService from '../../../services/ProductApiService';
 import BigForm from '../../../components/forms/BigForm'
 import FormGroup from '../../../components/forms/FormGroup'
 import CardCharact from '../../../components/tables/charact/CardCharact'
-import CardSample from '../../../components/tables/samples/CardSample'
+import CardSample from '../../../components/tables/samples/CardSample';
+import Modal from 'react-modal';
 
 import "../../../styles/createForms.css"
 export default class ProductCreate extends React.Component {
@@ -14,40 +15,62 @@ export default class ProductCreate extends React.Component {
     owner: '',
     date: '',
     ingredients: '',
-    userId:'',
+    userId: 0,
     charact: [],
-    slices: []
+    samples: [],
+    isVisibleCharact: false,
+    isVisibleSample: false,
+
+    newCharact:{
+      
+    },
+    newSample:{
+    },
+    showSamples:[]
   }
 
-  constructor(){
+  componentDidMount() {
+    Modal.setAppElement('#root');
+    this.setState({ isVisibleCharact: false })
+    this.setState({ isVisibleSample: false })
+  }
+
+  constructor() {
     super();
     this.service = new ProductApiService();
   }
 
-  validate = () =>{
+  validate = () => {
     const errors = [];
 
-    if(!this.state.name){
-        errors.push('Campo Nome é obrigatório!')
+    if (!this.state.name) {
+      errors.push('Campo Nome é obrigatório!')
     }
-    if(!this.state.owner){
-        errors.push('informe o fornecedor!')
+    if (!this.state.owner) {
+      errors.push('informe o fornecedor!')
     }
-    if(!this.state.date){
-        errors.push('Campo de validade obrigatório!')
+    if (!this.state.date) {
+      errors.push('Campo de validade obrigatório!')
     }
-    
+
     return errors;
-};
+  };
+
+  getLoggedUser = () => {
+    var value = localStorage.getItem('loggedUser');
+    var user = JSON.parse(value);
+    return user;
+  }
 
 
   submit = async () => {
+    this.state.userId = this.getLoggedUser().id
     const errors = this.validate();
-    if(errors.length>0){
-        errors.forEach((message,index)=>{
-            showErrorMessage(message)
-        });
-        return false;
+    if (errors.length > 0) {
+      errors.forEach((message, index) => {
+        showErrorMessage(message)
+      });
+      return false;
     }
     await this.service.create({
       name: this.state.name,
@@ -55,12 +78,13 @@ export default class ProductCreate extends React.Component {
       owner: this.state.owner,
       ingredients: this.state.ingredients,
       characteristics: this.state.charact,
-      samples: this.state.slices,
-      userId: this.userId
+      samples: this.state.samples,
+      userId: this.state.userId
 
     }).then(response => {
       console.log(response)
       showSucessMessage("Produto Criado!");
+      this.props.history.push(`/ProductView/`);
     }).catch(error => {
       console.log(error.response)
     });
@@ -70,14 +94,146 @@ export default class ProductCreate extends React.Component {
 
   }
 
-  remove = () => {
+  removeCharact = () => {
 
+  }
+  removeSample = () => {
+
+  }
+
+  openModalCharact = () => {
+    document.body.style.overflowY = "hidden";
+    //this.find();
+    this.setState({ isVisibleCharact: true })
+
+  }
+  closeModalCharact = () => {
+    document.body.style.overflowY = "scroll";
+    this.setState({ isVisibleCharact: false })
+
+  }
+
+  addCharact = () => {
+    this.state.charact.push({atribute: this.state.newCharact});
+    console.log(this.state.charact)
+    this.closeModalCharact();
+  }
+
+
+  openModalSample = () => {
+    document.body.style.overflowY = "hidden";
+    //this.find();
+    this.setState({ isVisibleSample: true })
+
+  }
+  closeModalSample = () => {
+    document.body.style.overflowY = "scroll";
+    this.setState({ isVisibleSample: false })
+
+  }
+
+  addSample = () => {
+    this.state.showSamples.push({
+      name: (this.state.samples.length == 0? 1: this.state.samples[this.state.samples.length-1].name+1),
+      detailsSample: this.state.newSample
+    });
+    this.state.samples.push({
+      detailsSample: this.state.newSample
+    });
+    console.log(this.state.samples)
+    this.closeModalSample();
   }
 
   render() {
     return (
       <div>
         <div className="main-container">
+          <Modal
+            isOpen={this.state.isVisibleCharact}
+            onRequestClose={this.closeModalCharact}
+            style={{
+              overlay: {
+                position: 'fixed',
+                zIndex: 1020,
+                top: 0,
+                left: 0,
+                width: '100vw',
+                height: '100vh',
+                background: 'rgba(235,104,100, 0.75)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              },
+              content: {
+                background: 'white',
+                width: '70vw',
+                height: '40vh',
+                maxWidth: 'calc(100vw - 2rem)',
+                maxHeight: 'calc(100vh - 2rem)',
+                overflowY: 'hidden',
+                position: 'relative',
+                border: '1px solid #ccc',
+                borderRadius: '0.3rem',
+              }
+            }}
+          >
+            <div className="modalContent" id="modalContent">
+              <div className="close-button">
+                <button onClick={this.closeModalCharact} className="btn btn-primary">x</button>
+              </div>
+
+              <FormGroup htmlFor="charact" label="Característica">
+                  <input className='form-control' type="text" placeholder='Característica' id='charact' onChange={(e) => {this.setState({ newCharact: e.target.value })}} />
+                </FormGroup>
+                <button type="button" className="btn btn-primary" onClick={this.addCharact}>Adicionar</button>
+            </div>
+
+
+          </Modal>
+
+          <Modal
+            isOpen={this.state.isVisibleSample}
+            onRequestClose={this.closeModalSample}
+            style={{
+              overlay: {
+                position: 'fixed',
+                zIndex: 1020,
+                top: 0,
+                left: 0,
+                width: '100vw',
+                height: '100vh',
+                background: 'rgba(235,104,100, 0.75)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              },
+              content: {
+                background: 'white',
+                width: '70vw',
+                height: '40vh',
+                maxWidth: 'calc(100vw - 2rem)',
+                maxHeight: 'calc(100vh - 2rem)',
+                overflowY: 'hidden',
+                position: 'relative',
+                border: '1px solid #ccc',
+                borderRadius: '0.3rem',
+              }
+            }}
+          >
+            <div className="modalContent" id="modalContent">
+              <div className="close-button">
+                <button onClick={this.closeModalSample} className="btn btn-primary">x</button>
+              </div>
+              <h3>Amostra</h3>
+              <FormGroup htmlFor="obs" label="Observação">
+                  <input className='form-control' type="text" placeholder='Observação' id='obs' onChange={(e) => {this.setState({ newSample: e.target.value })}} />
+                </FormGroup>
+                <button type="button" className="btn btn-primary" onClick={this.addSample}>Adicionar</button>
+            </div>
+
+
+          </Modal>
+
           <BigForm title="ADICIONAR NOVO PRODUTO" submit={this.submit} action="Adicionar">
             <div className="name">
               <FormGroup htmlFor="name" label="Nome" className="name">
@@ -102,16 +258,16 @@ export default class ProductCreate extends React.Component {
 
 
             <FormGroup htmlFor="ingredients" label="Ingredientes">
-              <textarea className="form-control txt-ingred" id="ingredients" rows="3"></textarea>
+              <textarea className="form-control txt-ingred" id="ingredients" rows="3" onChange={(e) => { this.setState({ ingredients: e.target.value }) }}></textarea>
             </FormGroup>
 
             <div className="half-container">
               <div className='characterist'>
-                <CardCharact action="Adicionar" collection={this.state.charact} remove={this.remove} label="Características"></CardCharact>
+                <CardCharact action="Adicionar" collection={this.state.charact} remove={this.remove} find={this.openModalCharact} label="Características"></CardCharact>
               </div>
 
               <div className="slices">
-                <CardSample action="Adicionar" collection={this.state.slices} remove={this.remove} label="Amostras"></CardSample>
+                <CardSample action="Adicionar" collection={this.state.showSamples} remove={this.remove} find={this.openModalSample} label="Amostras"></CardSample>
 
               </div>
 

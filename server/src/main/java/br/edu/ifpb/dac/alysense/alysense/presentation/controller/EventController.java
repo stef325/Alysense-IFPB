@@ -56,7 +56,7 @@ public class EventController {
         @RequestParam(value = "date", required = false) LocalDate date,
         @RequestParam(value = "peopleLimit", required = false) Integer peopleLimit,
         @RequestParam(value = "local", required = false) String local,
-        @RequestParam(value = "admUser", required = false) User admUser
+        @RequestParam(value = "admUser", required = false) Long admUser
         ){
         try {
             EventSense filter = new EventSense();

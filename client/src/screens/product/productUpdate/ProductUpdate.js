@@ -16,7 +16,7 @@ export default class ProductUpdate extends React.Component {
     owner: '',
     expirationDate: '',
     ingredients: '',
-    userId:'',
+    userId:0,
     characteristics: [],
     samples: []
   }
@@ -48,6 +48,7 @@ export default class ProductUpdate extends React.Component {
     this.findById(id);
 
   }
+  
   convertFromStringToDate = (args) => {
     var veri = args[1]
     var veri2 = args[2]
@@ -116,7 +117,7 @@ export default class ProductUpdate extends React.Component {
     });
 
     console.log("request finished");
-
+    this.props.history.push(`/ProductView/`);
 
   }
 

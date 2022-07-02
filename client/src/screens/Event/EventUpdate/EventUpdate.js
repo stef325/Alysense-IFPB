@@ -69,11 +69,12 @@ export default class EventUpdate extends React.Component{
         
         }).then(response =>{
             console.log(response)
-            showSucessMessage("Produto Criado!");
+            showSucessMessage("Evento Atualizado!");
         }).catch(error =>{
             console.log(error.response)
         });
         console.log("request finished");
+        this.props.history.push(`/EventFeed/`);
     }
 
     componentDidMount(){

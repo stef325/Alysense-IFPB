@@ -44,9 +44,7 @@ public class EventSense {
     @OneToMany(cascade = CascadeType.MERGE)
     private Set<Product> items;
 
-    @OneToOne(fetch = FetchType.EAGER,
-    cascade = { CascadeType.ALL}, orphanRemoval = true)
-    private User admUser;
+    private Long admUser;
 
 
 }

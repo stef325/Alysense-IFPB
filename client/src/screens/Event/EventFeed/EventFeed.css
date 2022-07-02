@@ -59,3 +59,7 @@
     padding:3px;
     vertical-align: middle;
 }
+
+.EventFeed td .btn{
+    margin: 10px;
+}
