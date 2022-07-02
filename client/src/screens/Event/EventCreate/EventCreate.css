@@ -41,6 +41,7 @@
 .event-create .CardTable .card-body{
     height: 25vh;
     width: 25vw;
+    overflow-y: scroll;
 }
 
 .event-create .EventCreate .action-button {
@@ -51,6 +52,20 @@
 .event-create .EventCreate .action-button .btn{
     width: 30%;
 }
-.event-create .Modal{
-    background-color: aqua;
+
+.modalContent{
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.close-button{
+    height: 50px;
+    width: 70vw;
+    
+}
+.modal-table-user-products{
+    height: 65vh;
+    overflow-y: scroll;
+
 }
