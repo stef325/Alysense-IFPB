@@ -1,17 +1,19 @@
 package br.edu.ifpb.dac.alysense.alysense.Integration.ThirdPartyServices;
 
-import static org.junit.Assert.assertFalse;
+
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import br.edu.ifpb.dac.alysense.alysense.Integration.ThirdPartyServices.util.ProductValidationService;
@@ -25,7 +27,7 @@ public class SVTests {
     private ProductWithSV product;
     private ProductValidationService service = mock(ProductValidationService.class);
 
-    @Before
+    @BeforeAll
     public void init(){
         service = new ProductValidationService();
         product = new ProductWithSV();

@@ -1,24 +1,23 @@
 package br.edu.ifpb.dac.alysense.alysense.UnitaryTests.Product;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.aggregator.ArgumentsAccessor;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -41,7 +40,7 @@ public class ProductTestService{
 
     
 
-    @Before
+    @BeforeAll
     public void setUp(){
         product.setName("bolo");
         characteristic.setAtribute("doce");
@@ -51,7 +50,7 @@ public class ProductTestService{
         product.setOwner("qualquer");
     }
 
-    @Before
+    @BeforeAll
     public void setUpDTO(){
         dto.setName("coxinha");
         characteristic.setAtribute("salgado");

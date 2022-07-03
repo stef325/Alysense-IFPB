@@ -3,31 +3,21 @@ package br.edu.ifpb.dac.alysense.alysense.UnitaryTests.User;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import br.edu.ifpb.dac.alysense.alysense.business.service.ConverterService;
 import br.edu.ifpb.dac.alysense.alysense.business.service.ValidationAgeUserService;
-import br.edu.ifpb.dac.alysense.alysense.model.entity.EvalueteItem;
-import br.edu.ifpb.dac.alysense.alysense.model.entity.Product;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.UserDTO;
 import br.edu.ifpb.dac.alysense.alysense.util.UserToTest;
-import br.edu.ifpb.dac.alysense.alysense.util.UserValidations;
 
 public class UserTests {
     final UserToTest NotActualUser = new UserToTest();
@@ -37,7 +27,7 @@ public class UserTests {
 
 
 
-    @Before
+    @BeforeAll
     public final void initUser(){
         List<String> okProducts = new ArrayList<>();
         okProducts.add("Laranja");
