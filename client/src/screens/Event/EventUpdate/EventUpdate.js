@@ -16,7 +16,7 @@ export default class EventUpdate extends React.Component{
         qtdParticipants:0,
         qtdSamples:0,
         products: [],
-        admUser: null,
+        admUser: 0,
         avaliators:[],
     }
 
@@ -46,6 +46,12 @@ export default class EventUpdate extends React.Component{
         
         return errors;
     };
+
+    getLoggedUser=()=>{
+        var value = localStorage.getItem('loggedUser');
+        var user = JSON.parse(value);
+        return user;
+    }
 
 
     submit = async() =>{
@@ -100,7 +106,8 @@ export default class EventUpdate extends React.Component{
             const local = event.local;
             const qtdParticipants= event.peopleLimit;
             const qtdSamples= event.numberSample;
-            this.setState({idEvent,title, dateEvent,local, qtdParticipants,qtdSamples});
+            const admUser = event.admUser;
+            this.setState({idEvent,title, dateEvent,local, qtdParticipants,qtdSamples,admUser});
         }).catch(error=>{
             console.log(error.response);
         })
