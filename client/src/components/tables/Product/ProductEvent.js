@@ -7,7 +7,7 @@ export default props =>{
                 <tr key={item.name}>
                     <td>{item.name}</td>
                     <td>
-                        <button type='button' title='Excluir' className='btn btn-danger' onClick={e =>props.remove(item.name)}>
+                        <button type='button' title='Excluir' className='btn btn-danger' onClick={e =>props.remove(item)}>
                             <i className='pi pi-trash'></i>
                         </button>
                     </td>

@@ -1,6 +1,7 @@
 package br.edu.ifpb.dac.alysense.alysense.presentation.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,31 +15,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.edu.ifpb.dac.alysense.alysense.business.service.ConverterService;
-import br.edu.ifpb.dac.alysense.alysense.business.service.EvaluateItemService;
-import br.edu.ifpb.dac.alysense.alysense.model.Enum.Aspect;
-import br.edu.ifpb.dac.alysense.alysense.model.entity.EvaluateItem;
+import br.edu.ifpb.dac.alysense.alysense.business.service.EvalueteItemService;
+import br.edu.ifpb.dac.alysense.alysense.model.entity.EvalueteItem;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Note;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Sample;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
-import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EvaluateItemDTO;
+import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EvalueteItemDTO;
 
 @RestController
 @RequestMapping("/api/evaluete_item")
 public class EvalueteItemController {
     @Autowired
-	private EvaluateItemService evaluateItemService;
+	private EvalueteItemService evaluateItemService;
 
     @Autowired
     private ConverterService converterService;
 	
 	@PostMapping
-	public ResponseEntity save(@RequestBody EvaluateItemDTO dto) {
+	public ResponseEntity save(@RequestBody EvalueteItemDTO dto) {
 		try {
-			EvaluateItem evaluateItem = converterService.DTOToEvaluateItem(dto);
+			EvalueteItem evaluateItem = converterService.DTOToEvaluateItem(dto);
 			evaluateItem = evaluateItemService.save(evaluateItem);
-			dto = converterService.EvaluateItemToDTO(evaluateItem);
+			dto = converterService.EvalueteItemToDTO(evaluateItem);
 			return new ResponseEntity(dto, HttpStatus.CREATED);
 		}catch(Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
@@ -46,12 +45,12 @@ public class EvalueteItemController {
 	}
 
 	@PutMapping("{id}")
-	public ResponseEntity update(@PathVariable("id") Long id,@RequestBody EvaluateItemDTO dto) {
+	public ResponseEntity update(@PathVariable("id") Long id,@RequestBody EvalueteItemDTO dto) {
 		try {
 			dto.setId(id);
-			EvaluateItem evaluateItem = converterService.DTOToEvaluateItem(dto);
+			EvalueteItem evaluateItem = converterService.DTOToEvaluateItem(dto);
 			evaluateItem = evaluateItemService.update(evaluateItem);
-			dto = converterService.EvaluateItemToDTO(evaluateItem);
+			dto = converterService.EvalueteItemToDTO(evaluateItem);
 			return ResponseEntity.ok(dto);
 		}catch(Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
@@ -74,9 +73,9 @@ public class EvalueteItemController {
 			@RequestParam(value = "evaluator", required = false) User evaluator,
 			@RequestParam(value = "sample", required = false) Sample sample,
 			@RequestParam(value = "note", required = false) Note note,
-			@RequestParam(value = "question", required = false) Aspect question) {
+			@RequestParam(value = "question", required = false) String question) {
 		try {
-			EvaluateItem filter = new EvaluateItem();
+			EvalueteItem filter = new EvalueteItem();
 			filter.setId(id);
 			filter.setEvaluator(evaluator);
 			filter.setSample(sample);
@@ -84,8 +83,8 @@ public class EvalueteItemController {
 			filter.setQuestion(question);
 			
 			
-			List<EvaluateItem> entities = evaluateItemService.find(filter);
-			List<EvaluateItemDTO> dtos = converterService.EvaluateItemToDTO(entities);
+			List<EvalueteItem> entities = evaluateItemService.find(filter);
+			List<EvalueteItemDTO> dtos = converterService.EvalueteItemToDTO(entities);
 			return ResponseEntity.ok(dtos);
 		}catch(Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());

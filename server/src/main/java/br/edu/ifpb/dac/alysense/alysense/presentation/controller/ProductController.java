@@ -58,8 +58,8 @@ public class ProductController {
         @RequestParam(value = "expirationDate", required = false) LocalDate expirationDate,
         @RequestParam(value = "owner", required = false) String owner,
         @RequestParam(value = "userId", required = false) Long userId
-        //@RequestParam(value = "characteristic", required = false) Set<Characteristic> characteristics,
-        //@RequestParam(value = "samples", required = false) Set<Sample> samples
+        //@RequestParam(value = "characteristic", required = false) List<Characteristic> characteristics,
+        //@RequestParam(value = "samples", required = false) List<Sample> samples
         ){
         try {
             Product filter = new Product();

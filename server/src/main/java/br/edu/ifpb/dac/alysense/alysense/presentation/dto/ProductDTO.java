@@ -1,7 +1,7 @@
 package br.edu.ifpb.dac.alysense.alysense.presentation.dto;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Characteristic;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Sample;
@@ -19,6 +19,6 @@ public class ProductDTO {
     private String owner;
     private String ingredients;
     private Long userId;
-    private Set<Characteristic> characteristics;
-    private Set<Sample> samples;
+    private List<Characteristic> characteristics;
+    private List<Sample> samples;
 }

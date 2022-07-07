@@ -1,5 +1,6 @@
 package br.edu.ifpb.dac.alysense.alysense.presentation.controller;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,8 +75,8 @@ public class UserController {
 			filter.setName(name);
 			filter.setEmail(email);
 			
-			Set<User> entities = userService.find(filter);
-			Set<UserDTO> dtos = ConverterService.converterToDTO(entities);
+			List<User> entities = userService.find(filter);
+			List<UserDTO> dtos = ConverterService.converterToDTO(entities);
 			return ResponseEntity.ok(dtos);
 		}catch(Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());

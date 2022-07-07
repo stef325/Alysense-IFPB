@@ -7,6 +7,7 @@ import EventApiService from '../../../services/EventApiService';
 import ProductEvent from '../../../components/tables/Product/ProductEvent';
 import { showSucessMessage, showErrorMessage } from '../../../components/Toastr/Toastr'
 import Modal from 'react-modal';
+import AvaliationApiService from '../../../services/AvaliationApiService';
 
 import ProductApiService from '../../../services/ProductApiService';
 
@@ -28,54 +29,7 @@ export default class EventCreate extends React.Component {
         dateEvent: '',
         qtdParticipants: 0,
         qtdSamples: 0,
-        products: [
-            {
-                name: 'aaa'
-            },
-            {
-                name: 'aaa'
-            },
-            {
-                name: 'aaa'
-            },
-            {
-                name: 'aaa'
-            },
-            {
-                name: 'aaa'
-            },
-            {
-                name: 'aaa'
-            },
-            {
-                name: 'aaa'
-            },
-            {
-                name: 'aaa'
-            },
-            {
-                name: 'aaa'
-            },
-            {
-                name: 'aaa'
-            },
-            {
-                name: 'aaa'
-            },
-            {
-                name: 'aaa'
-            },
-            {
-                name: 'aaa'
-            },
-            {
-                name: 'aaa'
-            },
-            {
-                name: 'aaa'
-            }
-
-        ],
+        products: [],
         admUser: null,
         avaliators: [],
 
@@ -83,7 +37,9 @@ export default class EventCreate extends React.Component {
         id: '',
         name: '',
         isVisible: false,
-        addedProducts: []
+        addedProducts: [],
+        avaliation: [],
+        toggleAvaliation:false
 
     }
 
@@ -91,6 +47,7 @@ export default class EventCreate extends React.Component {
         super();
         this.serviceEvent = new EventApiService();
         this.serviceProduct = new ProductApiService();
+        this.serviceAvaliation = new AvaliationApiService();
     }
 
 
@@ -165,14 +122,38 @@ export default class EventCreate extends React.Component {
             admUser: this.state.admUser
 
 
-        }).then(response => {
+        },this.state.avaliation.forEach(element=>{
+            this.serviceAvaliation.create(element).then(response => {
+            console.log(response)
+            showSucessMessage("Produto Criado!");
+        }).catch(error => {
+            console.log(error.response)
+        });
+        })).then(response => {
             console.log(response)
             showSucessMessage("Produto Criado!");
             this.props.history.push(`/EventFeed/`);
         }).catch(error => {
             console.log(error.response)
         });
+        /*this.state.avaliation.forEach(element =>{
+            console.log(element.value)
+            this.serviceAvaliation.create({
+                answer: element.value
+            })
+        })*/
+        this.state.avaliation.forEach(element=>{
+            console.log(element)
+            this.serviceAvaliation.create(element).then(response => {
+            console.log(response)
+            showSucessMessage("Produto Criado!");
+        }).catch(error => {
+            console.log(error.response)
+        });
+        })
         console.log("request finished");
+
+
 
     }
 
@@ -187,39 +168,39 @@ export default class EventCreate extends React.Component {
         this.setState({ isVisible: false })
 
     }
-
-
     remove = () => { }
-    addon = () => {
-        document.getElementById('modalContent').innerHTML = `<div class="conteiner">
-		<h2>Avaliações</h2>
-		<div>
-			<input type="checkbox" id="APARENCIA" name="APARENCIA" value="APARENCIA">
-			<label for="APARENCIA">APARENCIA</label>
-		</div>
-		<div>
-			<input type="checkbox" id="ODOR" name="ODOR" value="ODOR">
-			<label for="ODOR">ODOR</label>
-		</div>
-		<div>
-			<input type="checkbox" id="SABOR" name="SABOR" value="SABOR">
-			<label for="SABOR">SABOR</label>
-		</div>
-		<div>
-			<input type="checkbox" id="SOM" name="SOM" value="SOM">
-			<label for="SOM">SOM</label>
-		</div>
-		<div>
-			<input type="checkbox" id="TEXTURA" name="TEXTURA" value="TEXTURA">
-			<label for="TEXTURA">TEXTURA</label>
-		</div>
-        <button>Adicionar</button>
-	</div>`
+    addAvaliation = () => {
+        const elements = document.getElementsByClassName("checkAspect");
+
+        for (let index = 0; index < elements.length; index++) {
+            const element = elements[index];
+            if (element.checked) {
+                let notIn = true;
+                for (let i = 0; i < this.state.avaliation.length; i++) {
+                    if (this.state.avaliation[i].answer == element.value) {
+                        notIn = false; 
+                    }
+                    
+                }
+                if (notIn == true) {
+                   this.state.avaliation.push({ answer: element.value }) 
+                }
+                
+            }
+
+        }
+        console.log(this.state.avaliation)
+
+    }
+    addon = (product) => {
+        this.setState({toggleAvaliation: true})
+        this.state.addedProducts.push(product)
     }
 
     render() {
         return (
             <div className="event-create">
+
                 <Modal
                     isOpen={this.state.isVisible}
                     onRequestClose={this.closeModal}
@@ -254,8 +235,33 @@ export default class EventCreate extends React.Component {
                             <button onClick={this.closeModal} className="btn btn-primary">x</button>
                         </div>
 
-                        <div className="modal-table-user-products">
+                        <div className={this.state.toggleAvaliation === false? "modal-table-user-products active-tab-modal": "modal-table-user-products"}>
                             <ProductEvent collection={this.state.products} remove={this.addon}></ProductEvent>
+                        </div>
+
+                        <div className={this.state.toggleAvaliation === true? "modal-table-prod-avaliation active-tab-avaliadion": "modal-table-prod-avaliation"}>
+                            <h2>Avaliações</h2>
+                            <div>
+                                <input className="checkAspect" type="checkbox" id="APARENCIA" name="APARENCIA" value="APARENCIA" />
+                                <label htmlFor="APARENCIA">APARENCIA</label>
+                            </div>
+                            <div>
+                                <input className="checkAspect" type="checkbox" id="ODOR" name="ODOR" value="ODOR" />
+                                <label htmlFor="ODOR">ODOR</label>
+                            </div>
+                            <div>
+                                <input className="checkAspect" type="checkbox" id="SABOR" name="SABOR" value="SABOR" />
+                                <label htmlFor="SABOR">SABOR</label>
+                            </div>
+                            <div>
+                                <input className="checkAspect" type="checkbox" id="SOM" name="SOM" value="SOM" />
+                                <label htmlFor="SOM">SOM</label>
+                            </div>
+                            <div>
+                                <input className="checkAspect" type="checkbox" id="TEXTURA" name="TEXTURA" value="TEXTURA" />
+                                <label htmlFor="TEXTURA">TEXTURA</label>
+                            </div>
+                            <button className="btn btn-primary" onClick={this.addAvaliation}>Adicionar</button>
                         </div>
                     </div>
 

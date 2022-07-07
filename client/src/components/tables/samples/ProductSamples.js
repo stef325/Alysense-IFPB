@@ -4,10 +4,10 @@ export default props =>{
 
     const rows = props.collection.map(item=>{
             return(
-                <tr key={item.name}>
-                    <td>{item.name}</td>
+                <tr key={item.id}>
+                    <td>{item.id}</td>
                     <td>
-                        <button type='button' title='Excluir' className='btn btn-danger' onClick={e =>props.remove(item.name)}>
+                        <button type='button' title='Excluir' className='btn btn-danger' onClick={e =>props.remove(item.id)}>
                             <i className='pi pi-trash'></i>
                         </button>
                     </td>

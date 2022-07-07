@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "./Register.css"
+//import "./Register.css"
 
 
 import { MdEmail } from "react-icons/md";
@@ -75,19 +75,6 @@ export default class Login extends React.Component {
                 <div className='register-container'>
                     <div className='register-form'>
                         <BigForm title="LOGIN" submit={this.submit} action="Login">
-                            <div className="input-container">
-                                <FormGroup htmlFor="" label="">
-                                    <RiBallPenFill />
-                                    <input className='form-control' type="text" placeholder='Nome' id='name' onChange={(e) => { this.setState({ name: e.target.value }) }} />
-                                </FormGroup>
-                            </div>
-
-                            <div className="input-container">
-                                <FormGroup htmlFor="" label="">
-                                    <FaBirthdayCake />
-                                    <input className='form-control' type="date" placeholder='Data' id='date' onChange={(e) => { this.setState({ date: e.target.value }) }} />
-                                </FormGroup>
-                            </div>
 
                             <div className="input-container">
                                 <FormGroup htmlFor="" label="">

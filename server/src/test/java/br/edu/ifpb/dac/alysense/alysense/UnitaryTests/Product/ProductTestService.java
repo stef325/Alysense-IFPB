@@ -57,7 +57,7 @@ public class ProductTestService{
         characteristic.setAtribute("salgado");
         characteristics.add(characteristic);
        //product.setCharacteristics(characteristics);
-       dto.setCharacteristics(characteristics);
+       //dto.setCharacteristics(characteristics);
         dto.setExpirationDate(LocalDate.now());
         dto.setOwner("qualquer");
     }

@@ -67,5 +67,16 @@
 .modal-table-user-products{
     height: 65vh;
     overflow-y: scroll;
+    display: none;
 
+}
+.modal-table-prod-avaliation{
+    display: none;
+}
+
+.active-tab-modal{
+    display: flex;
+}
+.active-tab-avaliadion{
+    display: block;
 }

@@ -22,7 +22,7 @@ import org.junit.jupiter.api.DisplayName;
 
 import br.edu.ifpb.dac.alysense.alysense.business.service.ConverterService;
 import br.edu.ifpb.dac.alysense.alysense.business.service.ValidationAgeUserService;
-import br.edu.ifpb.dac.alysense.alysense.model.entity.EvaluateItem;
+import br.edu.ifpb.dac.alysense.alysense.model.entity.EvalueteItem;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Product;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.UserDTO;

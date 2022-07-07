@@ -1,6 +1,7 @@
 package br.edu.ifpb.dac.alysense.alysense.model.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -33,11 +34,11 @@ public class Product {
     private String owner;
     private String ingredients;
     private Long userId;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Characteristic> characteristics;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Characteristic> characteristics;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Sample> samples;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Sample> samples;
 
 
     

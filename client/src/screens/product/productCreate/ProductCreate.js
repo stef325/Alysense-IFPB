@@ -21,12 +21,12 @@ export default class ProductCreate extends React.Component {
     isVisibleCharact: false,
     isVisibleSample: false,
 
-    newCharact:{
-      
+    newCharact: {
+
     },
-    newSample:{
+    newSample: {
     },
-    showSamples:[]
+    showSamples: []
   }
 
   componentDidMount() {
@@ -62,6 +62,16 @@ export default class ProductCreate extends React.Component {
     return user;
   }
 
+  eraseSample = (SampleName) => {
+
+    this.setState({ showSamples: this.state.showSamples.filter((item) => item.id !== SampleName) })
+    
+  }
+  eraseCharact = (Charactatribute) => {
+
+    this.setState({ charact: this.state.charact.filter((item) => item.atribute !== Charactatribute) })
+    
+  }
 
   submit = async () => {
     this.state.userId = this.getLoggedUser().id
@@ -72,6 +82,12 @@ export default class ProductCreate extends React.Component {
       });
       return false;
     }
+    this.state.showSamples.forEach(sample => {
+      this.state.samples.push({ detailsSample: sample.detailsSample })
+    })
+
+
+    console.log(this.state.samples)
     await this.service.create({
       name: this.state.name,
       expirationDate: this.state.date,
@@ -114,7 +130,7 @@ export default class ProductCreate extends React.Component {
   }
 
   addCharact = () => {
-    this.state.charact.push({atribute: this.state.newCharact});
+    this.state.charact.push({ atribute: this.state.newCharact });
     console.log(this.state.charact)
     this.closeModalCharact();
   }
@@ -134,13 +150,10 @@ export default class ProductCreate extends React.Component {
 
   addSample = () => {
     this.state.showSamples.push({
-      name: (this.state.samples.length == 0? 1: this.state.samples[this.state.samples.length-1].name+1),
+      id: (this.state.showSamples.length == 0 ? 1 : this.state.showSamples[this.state.showSamples.length - 1].id + 1),
       detailsSample: this.state.newSample
     });
-    this.state.samples.push({
-      detailsSample: this.state.newSample
-    });
-    console.log(this.state.samples)
+    console.log(this.state.showSamples)
     this.closeModalSample();
   }
 
@@ -183,9 +196,9 @@ export default class ProductCreate extends React.Component {
               </div>
 
               <FormGroup htmlFor="charact" label="Característica">
-                  <input className='form-control' type="text" placeholder='Característica' id='charact' onChange={(e) => {this.setState({ newCharact: e.target.value })}} />
-                </FormGroup>
-                <button type="button" className="btn btn-primary" onClick={this.addCharact}>Adicionar</button>
+                <input className='form-control' type="text" placeholder='Característica' id='charact' onChange={(e) => { this.setState({ newCharact: e.target.value }) }} />
+              </FormGroup>
+              <button type="button" className="btn btn-primary" onClick={this.addCharact}>Adicionar</button>
             </div>
 
 
@@ -226,9 +239,9 @@ export default class ProductCreate extends React.Component {
               </div>
               <h3>Amostra</h3>
               <FormGroup htmlFor="obs" label="Observação">
-                  <input className='form-control' type="text" placeholder='Observação' id='obs' onChange={(e) => {this.setState({ newSample: e.target.value })}} />
-                </FormGroup>
-                <button type="button" className="btn btn-primary" onClick={this.addSample}>Adicionar</button>
+                <input className='form-control' type="text" placeholder='Observação' id='obs' onChange={(e) => { this.setState({ newSample: e.target.value }) }} />
+              </FormGroup>
+              <button type="button" className="btn btn-primary" onClick={this.addSample}>Adicionar</button>
             </div>
 
 
@@ -263,11 +276,11 @@ export default class ProductCreate extends React.Component {
 
             <div className="half-container">
               <div className='characterist'>
-                <CardCharact action="Adicionar" collection={this.state.charact} remove={this.remove} find={this.openModalCharact} label="Características"></CardCharact>
+                <CardCharact action="Adicionar" collection={this.state.charact} remove={this.eraseCharact} find={this.openModalCharact} label="Características"></CardCharact>
               </div>
 
               <div className="slices">
-                <CardSample action="Adicionar" collection={this.state.showSamples} remove={this.remove} find={this.openModalSample} label="Amostras"></CardSample>
+                <CardSample action="Adicionar" collection={this.state.showSamples} remove={this.eraseSample} find={this.openModalSample} label="Amostras"></CardSample>
 
               </div>
 
