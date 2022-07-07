@@ -94,7 +94,7 @@ export default class Login extends React.Component {
                         
 
                     </div>
-                    <h6>Já tem uma conta? <a href="url">clique aqui</a> para fazer Login</h6>
+                    <h6>Ainda não tem uma conta? <a href="url">clique aqui</a> para se cadastrar.</h6>
                 </div>
 
             </div>
