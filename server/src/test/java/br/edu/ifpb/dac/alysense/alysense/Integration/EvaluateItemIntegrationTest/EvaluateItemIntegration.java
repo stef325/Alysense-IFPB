@@ -1,13 +1,10 @@
 package br.edu.ifpb.dac.alysense.alysense.Integration.EvaluateItemIntegrationTest;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
@@ -16,13 +13,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import br.edu.ifpb.dac.alysense.alysense.business.service.EvalueteItemService;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.EvalueteItem;
-import br.edu.ifpb.dac.alysense.alysense.model.entity.Product;
 import br.edu.ifpb.dac.alysense.alysense.model.repository.EvaluateItemRepository;
 import br.edu.ifpb.dac.alysense.alysense.presentation.controller.EvalueteItemController;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EvalueteItemDTO;
 
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class EvaluateItemIntegration {
 
     @Autowired
@@ -38,7 +33,7 @@ public class EvaluateItemIntegration {
 
     EvalueteItem entity;
 
-    @Before
+    @BeforeAll
     public void setUp(){
         dto = new EvalueteItemDTO();
         entity = new EvalueteItem();

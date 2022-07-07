@@ -1,9 +1,11 @@
 package br.edu.ifpb.dac.alysense.alysense.UnitaryTests.Product;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
 
-import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 import br.edu.ifpb.dac.alysense.alysense.business.service.ProductService;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Product;

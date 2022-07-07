@@ -1,8 +1,10 @@
 package br.edu.ifpb.dac.alysense.alysense.Integration.User;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 
 
 import java.time.LocalDate;

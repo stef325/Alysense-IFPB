@@ -1,31 +1,25 @@
 package br.edu.ifpb.dac.alysense.alysense.UnitaryTests.Product;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThrows;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import org.junit.jupiter.api.MethodOrderer.Random;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import br.edu.ifpb.dac.alysense.alysense.business.service.ConverterService;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.EventSense;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Product;
-import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import br.edu.ifpb.dac.alysense.alysense.presentation.controller.EventController;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EventDTO;
 
