@@ -4,7 +4,7 @@ import FormGroup from '../../../components/forms/FormGroup';
 import EventApiService from '../../../services/EventApiService';
 import './EventFeed.css'
 import EventTable from '../../../components/tables/event/EventView'
-
+import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
 export default class EventFeed extends React.Component{
 
     state={
@@ -13,7 +13,7 @@ export default class EventFeed extends React.Component{
         local:'',
         dateEvent:'',
         events:[],
-        admUser: 0
+        admUser:0
     }
 
     constructor(){
@@ -25,8 +25,10 @@ export default class EventFeed extends React.Component{
         this.service.delete(idEvent)
         .then(response =>{
             this.find();
+            showSucessMessage("Evento excluido!")
         }).catch(error =>{
             console.log(error.response)
+            showErrorMessage("Ocorreu algum erro ao excluir o evento!")
         });
         window.location.reload();
     };
@@ -37,6 +39,7 @@ export default class EventFeed extends React.Component{
     }
 
     componentDidMount(){
+        this.state.admUser = this.getLoggedUser().id
         this.submit();
     }
 
@@ -51,7 +54,6 @@ export default class EventFeed extends React.Component{
       }
 
     submit =async ()=>{
-        this.state.admUser = this.getLoggedUser().id
         var params = '?';
 
         if(this.state.admUser != ''){
@@ -84,9 +86,9 @@ export default class EventFeed extends React.Component{
             if(params != '?'){
                 params = `${params}&`;
             }
-        params = `${params}date=${this.state.dateEvent}`;
+        params = `${params}dateEvent=${this.state.dateEvent}`;
         }
-        
+        console.log(this.state.dateEvent)
         await this.service.find(`/filter${params}`)
         .then(response => {
             const events = response.data;

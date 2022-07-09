@@ -35,19 +35,19 @@ public class EventTestMockito{
 
     @Test
     public void mockEventDate(){
-        when(event.getDate()).thenReturn(LocalDate.now());
-        assertEquals(LocalDate.now(), event.getDate());
+        when(event.getDateEvent()).thenReturn(LocalDate.now());
+        assertEquals(LocalDate.now(), event.getDateEvent());
 
-        when(event.getDate()).thenReturn(LocalDate.parse("2022-10-07"));
-        assertTrue(LocalDate.now().isBefore(event.getDate()));
-        assertFalse(LocalDate.now().isAfter(event.getDate()));
+        when(event.getDateEvent()).thenReturn(LocalDate.parse("2022-10-07"));
+        assertTrue(LocalDate.now().isBefore(event.getDateEvent()));
+        assertFalse(LocalDate.now().isAfter(event.getDateEvent()));
 
-        when(event.getDate()).thenThrow(new NullPointerException());
-        assertThrows(NullPointerException.class, ()-> event.getDate());
+        when(event.getDateEvent()).thenThrow(new NullPointerException());
+        assertThrows(NullPointerException.class, ()-> event.getDateEvent());
 
-        event.setDate(LocalDate.now());
+        event.setDateEvent(LocalDate.now());
 
-        verify(event).setDate(LocalDate.now());
+        verify(event).setDateEvent(LocalDate.now());
 
     }
 
@@ -61,7 +61,7 @@ public class EventTestMockito{
         when(event.getLocal()).thenThrow(new NullPointerException());
         assertThrows(NullPointerException.class, ()-> event.getLocal());
 
-        verify(event, times(0)).getDate();
+        verify(event, times(0)).getDateEvent();
         
     }
 /*

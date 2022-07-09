@@ -11,7 +11,7 @@ import lombok.Setter;
 public class EventDTO {
     private Long id;
     private String title;
-    private LocalDate date;
+    private LocalDate dateEvent;
     private String local;
     private Integer peopleLimit;
     private Integer numberSample;

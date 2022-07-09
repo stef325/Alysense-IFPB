@@ -66,8 +66,8 @@ export default class Register extends React.Component {
     }).then(response =>{
         showSucessMessage("Conta criada!");
         localStorage.setItem('loggedUser', JSON.stringify(response.data));
-        this.props.history.push(`/EventFeed/`);
         console.log(response);
+        this.props.history.push(`/EventFeed/`);
     }).catch(error =>{
       console.log(error.response)
     });
@@ -113,7 +113,7 @@ export default class Register extends React.Component {
                         
 
                     </div>
-                    <h6>Já tem uma conta? <a href="url">clique aqui</a> para fazer Login</h6>
+                    <h6>Já tem uma conta? <a href="http://localhost:3000/login">clique aqui</a> para fazer Login</h6>
                 </div>
 
             </div>
