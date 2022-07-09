@@ -11,7 +11,7 @@ import lombok.Setter;
 public class EvalueteItemDTO {
     private Long id;
 
-    private User evaluator;
+    private Long evaluator;
     private Sample sample;
     private Note note;
     private String question;

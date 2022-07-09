@@ -41,7 +41,7 @@ public class AvaliationController {
 				avaliation = avaliationService.save(avaliation);
 				dto = converterService.AvaliationToDTO(avaliation);
 				dtosReturn.add(dto);
-		}
+			}
 			return new ResponseEntity(dtosReturn, HttpStatus.CREATED);
 		}catch(Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
