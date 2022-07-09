@@ -10,14 +10,17 @@ import EventUpdate from './screens/Event/EventUpdate/EventUpdate';
 import 'toastr/build/toastr.css';
 import 'toastr/build/toastr.min.js';
 import Login from './screens/User/login/Login'
+import UserAvaliation from './screens/Avaliation/UserAvaliation'
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
+
           <Route exact path="/" component={Register} />
-          <Route exact path="/login" component={Login} />
+          <Route path="/login" component={Login} />
+          <Route path="/UserAvaliation" component={UserAvaliation} />
           <Route component={ProductUpdate} path="/updateproduct/:id" />
           <Route component={EventUpdate} path="/EventUpdate/:id"/>
               <div>
