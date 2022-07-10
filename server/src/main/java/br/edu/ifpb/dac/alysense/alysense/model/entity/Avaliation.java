@@ -24,7 +24,7 @@ public class Avaliation{
 
     private String answer;
     
-    private String tittleEvent;
+    private String titleEvent;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EvalueteItem> evalueteItems;
