@@ -75,11 +75,13 @@ public class AvaliationController {
 	@GetMapping
 	public ResponseEntity find( @RequestParam(value = "id", required = false) Long id,
 			@RequestParam(value = "aspect", required = false) String answer,
+			@RequestParam(value = "tittleEvent", required = false) String tittleEvent ,
 			@RequestParam(value = "evaluateItems", required = false) List<EvalueteItem> evalueteItems) {
 		try {
 			Avaliation filter = new Avaliation();
 			filter.setId(id);
             filter.setAnswer(answer);
+			filter.setTittleEvent(tittleEvent);
             filter.setEvalueteItems(evalueteItems);
 			
 			
