@@ -85,7 +85,7 @@ export default class ProductView extends React.Component {
         }
 
        
-        await this.service.find(`/filter/${params}`)
+        await this.service.find(`/filter${params}`)
         .then(response=>{
             const products = response.data;
             this.setState({products});

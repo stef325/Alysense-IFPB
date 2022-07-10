@@ -80,7 +80,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/all")
+    /*@GetMapping("/all")
     public ResponseEntity findAll(){
         try {
             List<Product> entities = service.findAll();
@@ -90,7 +90,7 @@ public class ProductController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-    }
+    }*/
 
     @GetMapping("{id}")
     public ResponseEntity findById(@PathVariable("id") Long id){

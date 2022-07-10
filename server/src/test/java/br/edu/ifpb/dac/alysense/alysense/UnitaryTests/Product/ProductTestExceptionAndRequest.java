@@ -28,7 +28,7 @@ public class ProductTestExceptionAndRequest{
 
     @Test
     public void statusTest(){
-        assertEquals(400,controller.findAll().getStatusCodeValue());
+        //assertEquals(400,controller.findAll().getStatusCodeValue());
         assertEquals(400,controller.delete((long) 1).getStatusCodeValue());
         assertEquals(400,controller.save(new ProductDTO()).getStatusCodeValue());
     }
