@@ -44,14 +44,14 @@ Dentro desta pasta estarão disponíveis as pastas do Back-End (server) e do Fro
 <h3>Configurando o Back-End:</h3>
 
 
-Abra a pasta do Back-End clicando na pasta '📁server' ou a partir do terminal aberto no diretório do projeto e digite o seguinte comando: 
+Abra a pasta do Back-End clicando na pasta `📁server` ou a partir do terminal aberto no diretório do projeto e digite o seguinte comando: 
 
 
 ```
 cd server/
 ```
 
-Para executar o Back-End será nescessário configurar o banco de dados previamente. O banco que está sendo utilizado atualmente no projeto é o PostgreSQL, para alterar isso basta mudar a configuração contida no arquivo 'application.properties' para o banco desejado. Caso não opte por mudar, será nescessário apenas criar as váriaveis de ambiente contendo os dados de conexão como no seguinte exemplo:
+Para executar o Back-End será nescessário configurar o banco de dados previamente. O banco que está sendo utilizado atualmente no projeto é o PostgreSQL, para alterar isso basta mudar a configuração contida no arquivo `application.properties` para o banco desejado. Caso não opte por mudar, será nescessário apenas criar as váriaveis de ambiente contendo os dados de conexão como no seguinte exemplo:
 
 <h5>Exemplo de váriaveis utilizando o PostgreSQL da Heroku:</h5>
 
@@ -78,7 +78,7 @@ Se todas as configurações foram feitas da forma correta, o Back-End já estar�
 
 <h3>Configurando o Front-End:</h3>
 
-Abra a pasta do Front-End clicando na pasta '📁client' ou a partir do terminal aberto no diretório do projeto e digite o seguinte comando:
+Abra a pasta do Front-End clicando na pasta `📁client` ou a partir do terminal aberto no diretório do projeto e digite o seguinte comando:
 
 ```
 cd client/
