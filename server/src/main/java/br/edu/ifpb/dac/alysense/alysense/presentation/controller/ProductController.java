@@ -64,7 +64,8 @@ public class ProductController {
         try {
             Product filter = new Product();
             //filter.setCharacteristics(characteristics);
-            filter.setExpirationDate(LocalDate.parse(expirationDate));
+            if(expirationDate != null)
+                filter.setExpirationDate(LocalDate.parse(expirationDate));
             filter.setId(id);
             filter.setName(name);
             filter.setOwner(owner);

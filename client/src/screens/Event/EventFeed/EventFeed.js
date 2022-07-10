@@ -54,7 +54,7 @@ export default class EventFeed extends React.Component{
       }
 
     submit =async ()=>{
-        var params = '?';
+        let params = '?';
 
         if(this.state.admUser != ''){
             if(params != '?'){
@@ -88,7 +88,6 @@ export default class EventFeed extends React.Component{
             }
         params = `${params}dateEvent=${this.state.dateEvent}`;
         }
-
         await this.service.find(`/filter${params}`)
         .then(response => {
             const events = response.data;
