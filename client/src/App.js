@@ -10,7 +10,7 @@ import EventUpdate from './screens/Event/EventUpdate/EventUpdate';
 import 'toastr/build/toastr.css';
 import 'toastr/build/toastr.min.js';
 import Login from './screens/User/login/Login'
-import UserAvaliation from './screens/Avaliation/UserAvaliation'
+import Avaliation from './screens/Avaliation/Avaliation'
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
 
           <Route exact path="/" component={Register} />
           <Route path="/login" component={Login} />
-          <Route path="/UserAvaliation" component={UserAvaliation} />
+          <Route path="/avaliation" component={Avaliation} />
           <Route component={ProductUpdate} path="/updateproduct/:id" />
           <Route component={EventUpdate} path="/EventUpdate/:id"/>
               <div>

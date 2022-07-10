@@ -37,6 +37,7 @@ public class EventSense {
     private String local;
     private Integer peopleLimit;
     private Integer numberSample;
+    private Integer minimunAge; 
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "users_avaliation", joinColumns = @JoinColumn(name= "eventid"), inverseJoinColumns = @JoinColumn(name = "userid"))

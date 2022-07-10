@@ -3,14 +3,16 @@ import React from 'react';
 import AvaliationCard from '../../components/forms/AvaliationCard'
 import "./Avaliation.css"
 
-export default class EventCreate extends React.Component {
+export default class Avaliation extends React.Component {
 
     state = {
         product: {
             name: "aaa",
             amostra: 1
         },
-        aspects: [],
+        aspects: [
+            {answer:"PALADAR"}
+        ],
         SOM: false,
         VISAO: false,
         PALADAR: false,
@@ -20,20 +22,22 @@ export default class EventCreate extends React.Component {
     }
 
     componentDidMount() {
+        
         this.state.aspects.forEach(aspect => {
-            if (aspect.value == "SOM") {
+            console.log(aspect.answer)
+            if (aspect.answer == "SOM") {
                 this.setState({ SOM: true })
             }
-            if (aspect.value == "VISAO") {
+            if (aspect.answer == "VISAO") {
                 this.setState({ VISAO: true })
             }
-            if (aspect.value == "PALADAR") {
+            if (aspect.answer == "PALADAR") {
                 this.setState({ PALADAR: true })
             }
-            if (aspect.value == "TATO") {
+            if (aspect.answer == "TATO") {
                 this.setState({ TATO: true })
             }
-            if (aspect.value == "TEXTURA") {
+            if (aspect.answer == "TEXTURA") {
                 this.setState({ TEXTURA: true })
             }
         });

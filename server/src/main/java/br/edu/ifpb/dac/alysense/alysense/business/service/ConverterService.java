@@ -223,6 +223,7 @@ public class ConverterService {
 		dto.setAdmUser(entity.getAdmUser());
 		dto.setEvaluators(converterToDTO(entity.getEvaluators()));
 		dto.setNumberSample(entity.getNumberSample());
+		dto.setNumberSample(entity.getMinimunAge());
 		return dto;
 		
 	}
@@ -253,6 +254,7 @@ public class ConverterService {
 		entity.setAdmUser(dto.getAdmUser());
 		entity.setNumberSample(dto.getNumberSample());
 		entity.setEvaluators(ConverterService.DTOToUser(dto.getEvaluators()));
+		entity.setNumberSample(dto.getMinimunAge());
 		return entity;
 
 	}

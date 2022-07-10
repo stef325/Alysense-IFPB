@@ -51,7 +51,20 @@ export default class ProductCreate extends React.Component {
     }
     if (!this.state.date) {
       errors.push('Campo de validade obrigatório!')
+    } else {
+      let currentdate = new Date();
+      let dia = currentdate.getDate().toString(),
+        diaF = (dia.length == 1) ? '0' + dia : dia,
+        mes = (currentdate.getMonth() + 1).toString(),
+        mesF = (mes.length == 1) ? '0' + mes : mes,
+        anoF = currentdate.getFullYear(),
+        atual = anoF + "-" + mesF + "-" + diaF
+      
+      if (this.state.date < atual) {
+        errors.push('Produto fora do prazo de validade!')
+      }
     }
+
 
     return errors;
   };
@@ -65,12 +78,12 @@ export default class ProductCreate extends React.Component {
   eraseSample = (SampleName) => {
 
     this.setState({ showSamples: this.state.showSamples.filter((item) => item.id !== SampleName) })
-    
+
   }
   eraseCharact = (Charactatribute) => {
 
     this.setState({ charact: this.state.charact.filter((item) => item.atribute !== Charactatribute) })
-    
+
   }
 
   submit = async () => {

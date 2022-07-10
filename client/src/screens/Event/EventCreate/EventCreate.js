@@ -32,6 +32,7 @@ export default class EventCreate extends React.Component {
         products: [],
         admUser: null,
         avaliators: [],
+        minimunAge:0,
 
 
         id: '',
@@ -292,7 +293,7 @@ export default class EventCreate extends React.Component {
                                 </div>
                             </div>
 
-                            <div className='half-container'>
+                            <div className='half-container conteiner-down'>
                                 <div className='participants'>
                                     <FormGroup label="Qtd. de participantes">
                                         <input type='participants' className='form-control' id='inputParticipants'
@@ -303,6 +304,12 @@ export default class EventCreate extends React.Component {
                                     <FormGroup label="Qtd. de amostras">
                                         <input type='samples' className='form-control' id='inputSamples'
                                             placeholder='Qtd. de amostras' value={this.state.qtdSamples} onChange={(e) => this.setState({ qtdSamples: e.target.value })}></input>
+                                    </FormGroup>
+                                </div>
+                                <div className='minimun-age'>
+                                    <FormGroup label="Idade Mínima">
+                                        <input type='minimun-age' className='form-control' id='minimunAge'
+                                            placeholder='Idade Mínima' value={this.state.minimunAge} onChange={(e) => this.setState({ minimunAge: e.target.value })}></input>
                                     </FormGroup>
                                 </div>
                             </div>

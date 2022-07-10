@@ -18,5 +18,6 @@ public class EventDTO {
     private List<UserDTO> evaluators;
     private List<Product> items;
     private Long admUser;
+    private Integer minimunAge;
     
 }
