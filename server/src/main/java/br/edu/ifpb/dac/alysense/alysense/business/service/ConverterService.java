@@ -23,6 +23,7 @@ public class ConverterService {
 			AvaliationDTO dto = new AvaliationDTO();
 			dto.setId(entity.getId());
 			dto.setAnswer(entity.getAnswer());
+			dto.setTitleEvent(entity.getTitleEvent());
 			dto.setEvalueteItems(entity.getEvalueteItems());
 			return dto;
 			
@@ -46,6 +47,7 @@ public class ConverterService {
 			Avaliation entity = new Avaliation();
 			entity.setId(dto.getId());
 			entity.setAnswer(dto.getAnswer());
+			entity.setTitleEvent(dto.getTitleEvent());
 			entity.setEvalueteItems(dto.getEvalueteItems());
 			return entity;
 	

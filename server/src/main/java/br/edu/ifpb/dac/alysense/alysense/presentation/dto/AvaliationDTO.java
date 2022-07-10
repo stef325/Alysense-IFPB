@@ -12,5 +12,6 @@ public class AvaliationDTO {
     private Long id;
 
     private String answer;
+    private String titleEvent;
     private List<EvalueteItem> evalueteItems;
 }

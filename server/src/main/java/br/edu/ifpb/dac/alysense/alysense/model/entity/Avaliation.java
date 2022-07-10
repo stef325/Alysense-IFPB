@@ -23,6 +23,8 @@ public class Avaliation{
     private Long id;
 
     private String answer;
+    
+    private String titleEvent;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EvalueteItem> evalueteItems;
