@@ -1,7 +1,7 @@
 package br.edu.ifpb.dac.alysense.alysense.presentation.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import br.edu.ifpb.dac.alysense.alysense.business.service.ConverterService;
 import br.edu.ifpb.dac.alysense.alysense.business.service.EvalueteItemService;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.EvalueteItem;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Note;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Sample;
-import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EvalueteItemDTO;
 
 @RestController
@@ -33,12 +33,16 @@ public class EvalueteItemController {
     private ConverterService converterService;
 	
 	@PostMapping
-	public ResponseEntity save(@RequestBody EvalueteItemDTO dto) {
+	public ResponseEntity save(@RequestBody List<EvalueteItemDTO> dtos) {
+		List<EvalueteItemDTO> dtosReturn = new ArrayList<>();
 		try {
+			for(EvalueteItemDTO dto : dtos) {
 			EvalueteItem evaluateItem = converterService.DTOToEvaluateItem(dto);
 			evaluateItem = evaluateItemService.save(evaluateItem);
 			dto = converterService.EvalueteItemToDTO(evaluateItem);
-			return new ResponseEntity(dto, HttpStatus.CREATED);
+			dtosReturn.add(dto);
+			}
+			return new ResponseEntity(dtosReturn, HttpStatus.CREATED);
 		}catch(Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
@@ -70,7 +74,7 @@ public class EvalueteItemController {
 	
 	@GetMapping
 	public ResponseEntity find( @RequestParam(value = "id", required = false) Long id,
-			@RequestParam(value = "evaluator", required = false) User evaluator,
+			@RequestParam(value = "evaluator", required = false) Long evaluator,
 			@RequestParam(value = "sample", required = false) Sample sample,
 			@RequestParam(value = "note", required = false) Note note,
 			@RequestParam(value = "question", required = false) String question) {

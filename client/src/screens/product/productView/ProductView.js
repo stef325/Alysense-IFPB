@@ -106,6 +106,7 @@ export default class ProductView extends React.Component {
     .then(response =>
         {
             this.findFilter()
+            showSucessMessage("Produto excluido!");
         }
     ).catch(error =>
         {

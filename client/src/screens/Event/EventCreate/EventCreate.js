@@ -113,7 +113,7 @@ export default class EventCreate extends React.Component {
 
         await this.serviceEvent.create({
             title: this.state.title,
-            date: this.state.dateEvent,
+            dateEvent: this.state.dateEvent,
             local: this.state.local,
             peopleLimit: this.state.qtdParticipants,
             numberSample: this.state.qtdSamples,
@@ -131,7 +131,7 @@ export default class EventCreate extends React.Component {
         });
         })).then(response => {
             console.log(response)
-            showSucessMessage("Produto Criado!");
+            showSucessMessage("Evento Criado!");
             this.props.history.push(`/EventFeed/`);
         }).catch(error => {
             console.log(error.response)
@@ -146,7 +146,7 @@ export default class EventCreate extends React.Component {
             console.log(element)
             this.serviceAvaliation.create(element).then(response => {
             console.log(response)
-            showSucessMessage("Produto Criado!");
+            showSucessMessage("Evento Criado!");
         }).catch(error => {
             console.log(error.response)
         });

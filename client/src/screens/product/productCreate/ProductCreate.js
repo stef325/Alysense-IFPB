@@ -15,7 +15,7 @@ export default class ProductCreate extends React.Component {
     owner: '',
     date: '',
     ingredients: '',
-    userId: 0,
+    userId: '',
     charact: [],
     samples: [],
     isVisibleCharact: false,
@@ -88,6 +88,7 @@ export default class ProductCreate extends React.Component {
 
 
     console.log(this.state.samples)
+    console.log(this.state.userId)
     await this.service.create({
       name: this.state.name,
       expirationDate: this.state.date,

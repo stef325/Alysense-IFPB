@@ -33,7 +33,7 @@ public class EventSense {
     private Long id;
     private String title;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate date;
+    private LocalDate dateEvent;
     private String local;
     private Integer peopleLimit;
     private Integer numberSample;

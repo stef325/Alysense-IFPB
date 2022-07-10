@@ -22,9 +22,7 @@ public class EvalueteItem {
 
     private String question;
     
-    @OneToOne(fetch = FetchType.EAGER,
-    cascade = { CascadeType.MERGE}, orphanRemoval = true)
-   private User evaluator;
+   private Long evaluator;
 
    @OneToOne(fetch = FetchType.EAGER,
     cascade = { CascadeType.ALL}, orphanRemoval = true)

@@ -7,29 +7,26 @@ import { MdEmail } from "react-icons/md";
 import { FaBirthdayCake } from "react-icons/fa";
 import { RiBallPenFill } from "react-icons/ri";
 import { RiLockPasswordFill } from "react-icons/ri";
-
+import service from "../../../services/UserApiService";
 import FormGroup from '../../../components/forms/FormGroup'
 import BigForm from '../../../components/forms/BigForm'
 import axios from 'axios'
 import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
+import UserApiService from '../../../services/UserApiService';
 export default class Login extends React.Component {
 
     state={
-        name:'',
-        date:'',
         email:'',
         password:''
     }
 
+    constructor(){
+        super();
+        this.service = new UserApiService();
+    }
+
     validate = () =>{
         const errors = [];
-
-        if(!this.state.name){
-            errors.push('Campo Nome é obrigatório!')
-        }
-        if(!this.state.date){
-            errors.push('informe sua data de nascimento!')
-        }
         if(!this.state.email){
             errors.push('Campo E-mail é obrigatório!')
         }
@@ -43,7 +40,7 @@ export default class Login extends React.Component {
         return errors;
     };
 
-    submit = async() => { 
+    submit =async ()=>{
         const errors = this.validate();
         if(errors.length>0){
             errors.forEach((message,index)=>{
@@ -51,23 +48,34 @@ export default class Login extends React.Component {
             });
             return false;
         }
-        await axios.post('http://localhost:8080/api/user',{
-      name: this.state.name,
-      birthDate: this.state.date,
-      email:this.state.email,
-      password: this.state.password,
+        var params = '?';
 
+        if(this.state.email != ''){
+            if(params != '?'){
+                params = `${params}&`;
+            }
+        params = `${params}email=${this.state.email}`;
+        }
 
-    }).then(response =>{
-        showSucessMessage("Conta criada!");
-      console.log(response);
-    }).catch(error =>{
-      console.log(error.response)
-    });
-
-    console.log("request finished");
-    
+        if(this.state.password != ''){
+            if(params != '?'){
+                params = `${params}&`;
+            }
+        params = `${params}password=${this.state.password}`;
+        }
+        
+        await this.service.find(`/${params}`)
+        .then(response => {
+            localStorage.setItem('loggedUser', JSON.stringify(response.data[0]));
+            console.log(JSON.stringify(response.data))
+            showSucessMessage("Login efetuado!")
+            this.props.history.push(`/EventFeed/`);
+        }).catch(error =>{
+            console.log(error.response);
+            showErrorMessage("Usuário não encontrado!")
+        })
     }
+
     render() {
         return (
 
@@ -94,7 +102,7 @@ export default class Login extends React.Component {
                         
 
                     </div>
-                    <h6>Ainda não tem uma conta? <a href="url">clique aqui</a> para se cadastrar.</h6>
+                    <h6>Ainda não tem uma conta? <a href="http://localhost:3000/">clique aqui</a> para se cadastrar.</h6>
                 </div>
 
             </div>

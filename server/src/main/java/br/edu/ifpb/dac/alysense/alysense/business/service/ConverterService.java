@@ -214,7 +214,7 @@ public class ConverterService {
 		EventDTO dto = new EventDTO();
 		dto.setId(entity.getId());
 		dto.setTitle(entity.getTitle());
-		dto.setDate(entity.getDate());
+		dto.setDateEvent(entity.getDateEvent());
 		dto.setPeopleLimit(entity.getPeopleLimit());
 		dto.setItems(entity.getItems());
 		dto.setLocal(entity.getLocal());
@@ -231,6 +231,7 @@ public class ConverterService {
 		for (EventSense entity : entities) {
 			EventDTO dto = EventToDTO(entity);
 			dtos.add(dto);
+			System.out.println(dto);
 		}
 		return dtos;
 	}
@@ -243,7 +244,7 @@ public class ConverterService {
 		EventSense entity = new EventSense();
 		entity.setId(dto.getId());
 		entity.setTitle(dto.getTitle());
-		entity.setDate(dto.getDate());
+		entity.setDateEvent(dto.getDateEvent());
 		entity.setPeopleLimit(dto.getPeopleLimit());
 		entity.setItems(dto.getItems());
 		entity.setLocal(dto.getLocal());

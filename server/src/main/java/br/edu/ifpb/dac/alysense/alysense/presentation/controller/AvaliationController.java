@@ -1,5 +1,6 @@
 package br.edu.ifpb.dac.alysense.alysense.presentation.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -32,12 +33,16 @@ public class AvaliationController {
     private ConverterService converterService;
 	
 	@PostMapping
-	public ResponseEntity save(@RequestBody AvaliationDTO dto) {
+	public ResponseEntity save(@RequestBody List<AvaliationDTO> dtos) {
+		List<AvaliationDTO> dtosReturn = new ArrayList<>();
 		try {
-			Avaliation avaliation = converterService.DTOToAvaliation(dto);
-			avaliation = avaliationService.save(avaliation);
-			dto = converterService.AvaliationToDTO(avaliation);
-			return new ResponseEntity(dto, HttpStatus.CREATED);
+			for(AvaliationDTO dto : dtos) {
+				Avaliation avaliation = converterService.DTOToAvaliation(dto);
+				avaliation = avaliationService.save(avaliation);
+				dto = converterService.AvaliationToDTO(avaliation);
+				dtosReturn.add(dto);
+			}
+			return new ResponseEntity(dtosReturn, HttpStatus.CREATED);
 		}catch(Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
