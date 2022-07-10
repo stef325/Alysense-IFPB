@@ -99,6 +99,9 @@ export default class ProductView extends React.Component {
 
     }
     
+    showModalProduct= (ProdID)=> {
+
+    }
 
     
     remove = async (ProdID) => {

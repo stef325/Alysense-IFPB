@@ -30,9 +30,7 @@
     width: 30%;
 }
 
-.event-create .samples{
-    margin-right:43%;
-}
+
 
 .event-create .CardTable{
     display: flex;
@@ -79,4 +77,8 @@
 }
 .active-tab-avaliadion{
     display: block;
+}
+
+.conteiner-down{
+    width: 83%;
 }

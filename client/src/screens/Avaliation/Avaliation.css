@@ -1,0 +1,44 @@
+.avaliate-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.radio-options{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 70%;
+}
+
+.card-avaliation-card{
+    display: flex;
+    align-items: center;
+}
+
+.card-avaliation-header{
+    width: 100%;
+}
+
+.card-avaliation .form-group{
+    height: 70%;
+}
+
+.card-avaliation-body{
+   height: fit-content; 
+}
+
+.card-avaliation label{
+    margin-top: 0;
+}
+.card-avaliation{
+    display: none;
+}
+.active-card{
+    display: block;
+}
+
+.card-header-body{
+    padding-left: 5vw;
+}
