@@ -7,6 +7,7 @@ import ProductViewTable from '../../../components/tables/Product/ProductViewTabl
 import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
 import "../../../styles/createForms.css"
 import "./ProductView.css"
+import Modal from 'react-modal';
 export default class ProductView extends React.Component {
 
     state = {
@@ -15,7 +16,8 @@ export default class ProductView extends React.Component {
         owner: '',
         expirationDate: '',
         idUser: 0,
-        products: []
+        products: [],
+        isVisibleProdInfo:false
     }
 
     constructor(){
@@ -24,6 +26,7 @@ export default class ProductView extends React.Component {
     }
 
     componentDidMount(){
+        Modal.setAppElement('#root');
         this.findFilter();
     }
 
@@ -99,9 +102,6 @@ export default class ProductView extends React.Component {
 
     }
     
-    showModalProduct= (ProdID)=> {
-
-    }
 
     
     remove = async (ProdID) => {
@@ -122,6 +122,15 @@ export default class ProductView extends React.Component {
     edit = (ProductId) => {
         this.props.history.push(`/updateproduct/${ProductId}`)
         //window.location.reload();
+    }
+    
+
+    showModalProduct = () =>{
+        
+        this.setState({isVisibleProdInfo: true})
+    }
+    closeModalProdInfo = () =>{ 
+        this.setState({isVisibleProdInfo: false})
     }
 
     render() {
@@ -151,7 +160,7 @@ export default class ProductView extends React.Component {
 
                     </BigForm>
 
-                    <ProductViewTable collection={this.state.products} edit={this.edit} remove={this.remove}></ProductViewTable>
+                    <ProductViewTable isVisibleProdInfo={this.state.isVisibleProdInfo} closeModalProdInfo={this.closeModalProdInfo} showModalProduct={this.showModalProduct} collection={this.state.products} edit={this.edit} remove={this.remove}></ProductViewTable>
 
                 </div>
 

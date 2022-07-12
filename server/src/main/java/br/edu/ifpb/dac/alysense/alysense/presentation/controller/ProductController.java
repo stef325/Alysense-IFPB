@@ -55,7 +55,7 @@ public class ProductController {
     public ResponseEntity find(
         @RequestParam(value = "id", required = false) Long id,
         @RequestParam(value = "name", required = false) String name,
-        @RequestParam(value = "expirationDate", required = false) String expirationDate,
+        //@RequestParam(value = "expirationDate", required = false) String expirationDate,
         @RequestParam(value = "owner", required = false) String owner,
         @RequestParam(value = "userId", required = false) Long userId
         //@RequestParam(value = "characteristic", required = false) List<Characteristic> characteristics,
@@ -64,7 +64,7 @@ public class ProductController {
         try {
             Product filter = new Product();
             //filter.setCharacteristics(characteristics);
-            filter.setExpirationDate(LocalDate.parse(expirationDate));
+            //filter.setExpirationDate(LocalDate.parse(expirationDate));
             filter.setId(id);
             filter.setName(name);
             filter.setOwner(owner);

@@ -2,6 +2,7 @@ import React from 'react';
 
 import AvaliationCard from '../../components/forms/AvaliationCard'
 import "./Avaliation.css"
+import AvaliateApiService from '../../services/AvaliateApiService'
 
 export default class Avaliation extends React.Component {
 
@@ -11,18 +12,55 @@ export default class Avaliation extends React.Component {
             amostra: 1
         },
         aspects: [
-            {answer:"PALADAR"}
+            { answer: "PALADAR" }
         ],
         SOM: false,
         VISAO: false,
         PALADAR: false,
         TATO: false,
-        TEXTURA: false
+        TEXTURA: false,
+        SOMnote: 0,
+        VISAOnote: 0,
+        PALADARnote: 0,
+        TATOnote: 0,
+        TEXTURAnote: 0
+
+    }
+    constructor() {
+        super();
+        this.service = new AvaliateApiService();
+
+    }
+    getLoggedUser = () => {
+        var value = localStorage.getItem('loggedUser');
+        var user = JSON.parse(value);
+        return user;
+      }
+
+    setnote=(note) =>{
+        this.setState(note)
+    }
+    avaliate = async() => {
+        
+        this.state.aspects.forEach(async aspect=>{
+            console.log(aspect.answer)
+            await this.service.create([{
+                question: aspect.answer,
+                evaluator: this.getLoggedUser().id,
+                note:{
+                    scale: aspect.answer=="SOM"? this.state.SOMnote: (aspect.answer=="VISAO"?this.state.VISAOnote:(aspect.answer=="PALADAR"? this.state.PALADARnote: aspect.answer=="TATO"?this.state.TATOnote: aspect.answer=="TEXTURA"?this.state.TEXTURAnote:""))
+                }
+            }]).catch(error => {
+                console.log(error.response)
+            });
+        })
+
+
 
     }
 
     componentDidMount() {
-        
+
         this.state.aspects.forEach(aspect => {
             console.log(aspect.answer)
             if (aspect.answer == "SOM") {
@@ -55,14 +93,14 @@ export default class Avaliation extends React.Component {
                             <h3>Amostra: {this.state.product.amostra}</h3>
                         </div>
                     </div>
-                    
-                    
+
+
 
                     <h4>Insira sua nota diante dos aspectos indicados com base na amostra consumida</h4>
                     <h5>Legenda: 0 = muito ruim, 10 = muito bom</h5>
 
 
-                    
+
                     <div className="avaliation-form">
 
                         <AvaliationCard active={this.state.SOM} aspect="SOM"></AvaliationCard>
@@ -73,7 +111,7 @@ export default class Avaliation extends React.Component {
 
                     </div>
                     <div className='avaliate-button'>
-                        <button type="button" class="btn btn-primary">Avaliar</button>
+                        <button type="button" class="btn btn-primary" onClick={this.avaliate}>Avaliar</button>
                     </div>
 
 

@@ -1,25 +1,19 @@
 import React from 'react';
 import { MdDeleteForever } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
+import WhitoutButtonTable from '../charact/WhitoutButtonTable';
 
 import Modal from 'react-modal';
 export default props => {
 
-    let isVisibleProdInfo  = false
 
-    const showModalProduct = () =>{
-        isVisibleProdInfo = true
-    }
-    const closeModalProdInfo = () =>{ 
-        isVisibleProdInfo = false
-    }
 
     const rows = props.collection.map(item => {
         return (
-            <tr key={item.name} className="table-primary" onClick={showModalProduct}>
+            <tr key={item.id} className="table-primary" >
                 <Modal
-                    isOpen={isVisibleProdInfo}
-                    onRequestClose={closeModalProdInfo}
+                    isOpen={props.isVisibleProdInfo}
+                    onRequestClose={props.closeModalProdInfo}
                     style={{
                         overlay: {
                             position: 'fixed',
@@ -36,7 +30,7 @@ export default props => {
                         content: {
                             background: 'white',
                             width: '70vw',
-                            height: '40vh',
+                            height: '60vh',
                             maxWidth: 'calc(100vw - 2rem)',
                             maxHeight: 'calc(100vh - 2rem)',
                             overflowY: 'hidden',
@@ -48,10 +42,16 @@ export default props => {
                 >
                     <div className="modalContent" id="modalContent">
                         <div className="close-button">
-                            <button onClick={closeModalProdInfo} className="btn btn-primary">x</button>
+                            <button onClick={props.closeModalProdInfo} className="btn btn-primary">x</button>
                         </div>
                         <div>
-                            <h2>{item.name}</h2>
+                            <h5>Nome: {item.name}</h5>
+                            <hr/>
+                            <h5>Data de validade: {`${item.expirationDate[2] < 10 ? "0" + item.expirationDate[2] : item.expirationDate[2]}/${item.expirationDate[1] < 10 ? "0" + item.expirationDate[1] : item.expirationDate[1]}/${item.expirationDate[0]}`}</h5>
+                            <h5>Ingredientes: {item.ingredients}</h5>
+                            <hr/>
+                            <h5>Características</h5>
+                            <WhitoutButtonTable collection={item.characteristics}></WhitoutButtonTable>
 
                         </div>
 
@@ -69,6 +69,9 @@ export default props => {
                     </button>
                     <button type='button' title='Excluir' className='btn btn-danger' onClick={e => props.remove(item.id)}>
                         < MdDeleteForever size={25} />
+                    </button>
+                    <button type='button' title='Excluir' className='btn btn-success' onClick={e => props.showModalProduct()}>
+                        i
                     </button>
 
                 </td>

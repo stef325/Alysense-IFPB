@@ -53,14 +53,14 @@ public class EventController {
     public ResponseEntity find(
         @RequestParam(value = "id", required = false) Long id,
         @RequestParam(value = "title", required = false) String title,
-        @RequestParam(value = "dateEvent", required = false) String dateEvent,
+        //@RequestParam(value = "dateEvent", required = false) String dateEvent,
         @RequestParam(value = "local", required = false) String local,
         @RequestParam(value = "admUser", required = false) Long admUser
         ){
         try {
             EventSense filter = new EventSense();
             filter.setId(id);
-            filter.setDateEvent(LocalDate.parse(dateEvent));
+            //filter.setDateEvent(LocalDate.parse(dateEvent));
             //filter.setPeopleLimit(peopleLimit);
             filter.setTitle(title);
             filter.setLocal(local);

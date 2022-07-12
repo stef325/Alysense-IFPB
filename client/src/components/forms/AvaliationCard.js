@@ -3,6 +3,9 @@ import React from 'react';
 import FormGroupCheck from './FormGroupCheck'
 
 export default class AvaliationCard extends React.Component {
+    state = {
+        note:0
+    }
 
     render() {
         return (
