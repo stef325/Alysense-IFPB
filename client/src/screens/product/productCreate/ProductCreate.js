@@ -7,7 +7,7 @@ import CardCharact from '../../../components/tables/charact/CardCharact'
 import CardSample from '../../../components/tables/samples/CardSample';
 import Modal from 'react-modal';
 
-import "../../../styles/createForms.css"
+import "./ProductCreateStyle.css"
 export default class ProductCreate extends React.Component {
 
   state = {
