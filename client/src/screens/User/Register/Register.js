@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "./Register.css"
+import "./RegisterStyle.css"
 
 
 import { MdEmail } from "react-icons/md";
@@ -11,7 +11,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import FormGroup from '../../../components/forms/FormGroup'
 import BigForm from '../../../components/forms/BigForm'
 import UserApiService from '../../../services/UserApiService';
-import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
+import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/toastr/Toastr'
 export default class Register extends React.Component {
 
     state={

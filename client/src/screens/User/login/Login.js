@@ -7,7 +7,7 @@ import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import FormGroup from '../../../components/forms/FormGroup'
 import BigForm from '../../../components/forms/BigForm'
-import{showSucessMessage, showErrorMessage} from '../../../components/Toastr/Toastr'
+import{showSucessMessage, showErrorMessage} from '../../../components/toastr/Toastr'
 import UserApiService from '../../../services/UserApiService';
 export default class Login extends React.Component {
 
