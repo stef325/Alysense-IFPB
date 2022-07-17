@@ -64,6 +64,7 @@ public class User implements UserDetails{
 		this.email = email;
 	}
 
+	@Override
 	public String getPassword() {
 		return password;
 	}
@@ -77,10 +78,6 @@ public class User implements UserDetails{
 		return null;
 	}
 
-	@Override
-	public String getPassowrd() {
-		return null;
-	}
 
 	@Override
 	public String getUserName() {
@@ -106,4 +103,8 @@ public class User implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
+
+	
+
+	
 }

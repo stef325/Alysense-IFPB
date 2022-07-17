@@ -9,7 +9,7 @@ public interface UserDetails extends Serializable{
     
     Collection<? extends GrantedAuthority> getAuthorities();
 
-    String getPassowrd();
+    String getPassword();
 
     String getUserName();
 
