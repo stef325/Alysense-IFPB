@@ -64,7 +64,8 @@ public class ProductController {
         try {
             Product filter = new Product();
             //filter.setCharacteristics(characteristics);
-            //filter.setExpirationDate(LocalDate.parse(expirationDate));
+            if(expirationDate != null)
+                filter.setExpirationDate(LocalDate.parse(expirationDate));
             filter.setId(id);
             filter.setName(name);
             filter.setOwner(owner);
@@ -80,7 +81,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/all")
+    /*@GetMapping("/all")
     public ResponseEntity findAll(){
         try {
             List<Product> entities = service.findAll();
@@ -90,7 +91,7 @@ public class ProductController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-    }
+    }*/
 
     @GetMapping("{id}")
     public ResponseEntity findById(@PathVariable("id") Long id){

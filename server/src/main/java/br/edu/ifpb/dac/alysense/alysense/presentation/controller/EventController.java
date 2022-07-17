@@ -60,7 +60,8 @@ public class EventController {
         try {
             EventSense filter = new EventSense();
             filter.setId(id);
-            //filter.setDateEvent(LocalDate.parse(dateEvent));
+            if(dateEvent != null)
+                filter.setDateEvent(LocalDate.parse(dateEvent));
             //filter.setPeopleLimit(peopleLimit);
             filter.setTitle(title);
             filter.setLocal(local);

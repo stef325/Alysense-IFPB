@@ -11,12 +11,12 @@ import Modal from 'react-modal';
 export default class ProductView extends React.Component {
 
     state = {
-        id:0,
+        id:'',
         name: '',
         owner: '',
         expirationDate: '',
-        idUser: 0,
-        products: [],
+        idUser: '',
+        products: []
         isVisibleProdInfo:false
     }
 
@@ -26,6 +26,7 @@ export default class ProductView extends React.Component {
     }
 
     componentDidMount(){
+        this.state.idUser = this.getLoggedUser().id
         Modal.setAppElement('#root');
         this.findFilter();
     }
@@ -51,8 +52,7 @@ export default class ProductView extends React.Component {
 
 
     findFilter = async () =>{
-        this.state.idUser = this.getLoggedUser().id
-        var params = "?";
+        let params = "?";
 
         if (this.state.id != '') {
             if (params != "?") {
@@ -86,9 +86,7 @@ export default class ProductView extends React.Component {
             }
             params = `${params}userId=${this.state.idUser}`
         }
-
-       
-        await this.service.find(`/filter/${params}`)
+        await this.service.find(`/filter${params}`)
         .then(response=>{
             const products = response.data;
             this.setState({products});
