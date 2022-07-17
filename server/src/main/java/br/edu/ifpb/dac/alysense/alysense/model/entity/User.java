@@ -2,6 +2,7 @@ package br.edu.ifpb.dac.alysense.alysense.model.entity;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class User implements UserDetails{
 	
 	private String password;
 
-	//private List<SystemRole> roles;
+	private List<Role> roles;
 
 	public Long getId() {
 		return id;
@@ -63,6 +64,7 @@ public class User implements UserDetails{
 		this.email = email;
 	}
 
+	@Override
 	public String getPassword() {
 		return password;
 	}
@@ -76,10 +78,6 @@ public class User implements UserDetails{
 		return null;
 	}
 
-	@Override
-	public String getPassowrd() {
-		return null;
-	}
 
 	@Override
 	public String getUserName() {
@@ -105,4 +103,8 @@ public class User implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
+
+	
+
+	
 }
