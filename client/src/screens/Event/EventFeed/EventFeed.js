@@ -2,9 +2,10 @@ import React from 'react';
 import BigForm from '../../../components/forms/BigForm';
 import FormGroup from '../../../components/forms/FormGroup';
 import EventApiService from '../../../services/EventApiService';
-import './EventFeed.css'
+import './EventFeedStyle.css'
 import EventTable from '../../../components/tables/event/EventView'
-import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
+import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/toastr/Toastr'
+import Modal from 'react-modal';
 export default class EventFeed extends React.Component{
 
     state={
@@ -13,11 +14,13 @@ export default class EventFeed extends React.Component{
         local:'',
         dateEvent:'',
         events:[],
-        admUser:0
+        admUser:0,
+        isVisibleProdInfo:false
     }
 
     constructor(){
         super();
+        Modal.setAppElement('#root');
         this.service = new EventApiService();
     }
 
@@ -43,8 +46,13 @@ export default class EventFeed extends React.Component{
         this.submit();
     }
 
-    componentWillUnmount(){
-        this.clear();
+    
+    showModalProduct = () =>{
+        
+        this.setState({isVisibleProdInfo: true})
+    }
+    closeModalProdInfo = () =>{ 
+        this.setState({isVisibleProdInfo: false})
     }
 
     getLoggedUser=()=>{
@@ -129,7 +137,7 @@ export default class EventFeed extends React.Component{
                                 </div>
                             </BigForm>
                             <div className='EventTable'>
-                                <EventTable collection={this.state.events} remove={this.remove} edit={this.edit}>
+                                <EventTable isVisibleProdInfo={this.state.isVisibleProdInfo} closeModalProdInfo={this.closeModalProdInfo} showModalProduct={this.showModalProduct} collection={this.state.events} remove={this.remove} edit={this.edit}>
                                 </EventTable>
                             </div>
                     </div>

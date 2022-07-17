@@ -4,8 +4,8 @@ import {Route,BrowserRouter} from "react-router-dom";
 
 import ProductCreate from '../screens/product/productCreate/ProductCreate';
 import ProductView from '../screens/product/productView/ProductView'
-import EventCreate from '../screens/Event/EventCreate/EventCreate';
-import EventFeed from '../screens/Event/EventFeed/EventFeed';
+import EventCreate from '../screens/event/eventCreate/EventCreate';
+import EventFeed from '../screens/event/eventFeed/EventFeed';
 import home from '../screens/home'
 
 

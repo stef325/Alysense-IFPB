@@ -1,7 +1,7 @@
 import React from 'react';
 
 import NavBarItem from './NavBarItem'
-import "./NavBar.css"
+import "./NavBarStyle.css"
 
 export default class NavBar extends React.Component {
 

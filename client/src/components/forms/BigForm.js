@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "../forms/forms.css"
+import "../forms/FormsStyle.css"
 export default class BigForm extends React.Component{
 
     render() {

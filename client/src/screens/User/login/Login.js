@@ -4,14 +4,10 @@ import React from 'react';
 
 
 import { MdEmail } from "react-icons/md";
-import { FaBirthdayCake } from "react-icons/fa";
-import { RiBallPenFill } from "react-icons/ri";
 import { RiLockPasswordFill } from "react-icons/ri";
-import service from "../../../services/UserApiService";
 import FormGroup from '../../../components/forms/FormGroup'
 import BigForm from '../../../components/forms/BigForm'
-import axios from 'axios'
-import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
+import{showSucessMessage, showErrorMessage} from '../../../components/toastr/Toastr'
 import UserApiService from '../../../services/UserApiService';
 export default class Login extends React.Component {
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import BigForm from '../../../components/forms/BigForm';
-import './EventCreate.css';
+import './EventCreateStyle.css';
 import FormGroup from '../../../components/forms/FormGroup';
-import CardProduct from '../../../components/tables/Product/CardProduct';
+import CardProduct from '../../../components/tables/product/CardProduct';
 import EventApiService from '../../../services/EventApiService';
-import ProductEvent from '../../../components/tables/Product/ProductEvent';
-import { showSucessMessage, showErrorMessage } from '../../../components/Toastr/Toastr'
+import ProductEvent from '../../../components/tables/product/ProductEvent';
+import { showSucessMessage, showErrorMessage } from '../../../components/toastr/Toastr'
 import Modal from 'react-modal';
 import AvaliationApiService from '../../../services/AvaliationApiService';
 

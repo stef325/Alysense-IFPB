@@ -1,16 +1,16 @@
 
 import './App.css';
 import 'bootswatch/dist/journal/bootstrap.css';
-import NavBar from './components/nav/NavBar';
+import NavBar from './components/navs/NavBar';
 import AppRoutes from './main/AppRoutes';
-import Register from './screens/User/Register/Register';
+import Register from './screens/user/register/Register';
 import ProductUpdate from './screens/product/productUpdate/ProductUpdate';
 import {BrowserRouter as Router, Route, Switch, withRouter} from "react-router-dom";
-import EventUpdate from './screens/Event/EventUpdate/EventUpdate';
+import EventUpdate from './screens/event/eventUpdate/EventUpdate';
 import 'toastr/build/toastr.css';
 import 'toastr/build/toastr.min.js';
-import Login from './screens/User/login/Login'
-import Avaliation from './screens/Avaliation/Avaliation'
+import Login from './screens/user/login/Login'
+import Avaliation from './screens/avaliation/Avaliation'
 
 function App() {
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { showSucessMessage, showErrorMessage, showWarningMessage } from '../../../components/Toastr/Toastr'
+import { showSucessMessage, showErrorMessage, showWarningMessage } from '../../../components/toastr/Toastr'
 import ProductApiService from '../../../services/ProductApiService';
 import BigForm from '../../../components/forms/BigForm'
 import FormGroup from '../../../components/forms/FormGroup'
@@ -7,7 +7,7 @@ import CardCharact from '../../../components/tables/charact/CardCharact'
 import CardSample from '../../../components/tables/samples/CardSample';
 import Modal from 'react-modal';
 
-import "../../../styles/createForms.css"
+import "./ProductCreateStyle.css"
 export default class ProductCreate extends React.Component {
 
   state = {
