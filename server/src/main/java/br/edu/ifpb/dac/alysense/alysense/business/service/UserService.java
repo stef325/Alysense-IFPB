@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.ExampleMatcher.StringMatcher;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import br.edu.ifpb.dac.alysense.alysense.model.repository.UserRepository;
@@ -14,13 +17,18 @@ import br.edu.ifpb.dac.alysense.alysense.presentation.dto.UserDTO;
 
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService{
 
 
 	@Autowired
 	private UserRepository userDAO;
 	
-	
+	/*@Autowired
+	private SystemRoleService systemRoleService;
+
+	@Autowired
+	private PasswordEnconderService passwordEnconderService;
+	*/
 	public User save(User user) {
 		return userDAO.save(user);
 	}
@@ -48,5 +56,11 @@ public class UserService {
 	
 	public void delete(Long id) {
 		userDAO.deleteById(id);
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
