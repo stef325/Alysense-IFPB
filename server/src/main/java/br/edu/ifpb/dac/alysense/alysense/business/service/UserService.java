@@ -33,10 +33,15 @@ public class UserService implements UserDetailsService{
 		return userDAO.save(user);
 	}
 	
-	public UserDTO findById(Long id) {
+	public UserDTO findByIdDTO(Long id) {
 		User entity = userDAO.findById(id).get();
 		UserDTO dto = new UserDTO(entity);
 		return dto;
+	}
+
+	public User findById(Long id) {
+		User entity = userDAO.findById(id).get();
+		return entity;
 	}
 	
 	public Iterable<User> findAll(){

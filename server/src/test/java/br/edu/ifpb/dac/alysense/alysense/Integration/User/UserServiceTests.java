@@ -57,7 +57,7 @@ public class UserServiceTests {
         
         assertEquals(savedUser.getEmail(), user.getEmail());
 
-        UserDTO DBUser = service.findById(savedUser.getId());
+        UserDTO DBUser = service.findByIdDTO(savedUser.getId());
 
         assertAll(
             () -> assertEquals(savedUser.getName(), DBUser.getName()),
@@ -75,7 +75,7 @@ public class UserServiceTests {
         User savedUser = service.save(user);
         assertEquals(savedUser.getEmail(), user.getEmail());
 
-        UserDTO DBUser = service.findById(savedUser.getId());
+        UserDTO DBUser = service.findByIdDTO(savedUser.getId());
 
         assertAll(
             () -> assertEquals(savedUser.getName(), DBUser.getName()),
@@ -100,7 +100,7 @@ public class UserServiceTests {
         assertEquals(HttpStatus.CREATED.value(), response.getStatusCodeValue());
 
         UserDTO BodyResponse = (UserDTO) response.getBody();
-        UserDTO DBUser = service.findById(BodyResponse.getId());
+        UserDTO DBUser = service.findByIdDTO(BodyResponse.getId());
 
         assertAll(
             () -> assertEquals(BodyResponse.getName(), DBUser.getName()),
@@ -122,7 +122,7 @@ public class UserServiceTests {
         assertEquals(HttpStatus.CREATED.value(), response.getStatusCodeValue());
 
         UserDTO BodyResponse = (UserDTO) response.getBody();
-        UserDTO DBUser = service.findById(BodyResponse.getId());
+        UserDTO DBUser = service.findByIdDTO(BodyResponse.getId());
 
         assertAll(
             () -> assertEquals(BodyResponse.getName(), DBUser.getName()),
@@ -143,7 +143,7 @@ public class UserServiceTests {
 
         assertEquals(200, response.getStatusCodeValue());
 
-        UserDTO DBUser = service.findById(11L);
+        UserDTO DBUser = service.findByIdDTO(11L);
 
         assertEquals(userdto.getEmail(), DBUser.getEmail());
 
