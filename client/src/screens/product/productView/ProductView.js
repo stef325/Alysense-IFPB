@@ -16,7 +16,7 @@ export default class ProductView extends React.Component {
         owner: '',
         expirationDate: '',
         idUser: '',
-        products: []
+        products: [],
         isVisibleProdInfo:false
     }
 

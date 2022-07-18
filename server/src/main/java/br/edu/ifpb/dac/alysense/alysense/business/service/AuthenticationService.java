@@ -5,17 +5,17 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.alysense.alysense.business.service.TokenService.TokenService;
 import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.AuthenticationServiceIntrfc;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 
+@Service
 public class AuthenticationService implements AuthenticationServiceIntrfc{
 
     @Autowired
     private UserServiceImpl userService;
-    @Autowired
-    private ConverterService converterService;
     @Autowired
     private TokenService tokenService;
     @Autowired

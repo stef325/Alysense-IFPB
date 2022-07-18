@@ -14,8 +14,9 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.UserDetails;
+
 
 @Entity
 @Table(name="UserPerson")
@@ -90,10 +91,7 @@ public class User implements UserDetails{
 	}
 
 
-	@Override
-	public String getUserName() {
-		return null;
-	}
+	
 
 	@Override
 	public boolean isAccountNonExpired() {
@@ -113,6 +111,12 @@ public class User implements UserDetails{
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return name;
 	}
 
 	

@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.SystemUserService;
-import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.UserDetails;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Role;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import br.edu.ifpb.dac.alysense.alysense.model.repository.UserRepository;
@@ -85,8 +84,8 @@ public class UserServiceImpl implements SystemUserService{
 
 	@Override
 	public User findByUseName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		List<User> user = userDAO.findByName(name);
+		return (User) user.get(0);
 	}
 
 	@Override

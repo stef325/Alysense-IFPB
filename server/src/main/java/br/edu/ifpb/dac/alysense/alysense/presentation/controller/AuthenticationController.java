@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.WebApplicationContext;
 
 import br.edu.ifpb.dac.alysense.alysense.business.service.AuthenticationService;
@@ -18,6 +19,8 @@ import br.edu.ifpb.dac.alysense.alysense.presentation.dto.LoginDTO;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.TokenDTO;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.UserDTO;
 
+
+@RestController
 @RequestMapping("/api")
 @Scope(value = WebApplicationContext.SCOPE_SESSION)
 public class AuthenticationController {
