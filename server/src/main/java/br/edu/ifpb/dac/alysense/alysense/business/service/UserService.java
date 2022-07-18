@@ -10,14 +10,14 @@ import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.SystemUserService;
+import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.UserServiceIntrfc;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Role;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import br.edu.ifpb.dac.alysense.alysense.model.repository.UserRepository;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.UserDTO;
 
 @Service
-public class UserServiceImpl implements SystemUserService{
+public class UserService implements UserServiceIntrfc{
 
 
 	@Autowired

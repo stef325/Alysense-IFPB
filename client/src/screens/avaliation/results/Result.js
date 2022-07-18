@@ -10,13 +10,13 @@ export default class Result extends React.Component {
 
     state = {
         product: {
-            name: "aaa",
+            name: "cabo de vassoura",
             amostra: 1
         },
         samples: [
             {
                 id: 1,
-                media: 4
+                media: 5
             }
             , {
                 id: 4,
@@ -26,11 +26,11 @@ export default class Result extends React.Component {
         isVisibleInfo: false,
         AvaliatorsAndNotes:[
             {
-                name:"aaa",
+                name:"maria",
                 note:3
             },
             {
-                name:"aaasdaa",
+                name:"joão",
                 note:7
             }
         ]
