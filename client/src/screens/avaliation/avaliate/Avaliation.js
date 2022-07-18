@@ -1,8 +1,8 @@
 import React from 'react';
 
-import AvaliationCard from '../../components/forms/AvaliationCard'
+import AvaliationCard from '../../../components/forms/AvaliationCard'
 import "./AvaliationStyle.css"
-import AvaliateApiService from '../../services/AvaliateApiService'
+import AvaliateApiService from '../../../services/AvaliateApiService'
 
 export default class Avaliation extends React.Component {
 

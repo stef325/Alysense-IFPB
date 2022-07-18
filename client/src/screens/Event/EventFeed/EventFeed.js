@@ -42,7 +42,7 @@ export default class EventFeed extends React.Component{
     }
 
     componentDidMount(){
-        this.state.admUser = this.getLoggedUser().id
+        this.setState({admUser:this.getLoggedUser().id})
         this.submit();
     }
 

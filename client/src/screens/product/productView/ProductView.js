@@ -26,7 +26,7 @@ export default class ProductView extends React.Component {
     }
 
     componentDidMount(){
-        this.state.idUser = this.getLoggedUser().id
+        this.setState({idUser: this.getLoggedUser().id})
         Modal.setAppElement('#root');
         this.findFilter();
     }

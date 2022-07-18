@@ -10,7 +10,7 @@ import EventUpdate from './screens/event/eventUpdate/EventUpdate';
 import 'toastr/build/toastr.css';
 import 'toastr/build/toastr.min.js';
 import Login from './screens/user/login/Login'
-import Avaliation from './screens/avaliation/Avaliation'
+import Avaliation from './screens/avaliation/avaliate/Avaliation'
 
 function App() {
   return (
