@@ -1,5 +1,6 @@
 package br.edu.ifpb.dac.alysense.alysense;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +14,7 @@ import br.edu.ifpb.dac.alysense.alysense.business.service.RoleService;
 @EnableWebMvc
 public class AlysenseApplication implements WebMvcConfigurer,CommandLineRunner{
 
+	@Autowired
 	private RoleService roleService;
 
 	public static void main(String[] args) {
