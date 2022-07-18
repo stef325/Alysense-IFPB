@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifpb.dac.alysense.alysense.business.service.ConverterService;
-import br.edu.ifpb.dac.alysense.alysense.business.service.UserService;
+import br.edu.ifpb.dac.alysense.alysense.business.service.UserServiceImpl;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.UserDTO;
 
@@ -26,7 +26,7 @@ import br.edu.ifpb.dac.alysense.alysense.presentation.dto.UserDTO;
 public class UserController {
 
 	@Autowired
-	private UserService userService;
+	private UserServiceImpl userService;
 	
 	@PostMapping
 	public ResponseEntity save(@RequestBody UserDTO dto) {

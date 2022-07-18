@@ -7,15 +7,12 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.Ordered;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.event.LogoutSuccessEvent;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -27,9 +24,10 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsUtils;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-
-import br.edu.ifpb.dac.alysense.alysense.business.service.UserService;
+import br.edu.ifpb.dac.alysense.alysense.business.service.PasswordEncoderService;
 import br.edu.ifpb.dac.alysense.alysense.business.service.TokenService.TokenService;
+import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.RoleServiceIntrfc;
+import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.SystemUserService;
 
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
@@ -38,10 +36,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     private TokenService tokenService;
 
     @Autowired
-    private UserService userService;
+    private SystemUserService systemUserService;
 
-    //@Autowired
-    //private PasswordEncoderService passwordEncoderService;
+    @Autowired
+    private PasswordEncoderService passwordEncoderService;
 
     @Bean
     protected AuthenticationManager authenticationManager() throws Exception {
@@ -50,11 +48,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Bean
     public TokenFilter jwtTokenFilter(){
-        return new TokenFilter(tokenService,userService);
+        return new TokenFilter(tokenService,systemUserService);
     }
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        //auth.userDetailsService(userService).passwordEncoder(passwordEncoderService)
+        auth.userDetailsService(systemUserService).passwordEncoder(passwordEncoderService);
     }
 
     @Bean
@@ -85,7 +83,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
             .antMatchers(HttpMethod.POST, "/api/login").permitAll()
             .antMatchers(HttpMethod.POST, "/api/isTokenValid").permitAll()
             .antMatchers(HttpMethod.POST, "/api/user").permitAll()
-            //.antMatchers(HttpMethod.DELETE, "/api/user").hasRole(SystemRoleService.AVAILABLE_ROLES.ADMIN.name())
+            .antMatchers(HttpMethod.DELETE, "/api/user").hasRole(RoleServiceIntrfc.AVAILABLE_ROLES.ADMIN.name())
         .and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()

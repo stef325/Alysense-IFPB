@@ -2,6 +2,8 @@ package br.edu.ifpb.dac.alysense.alysense.business.service.TokenService;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Service;
+
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;

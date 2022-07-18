@@ -1,35 +1,43 @@
 package br.edu.ifpb.dac.alysense.alysense.business.service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.ExampleMatcher.StringMatcher;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.SystemUserService;
+import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.UserDetails;
+import br.edu.ifpb.dac.alysense.alysense.model.entity.Role;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import br.edu.ifpb.dac.alysense.alysense.model.repository.UserRepository;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.UserDTO;
 
-
 @Service
-public class UserService implements UserDetailsService{
+public class UserServiceImpl implements SystemUserService{
 
 
 	@Autowired
 	private UserRepository userDAO;
 	
-	/*@Autowired
-	private SystemRoleService systemRoleService;
+	@Autowired
+	private RoleService systemRoleService;
 
 	@Autowired
-	private PasswordEnconderService passwordEnconderService;
-	*/
+	private PasswordEncoderService passwordEnconderService;
+
 	public User save(User user) {
+		if(user.getId() != null){
+			throw new IllegalStateException("User ja existe tente atualizar!");
+		}
+		passwordEnconderService.encryptPassword(user);
+		List<Role> roles = new ArrayList<>();
+		roles.add(systemRoleService.findDefault());
+		user.setRoles(roles);
 		return userDAO.save(user);
 	}
 	
@@ -56,6 +64,10 @@ public class UserService implements UserDetailsService{
 	}
 	
 	public User update(User user) {
+		if(user.getId() == null){
+			throw new IllegalStateException("Id não pode ser vazio!");
+		}
+		passwordEnconderService.encryptPassword(user);
 		return userDAO.save(user);
 	}
 	
@@ -63,9 +75,27 @@ public class UserService implements UserDetailsService{
 		userDAO.deleteById(id);
 	}
 
+
+
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public User findByEmail(String email) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public User findByUseName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String username){
+		User user = findByUseName(username);
+		if(user == null){
+			throw new UsernameNotFoundException(String.format("Could not find any use with usename %s", username));
+		}
+		
+		return (org.springframework.security.core.userdetails.UserDetails) user;
 	}
 }

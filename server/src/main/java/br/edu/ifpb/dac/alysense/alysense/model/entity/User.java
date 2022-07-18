@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 
-import br.edu.ifpb.dac.alysense.alysense.business.service.UserDetails;
+import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.UserDetails;
 
 @Entity
 @Table(name="UserPerson")
@@ -31,6 +31,14 @@ public class User implements UserDetails{
 	private String password;
 
 	private List<Role> roles;
+
+	public List<Role> getRoles(){
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles){
+		this.roles = roles;
+	}
 
 	public Long getId() {
 		return id;

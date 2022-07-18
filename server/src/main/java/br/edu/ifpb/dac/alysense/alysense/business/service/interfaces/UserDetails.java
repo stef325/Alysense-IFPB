@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.alysense.alysense.business.service;
+package br.edu.ifpb.dac.alysense.alysense.business.service.interfaces;
 
 import java.io.Serializable;
 import java.util.Collection;

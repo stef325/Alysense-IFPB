@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-
-
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import br.edu.ifpb.dac.alysense.alysense.business.service.ConverterService;
-import br.edu.ifpb.dac.alysense.alysense.business.service.UserService;
+import br.edu.ifpb.dac.alysense.alysense.business.service.UserServiceImpl;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import br.edu.ifpb.dac.alysense.alysense.model.repository.UserRepository;
 import br.edu.ifpb.dac.alysense.alysense.presentation.controller.UserController;
@@ -28,7 +26,7 @@ import br.edu.ifpb.dac.alysense.alysense.presentation.dto.UserDTO;
 public class UserServiceTests {
     
     @Autowired
-    private UserService service;
+    private UserServiceImpl service;
 
     @Autowired
     private UserController controller;

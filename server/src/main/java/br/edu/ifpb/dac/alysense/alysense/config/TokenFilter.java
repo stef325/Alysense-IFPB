@@ -9,22 +9,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.filter.OncePerRequestFilter;
-
-import br.edu.ifpb.dac.alysense.alysense.business.service.UserService;
 import br.edu.ifpb.dac.alysense.alysense.business.service.TokenService.TokenService;
+import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.SystemUserService;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 
 public class TokenFilter extends OncePerRequestFilter{
 
     private TokenService tokenService;
-    private UserService userService;
+    private SystemUserService systemUserService;
 
-    public TokenFilter(TokenService tokenService, UserService userService){
+    public TokenFilter(TokenService tokenService, SystemUserService systemUserService){
         super();
         this.tokenService = tokenService;
-        this.userService = userService;
+        this.systemUserService = systemUserService;
     }
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
@@ -39,7 +37,7 @@ public class TokenFilter extends OncePerRequestFilter{
 
     private void authenticate(String token){
         Long userId = tokenService.getUserId(token);
-        User user = userService.findById(userId);
+        User user = systemUserService.findById(userId);
         UsernamePasswordAuthenticationToken authentication = 
         new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
