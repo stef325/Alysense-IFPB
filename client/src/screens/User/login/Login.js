@@ -7,12 +7,15 @@ import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import FormGroup from '../../../components/forms/FormGroup'
 import BigForm from '../../../components/forms/BigForm'
-import{showSucessMessage, showErrorMessage} from '../../../components/toastr/Toastr'
+import{showSucessMessage, showErrorMessage} from '../../../components/Toastr/Toastr'
 import UserApiService from '../../../services/UserApiService';
-export default class Login extends React.Component {
+import  {AuthContext}  from '../../../main/SessionProvider';
+import { withRouter } from 'react-router-dom';
+
+class Login extends React.Component {
 
     state={
-        email:'',
+        username:'',
         password:''
     }
 
@@ -23,11 +26,8 @@ export default class Login extends React.Component {
 
     validate = () =>{
         const errors = [];
-        if(!this.state.email){
-            errors.push('Campo E-mail é obrigatório!')
-        }
-        else if(!this.state.email.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]/)){
-            errors.push('Email inválido!')
+        if(!this.state.username){
+            errors.push('Campo nome é obrigatório!')
         }
         if(!this.state.password){
             errors.push('Campo senha é obrigatório!')
@@ -36,7 +36,7 @@ export default class Login extends React.Component {
         return errors;
     };
 
-    submit =async ()=>{
+    login = ()=>{
         const errors = this.validate();
         if(errors.length>0){
             errors.forEach((message,index)=>{
@@ -44,32 +44,20 @@ export default class Login extends React.Component {
             });
             return false;
         }
-        var params = '?';
-
-        if(this.state.email != ''){
-            if(params != '?'){
-                params = `${params}&`;
-            }
-        params = `${params}email=${this.state.email}`;
-        }
-
-        if(this.state.password != ''){
-            if(params != '?'){
-                params = `${params}&`;
-            }
-        params = `${params}password=${this.state.password}`;
-        }
-        
-        await this.service.find(`/${params}`)
-        .then(response => {
-            localStorage.setItem('loggedUser', JSON.stringify(response.data[0]));
-            console.log(JSON.stringify(response.data))
-            showSucessMessage("Login efetuado!")
-            this.props.history.push(`/EventFeed/`);
-        }).catch(error =>{
-            console.log(error.response);
-            showErrorMessage("Usuário não encontrado!")
-        })
+        this.context.login(
+            this.state.username,
+            this.state.password
+        ).then(user=>
+            {
+                if(user){
+                    showSucessMessage(`Usuário ${user.name}, logado!`)
+                    this.props.history.push('/EventFeed');
+                }else{
+                    showErrorMessage('Login inválido!')
+                }
+            }).catch(error =>{
+                showErrorMessage('Erro na autenticação:', error);
+            })
     }
 
     render() {
@@ -78,12 +66,12 @@ export default class Login extends React.Component {
             <div className="register">
                 <div className='register-container'>
                     <div className='register-form'>
-                        <BigForm title="LOGIN" submit={this.submit} action="Login">
+                        <BigForm title="LOGIN" submit={this.login} action="Login">
 
                             <div className="input-container">
                                 <FormGroup htmlFor="" label="">
                                     <MdEmail />
-                                    <input className='form-control' type="email" placeholder='E-mail' id='email' onChange={(e) => { this.setState({ email: e.target.value }) }} />
+                                    <input className='form-control' type="username" placeholder='username' id='username' onChange={(e) => { this.setState({ username: e.target.value }) }} />
                                 </FormGroup>
                             </div>
                             <div className="input-container">
@@ -106,3 +94,5 @@ export default class Login extends React.Component {
     }
 
 }
+Login.contextType = AuthContext;
+export default withRouter(Login);

@@ -5,7 +5,7 @@ import BigForm from '../../../components/forms/BigForm'
 import FormGroup from '../../../components/forms/FormGroup'
 import CardCharact from '../../../components/tables/charact/CardCharact'
 import CardSample from '../../../components/tables/samples/CardSample'
-import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/toastr/Toastr'
+import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
 import "../productCreate/ProductCreateStyle.css"
 import "./ProductUpdadeStyle.css"
 import Modal from 'react-modal';

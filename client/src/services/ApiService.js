@@ -14,8 +14,8 @@ export default class ApiService{
     constructor(endpoint){
         this.endpoint = endpoint;
 
-        this.StorageService = new StorageService();
-        const token = this.StorageService.getItem(TOKEN);
+        this.storageService = new StorageService();
+        const token = this.storageService.getItem(TOKEN);
         this.registerToken(token);
     }
 

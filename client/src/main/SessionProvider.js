@@ -15,11 +15,11 @@ export default class SessionProvider extends React.Component {
 
     constructor(){
         super();
-        this.authService = new AuthenticationApiService();
+        this.service = new AuthenticationApiService();
     }
 
     async componentDidMount() {
-        const isAuthenticated = await this.authService.isAuthenticated()
+        const isAuthenticated = await this.service.isAuthenticated()
 
         if (isAuthenticated) {
             this.start();
@@ -29,9 +29,10 @@ export default class SessionProvider extends React.Component {
 
     }
 
-    async login(username,password){
-        const user = await this.authService.login(username,password)
-
+    login=async(username,password)=>{
+        console.log("session provider 1")
+        const user = await this.service.login(username,password)
+        console.log("session provider 2")
         if (user) {
             this.start()
             return user;
@@ -42,21 +43,21 @@ export default class SessionProvider extends React.Component {
         
     }
 
-    start(){
-        const loggedUser = this.authService.getLoggedUser
-        const token = this.authService.getToken
+    start=()=>{
+        const loggedUser = this.service.getLoggedUser
+        const token = this.service.getToken
 
         this.setState({loggedUser})
-        this.authService.registerToken(token)
+        this.service.registerToken(token)
 
     }
 
-    end(){
+    end=()=>{
         this.setState({loggedUser:null})
-        this.authService.logout()
+        this.service.logout()
     }
 
-    isAuthenticated(){
+    isAuthenticated=()=>{
         return this.state.loggedUser != null
     }
 

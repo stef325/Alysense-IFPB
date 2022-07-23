@@ -1,10 +1,10 @@
 import React from 'react';
 import BigForm from '../../../components/forms/BigForm';
 import FormGroup from '../../../components/forms/FormGroup';
-import CardProduct from '../../../components/tables/product/CardProduct';
+import CardProduct from '../../../components/tables/Product/CardProduct';
 import EventApiService from '../../../services/EventApiService';
 import "./EventUpdateStyle.css";
-import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/toastr/Toastr'
+import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
 
 export default class EventUpdate extends React.Component{
 

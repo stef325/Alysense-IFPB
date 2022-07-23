@@ -4,7 +4,7 @@ import StorageService from "./StorageService";
 export default class AuthenticationApiService extends ApiService{
     constructor(){
         super('');
-        this.StorageService = new StorageService();
+        this.storageService = new StorageService();
 
     }
 
@@ -12,19 +12,19 @@ export default class AuthenticationApiService extends ApiService{
         return this.post('/isTokenValid', token);
     }
 
-    async login(email, password){
-        const userCredentials = {
-            'email': email, 
+    async login(username, password){
+        const loginDTO = {
+            'username': username, 
             'password': password
         }
-
+        console.log("authentication service")
         try {
-            const response = await this.post('/login', userCredentials);
+            const response = await this.post('/login', loginDTO);
             const user = response.data.user
             const token = response.data.token
 
-            this.StorageService.setItem(LOGGED_USER, user)
-            this.StorageService.setItem(TOKEN, token)
+            this.storageService.setItem(LOGGED_USER, user)
+            this.storageService.setItem(TOKEN, token)
 
             this.registerToken(token)
             return user;
@@ -36,16 +36,16 @@ export default class AuthenticationApiService extends ApiService{
     }
 
     logout(){
-        this.StorageService.removeItem(LOGGED_USER)
-        this.StorageService.removeItem(TOKEN)
+        this.storageService.removeItem(LOGGED_USER)
+        this.storageService.removeItem(TOKEN)
         return this.post("/logout")
     }
 
     getLoggedUser(){
-        return this.StorageService.getItem(LOGGED_USER)
+        return this.storageService.getItem(LOGGED_USER)
     }
     getToken(){
-        return this.StorageService.getItem(TOKEN)
+        return this.storageService.getItem(TOKEN)
     }
 
     async isAuthenticated(){

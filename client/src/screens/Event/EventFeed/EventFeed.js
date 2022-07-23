@@ -4,7 +4,7 @@ import FormGroup from '../../../components/forms/FormGroup';
 import EventApiService from '../../../services/EventApiService';
 import './EventFeedStyle.css'
 import EventTable from '../../../components/tables/event/EventView'
-import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/toastr/Toastr'
+import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
 import Modal from 'react-modal';
 export default class EventFeed extends React.Component{
 

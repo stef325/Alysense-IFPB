@@ -43,11 +43,11 @@ export default class Result extends React.Component {
     }
 
     componentDidMount() {
-        //parte de receber o id do produto
-        const params = this.props.match.params;
-        const id = params.id;
+        /*parte de receber o id do produto
+        //const params = this.props.match.params;
+        //const id = params.id;
 
-        await this.service.find(`/filter?id=${eventId}`)
+        this.service.find(`/filter?id=${eventId}`)
         .then(response=>{
             const event = response.data[0];
             const idEvent = event.id;
@@ -60,7 +60,7 @@ export default class Result extends React.Component {
             this.setState({idEvent,title, dateEvent,local, qtdParticipants,qtdSamples,admUser});
         }).catch(error=>{
             console.log(error.response);
-        })
+        })*/
         Modal.setAppElement('#root');
         this.setState({ isVisibleInfo: false })
 
