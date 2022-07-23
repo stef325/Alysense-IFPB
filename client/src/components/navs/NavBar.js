@@ -4,8 +4,7 @@ import NavBarItem from './NavBarItem'
 import "./NavBarStyle.css"
 import { AuthConsumer } from '../../main/SessionProvider';
 
-    function NavBar (props) {
-        console.log(props)
+    function NavBar(props){
         return (
             <div className="nav-bar" id="nav-bar">
                 <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -32,10 +31,8 @@ import { AuthConsumer } from '../../main/SessionProvider';
 
     }
 
-export default() =>{
+export default()=>(
     <AuthConsumer>
-        {(context)=>(
-            <NavBar isAuthenticated={context.isAuthenticated} logout={context.end} />
-        )}
+         {(context) => (<NavBar isAuthenticated={context.isAuthenticated}logout={context.end} />)}
     </AuthConsumer>
-}
+)
