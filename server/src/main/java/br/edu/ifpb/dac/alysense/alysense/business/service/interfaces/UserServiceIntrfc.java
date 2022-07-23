@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 
 @Service
-public interface SystemUserService extends UserDetailsService{
+public interface UserServiceIntrfc extends UserDetailsService{
     
     public User save(User user);
 

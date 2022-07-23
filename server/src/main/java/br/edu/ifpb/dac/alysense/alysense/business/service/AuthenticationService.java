@@ -15,7 +15,7 @@ import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 public class AuthenticationService implements AuthenticationServiceIntrfc{
 
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
     @Autowired
     private TokenService tokenService;
     @Autowired

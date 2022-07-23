@@ -12,5 +12,7 @@ public class TokenDTO {
         this.token = token;
         this.user = userDTO;
     }
+    public TokenDTO() {
+    }
     
 }

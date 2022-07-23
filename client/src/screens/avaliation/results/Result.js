@@ -12,13 +12,13 @@ export default class Result extends React.Component {
     //apos as querys
     state = {
         product: {
-            name: "aaa",
+            name: "cabo de vassoura",
             amostra: 1
         },
         samples: [
             {
                 id: 1,
-                media: 4
+                media: 5
             }
             , {
                 id: 4,
@@ -26,7 +26,20 @@ export default class Result extends React.Component {
             }
         ],
         isVisibleInfo: false,
-        AvaliatorsAndNotes:[]
+
+        AvaliatorsAndNotes:[
+            {
+                name:"maria",
+                note:3
+            },
+            {
+                name:"joão",
+                note:7
+            }
+        ]
+
+
+
     }
 
     componentDidMount() {

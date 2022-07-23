@@ -16,7 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import br.edu.ifpb.dac.alysense.alysense.business.service.ConverterService;
-import br.edu.ifpb.dac.alysense.alysense.business.service.UserServiceImpl;
+import br.edu.ifpb.dac.alysense.alysense.business.service.UserService;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import br.edu.ifpb.dac.alysense.alysense.model.repository.UserRepository;
 import br.edu.ifpb.dac.alysense.alysense.presentation.controller.UserController;
@@ -26,7 +26,7 @@ import br.edu.ifpb.dac.alysense.alysense.presentation.dto.UserDTO;
 public class UserServiceTests {
     
     @Autowired
-    private UserServiceImpl service;
+    private UserService service;
 
     @Autowired
     private UserController controller;

@@ -27,7 +27,7 @@ import org.springframework.web.filter.CorsFilter;
 import br.edu.ifpb.dac.alysense.alysense.business.service.PasswordEncoderService;
 import br.edu.ifpb.dac.alysense.alysense.business.service.TokenService.TokenService;
 import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.RoleServiceIntrfc;
-import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.SystemUserService;
+import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.UserServiceIntrfc;
 
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
@@ -36,7 +36,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     private TokenService tokenService;
 
     @Autowired
-    private SystemUserService systemUserService;
+    private UserServiceIntrfc systemUserService;
 
     @Autowired
     private PasswordEncoderService passwordEncoderService;

@@ -5,18 +5,18 @@ body{
   justify-content: center;
 }
 
-body::-webkit-scrollbar {
-  width: 7px;               /* width of the entire scrollbar */
+html::-webkit-scrollbar {
+  width: 7px;  
 }
 
-body::-webkit-scrollbar-track {
-  background: transparent;        /* color of the tracking area */
+html::-webkit-scrollbar-track {
+  background: transparent; 
 }
 
-body::-webkit-scrollbar-thumb {
-  background-color: #EB6864;    /* color of the scroll thumb */
-  border-radius: 20px;       /* roundness of the scroll thumb */
-  border: none;  /* creates padding around scroll thumb */
+html::-webkit-scrollbar-thumb {
+  background-color: #EB6864;    
+  border-radius: 20px;       
+  border: none;  
 }
 
 

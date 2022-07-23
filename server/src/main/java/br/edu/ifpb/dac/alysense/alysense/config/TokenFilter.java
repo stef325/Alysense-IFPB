@@ -11,15 +11,15 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 import br.edu.ifpb.dac.alysense.alysense.business.service.TokenService.TokenService;
-import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.SystemUserService;
+import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.UserServiceIntrfc;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 
 public class TokenFilter extends OncePerRequestFilter{
 
     private TokenService tokenService;
-    private SystemUserService systemUserService;
+    private UserServiceIntrfc systemUserService;
 
-    public TokenFilter(TokenService tokenService, SystemUserService systemUserService){
+    public TokenFilter(TokenService tokenService, UserServiceIntrfc systemUserService){
         super();
         this.tokenService = tokenService;
         this.systemUserService = systemUserService;
