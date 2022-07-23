@@ -6,6 +6,7 @@ import AvaliateApiService from '../../../services/AvaliateApiService'
 
 export default class Avaliation extends React.Component {
 
+    //apos as querys
     state = {
         product: {
             name: "aaa",
@@ -31,6 +32,12 @@ export default class Avaliation extends React.Component {
         this.service = new AvaliateApiService();
 
     }
+
+    componentDidMount() {
+        const params = this.props.match.params;
+        const id = params.id;
+      }
+      
     getLoggedUser = () => {
         var value = localStorage.getItem('loggedUser');
         var user = JSON.parse(value);

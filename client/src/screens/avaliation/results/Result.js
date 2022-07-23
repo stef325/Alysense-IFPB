@@ -3,11 +3,13 @@ import React from 'react';
 import ResultCard from '../../../components/cards/ResultCard';
 import "./ResultStyle.css"
 import Modal from 'react-modal';
-
+import ProductApiService from '../../../services/ProductApiService';
+import AvaliationApiService from '../../../services/AvaliationApiService';
 import AvaliatorsAndNotes from '../../../components/tables/avaliators/AvaliatorsAndNotes'
 
 export default class Result extends React.Component {
 
+    //apos as querys
     state = {
         product: {
             name: "aaa",
@@ -24,21 +26,28 @@ export default class Result extends React.Component {
             }
         ],
         isVisibleInfo: false,
-        AvaliatorsAndNotes:[
-            {
-                name:"aaa",
-                note:3
-            },
-            {
-                name:"aaasdaa",
-                note:7
-            }
-        ]
-
-
-
+        AvaliatorsAndNotes:[]
     }
+
     componentDidMount() {
+        //parte de receber o id do produto
+        const params = this.props.match.params;
+        const id = params.id;
+
+        await this.service.find(`/filter?id=${eventId}`)
+        .then(response=>{
+            const event = response.data[0];
+            const idEvent = event.id;
+            const title = event.title;
+            const dateEvent = this.convertFromStringToDate(event.date);
+            const local = event.local;
+            const qtdParticipants= event.peopleLimit;
+            const qtdSamples= event.numberSample;
+            const admUser = event.admUser;
+            this.setState({idEvent,title, dateEvent,local, qtdParticipants,qtdSamples,admUser});
+        }).catch(error=>{
+            console.log(error.response);
+        })
         Modal.setAppElement('#root');
         this.setState({ isVisibleInfo: false })
 
