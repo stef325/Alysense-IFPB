@@ -3,8 +3,8 @@ import React from 'react';
 import ProductApiService from '../../../services/ProductApiService';
 import BigForm from '../../../components/forms/BigForm'
 import FormGroup from '../../../components/forms/FormGroup'
-import ProductViewTable from '../../../components/tables/Product/ProductViewTable'
-import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
+import ProductViewTable from '../../../components/tables/product/ProductViewTable'
+import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/toastr/Toastr'
 import "../productCreate/ProductCreateStyle.css"
 import "./ProductViewStyle.css"
 import Modal from 'react-modal';
