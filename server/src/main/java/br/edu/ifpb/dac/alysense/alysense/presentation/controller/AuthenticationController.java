@@ -13,7 +13,7 @@ import org.springframework.web.context.WebApplicationContext;
 import br.edu.ifpb.dac.alysense.alysense.business.service.AuthenticationService;
 import br.edu.ifpb.dac.alysense.alysense.business.service.ConverterService;
 import br.edu.ifpb.dac.alysense.alysense.business.service.UserService;
-import br.edu.ifpb.dac.alysense.alysense.business.service.TokenService.TokenService;
+import br.edu.ifpb.dac.alysense.alysense.business.service.tokenService.TokenService;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.LoginDTO;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.TokenDTO;

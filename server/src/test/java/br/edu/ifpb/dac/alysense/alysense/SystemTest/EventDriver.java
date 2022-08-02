@@ -14,6 +14,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import br.edu.ifpb.dac.alysense.alysense.SystemTest.PageObjects.CreateEventMapping;
 import br.edu.ifpb.dac.alysense.alysense.SystemTest.PageObjects.FeedEventMapping;
+import br.edu.ifpb.dac.alysense.alysense.SystemTest.PageObjects.LoginMapping;
 import br.edu.ifpb.dac.alysense.alysense.SystemTest.PageObjects.RegisterMapping;
 import br.edu.ifpb.dac.alysense.alysense.SystemTest.PageObjects.UpdateEventMapping;
 
@@ -31,27 +32,21 @@ public class EventDriver {
 		driver.manage().window().maximize();
 	}
 
+
     @Test
     public void eventCreateTest(){
-		driver.get("http://localhost:3000");
+		driver.get("http://localhost:3000/login");
 
-		//criando user
-		RegisterMapping register = new RegisterMapping(driver);
-		register.selectNameInput("Filipe");
+		//login
+		LoginMapping login = new LoginMapping(driver);
+		login.selectNameInput("filipe");
 		timeSleep();
-		register.selectDateInput("18122001");
+		login.selectPasswordInput("123");
 		timeSleep();
-		register.selectEmailInput("filipeteste@gmail.com");
-		timeSleep();
-		register.selectPasswordInput("12345");
-		timeSleep();
-		register.clickBtn();
-		timeSleep();
+		login.clickBtn();
 
 		//inicio Do createEvent
 		CreateEventMapping createEventMapping = new CreateEventMapping(driver);
-		createEventMapping.clickNavBarCreateEvent();
-		timeSleep();
 
 		createEventMapping.clickNavBarCreateEvent();
 		timeSleep();
@@ -113,9 +108,21 @@ public class EventDriver {
 		update.clickUpdate();
 		timeSleep();
 
+		feedEventMapping.inputTitle("Bolo de aniversario");
+		timeSleep();
+
+		feedEventMapping.inputLocal("Loja de bolos");
+		timeSleep();
+
+		feedEventMapping.clickButtonSearch();
+		timeSleep();
+
 		assertEquals("Bolo de aniversario",feedEventMapping.columnTitle());
 
 		feedEventMapping.deleteBtn();
+		timeSleep();
+
+		feedEventMapping.exit();
 		timeSleep();
 		
     }

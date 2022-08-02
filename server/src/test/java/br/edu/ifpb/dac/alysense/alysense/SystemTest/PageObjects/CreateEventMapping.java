@@ -11,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 public class CreateEventMapping {
     private WebDriver driver;
 
-    @FindBy(how = How.CSS, using = "div.App div.nav-bar nav.navbar.navbar-expand-lg.navbar-dark.bg-primary div.container-fluid div.collapse.navbar-collapse ul.navbar-nav.me-auto li.nav-item:nth-child(4) > a.nav-link")
+    @FindBy(how = How.CSS, using = "div.App div.nav-bar nav.navbar.navbar-expand-lg.navbar-dark.bg-primary div.container-fluid div.collapse.navbar-collapse ul.navbar-nav.me-auto li.nav-item:nth-child(3) > a.nav-link")
     private WebElement navBarCreateEvent;
     
     @FindBy(how = How.CSS, using = "div.App div.event-create header.EventCreate-header div.main-container div.big-form > h1.title:nth-child(1)")

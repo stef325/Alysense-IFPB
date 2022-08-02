@@ -38,9 +38,9 @@ export default class Avaliation extends React.Component {
         const id = params.id;
       }
       
-    getLoggedUser = () => {
+      getLoggedUser=()=>{
         var value = localStorage.getItem('loggedUser');
-        var user = JSON.parse(value);
+        var user = value[6]+value[7];
         return user;
       }
 
@@ -53,7 +53,7 @@ export default class Avaliation extends React.Component {
             console.log(aspect.answer)
             await this.service.create([{
                 question: aspect.answer,
-                evaluator: this.getLoggedUser().id,
+                evaluator: this.getLoggedUser(),
                 note:{
                     scale: aspect.answer=="SOM"? this.state.SOMnote: (aspect.answer=="VISAO"?this.state.VISAOnote:(aspect.answer=="PALADAR"? this.state.PALADARnote: aspect.answer=="TATO"?this.state.TATOnote: aspect.answer=="TEXTURA"?this.state.TEXTURAnote:""))
                 }

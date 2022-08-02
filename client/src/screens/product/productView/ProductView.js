@@ -26,7 +26,7 @@ export default class ProductView extends React.Component {
     }
 
     componentDidMount(){
-        this.setState({idUser: this.getLoggedUser().id})
+        this.setState({idUser: this.getLoggedUser()})
         Modal.setAppElement('#root');
         this.findFilter();
     }
@@ -46,7 +46,7 @@ export default class ProductView extends React.Component {
 
     getLoggedUser=()=>{
         var value = localStorage.getItem('loggedUser');
-        var user = JSON.parse(value);
+        var user = value[6]+value[7];
         return user;
       }
 

@@ -14,7 +14,7 @@ export default class EventFeed extends React.Component{
         local:'',
         dateEvent:'',
         events:[],
-        admUser:0,
+        admUser:'',
         isVisibleProdInfo:false
     }
 
@@ -38,11 +38,11 @@ export default class EventFeed extends React.Component{
 
     edit =(idEvent)=>{
         this.props.history.push(`/EventUpdate/${idEvent}`);
-        window.location.reload();
+        //window.location.reload();
     }
 
     componentDidMount(){
-        this.setState({admUser:this.getLoggedUser().id})
+        this.state.admUser = this.getLoggedUser();
         this.submit();
     }
 
@@ -57,7 +57,7 @@ export default class EventFeed extends React.Component{
 
     getLoggedUser=()=>{
         var value = localStorage.getItem('loggedUser');
-        var user = JSON.parse(value);
+        var user = value[6]+value[7];
         return user;
       }
 
@@ -100,7 +100,7 @@ export default class EventFeed extends React.Component{
         .then(response => {
             const events = response.data;
             this.setState({events})
-            console.log(events)
+            console.log(this.state.events)
         }).catch(error =>{
             console.log(error.response);
         })

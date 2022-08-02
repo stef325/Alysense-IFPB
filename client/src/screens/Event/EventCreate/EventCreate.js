@@ -95,15 +95,15 @@ export default class EventCreate extends React.Component {
         return errors;
     };
 
-    getLoggedUser = () => {
+    getLoggedUser=()=>{
         var value = localStorage.getItem('loggedUser');
-        var user = JSON.parse(value);
+        var user = value[6]+value[7];
         return user;
-    }
+      }
 
     submit = async () => {
 
-        this.state.admUser = this.getLoggedUser().id
+        this.state.admUser = this.getLoggedUser()
         const errors = this.validate();
         if (errors.length > 0) {
             errors.forEach((message, index) => {
@@ -133,7 +133,7 @@ export default class EventCreate extends React.Component {
         })).then(response => {
             console.log(response)
             showSucessMessage("Evento Criado!");
-            this.props.history.push(`/EventFeed/`);
+            this.props.history.push(`/EventFeed`);
         }).catch(error => {
             console.log(error.response)
         });

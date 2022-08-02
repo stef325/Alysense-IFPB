@@ -25,9 +25,9 @@ import org.springframework.web.cors.CorsUtils;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import br.edu.ifpb.dac.alysense.alysense.business.service.PasswordEncoderService;
-import br.edu.ifpb.dac.alysense.alysense.business.service.TokenService.TokenService;
 import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.RoleServiceIntrfc;
 import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.UserServiceIntrfc;
+import br.edu.ifpb.dac.alysense.alysense.business.service.tokenService.TokenService;
 
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{

@@ -49,9 +49,9 @@ export default class EventUpdate extends React.Component{
 
     getLoggedUser=()=>{
         var value = localStorage.getItem('loggedUser');
-        var user = JSON.parse(value);
+        var user = value[6]+value[7];
         return user;
-    }
+      }
 
 
     submit = async() =>{
@@ -64,7 +64,7 @@ export default class EventUpdate extends React.Component{
         }
         await this.service.update(this.state.idEvent,{
             title: this.state.title,
-            date: this.state.dateEvent,
+            dateEvent: this.state.dateEvent,
             local:this.state.local,
             peopleLimit: this.state.qtdParticipants,
             numberSample: this.state.qtdSamples,
@@ -80,19 +80,19 @@ export default class EventUpdate extends React.Component{
             console.log(error.response)
         });
         console.log("request finished");
-        this.props.history.push(`/EventFeed/`);
+        this.props.history.push(`/EventFeed`);
     }
 
     componentDidMount(){
         const params = this.props.match.params;
         const idEvent = params.id;
+        console.log(idEvent);
         this.findById(idEvent);
 
     }
 
     cancel =()=>{
-        this.props.history.push(`/EventFeed/`);
-        window.location.reload();
+        this.props.history.push(`/EventFeed`);
     }
 
 
@@ -100,9 +100,10 @@ export default class EventUpdate extends React.Component{
         await this.service.find(`/filter?id=${eventId}`)
         .then(response=>{
             const event = response.data[0];
+            console.log(response.data[0])
             const idEvent = event.id;
             const title = event.title;
-            const dateEvent = this.convertFromStringToDate(event.date);
+            const dateEvent =  this.convertFromStringToDate(event.dateEvent);
             const local = event.local;
             const qtdParticipants= event.peopleLimit;
             const qtdSamples= event.numberSample;

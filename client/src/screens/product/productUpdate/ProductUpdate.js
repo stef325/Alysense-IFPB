@@ -46,11 +46,11 @@ export default class ProductUpdate extends React.Component {
     return errors;
 };
 
-  getLoggedUser=()=>{
-    var value = localStorage.getItem('loggedUser');
-    var user = JSON.parse(value);
-    return user;
-  }
+getLoggedUser=()=>{
+  var value = localStorage.getItem('loggedUser');
+  var user = value[6]+value[7];
+  return user;
+}
 
   componentDidMount() {
     const params = this.props.match.params;

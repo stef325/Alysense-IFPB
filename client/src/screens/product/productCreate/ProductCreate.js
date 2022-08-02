@@ -69,9 +69,9 @@ export default class ProductCreate extends React.Component {
     return errors;
   };
 
-  getLoggedUser = () => {
+  getLoggedUser=()=>{
     var value = localStorage.getItem('loggedUser');
-    var user = JSON.parse(value);
+    var user = value[6]+value[7];
     return user;
   }
 
@@ -87,7 +87,7 @@ export default class ProductCreate extends React.Component {
   }
 
   submit = async () => {
-    this.state.userId = this.getLoggedUser().id
+    this.state.userId = this.getLoggedUser()
     const errors = this.validate();
     if (errors.length > 0) {
       errors.forEach((message, index) => {
