@@ -8,7 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.alysense.alysense.business.service.interfaces.AuthenticationServiceIntrfc;
-import br.edu.ifpb.dac.alysense.alysense.business.service.tokenService.TokenService;
+import br.edu.ifpb.dac.alysense.alysense.business.service.TokenService.TokenService;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 
 @Service
@@ -24,7 +24,7 @@ public class AuthenticationService implements AuthenticationServiceIntrfc{
     @Override
     public String login(String username, String password) {
         Authentication auth = authManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-        User user = userService.findByUseName(username);
+        User user = userService.findByEmail(username);
         return tokenService.generate(user);
     }
 

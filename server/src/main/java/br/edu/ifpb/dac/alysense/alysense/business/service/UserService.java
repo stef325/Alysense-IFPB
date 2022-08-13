@@ -78,8 +78,8 @@ public class UserService implements UserServiceIntrfc{
 
 	@Override
 	public User findByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		List<User> user = userDAO.findByEmail(email);
+		return (User) user.get(0);
 	}
 
 	@Override
@@ -90,7 +90,7 @@ public class UserService implements UserServiceIntrfc{
 
 	@Override
 	public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String username){
-		User user = findByUseName(username);
+		User user = findByEmail(username);
 		if(user == null){
 			throw new UsernameNotFoundException(String.format("Could not find any use with usename %s", username));
 		}

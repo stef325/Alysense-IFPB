@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.alysense.alysense.business.service.tokenService;
+package br.edu.ifpb.dac.alysense.alysense.business.service.TokenService;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

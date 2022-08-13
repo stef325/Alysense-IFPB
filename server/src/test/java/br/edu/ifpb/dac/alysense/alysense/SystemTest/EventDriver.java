@@ -117,7 +117,7 @@ public class EventDriver {
 		feedEventMapping.clickButtonSearch();
 		timeSleep();
 
-		assertEquals("Bolo de aniversario",feedEventMapping.columnTitle());
+		assertEquals("provando pastel",feedEventMapping.columnTitle());
 
 		feedEventMapping.deleteBtn();
 		timeSleep();

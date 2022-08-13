@@ -71,7 +71,7 @@ public class UserDriver {
 
     public void timeSleep(){
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(2500);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
