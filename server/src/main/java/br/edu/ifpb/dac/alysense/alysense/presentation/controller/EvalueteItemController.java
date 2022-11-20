@@ -21,6 +21,7 @@ import br.edu.ifpb.dac.alysense.alysense.business.service.EvalueteItemService;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.EvalueteItem;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Note;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Sample;
+import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EvalueteItemDTO;
 
 @RestController
@@ -74,17 +75,15 @@ public class EvalueteItemController {
 	
 	@GetMapping
 	public ResponseEntity find( @RequestParam(value = "id", required = false) Long id,
-			@RequestParam(value = "evaluator", required = false) Long evaluator,
-			@RequestParam(value = "sample", required = false) Sample sample,
+			@RequestParam(value = "sample", required = false) List<Sample> samples,
 			@RequestParam(value = "note", required = false) Note note,
 			@RequestParam(value = "question", required = false) String question) {
 		try {
 			EvalueteItem filter = new EvalueteItem();
 			filter.setId(id);
-			filter.setEvaluator(evaluator);
-			filter.setSample(sample);
+			filter.setSamples(samples);
 			filter.setNote(note);
-			filter.setQuestion(question);
+			filter.setAnswer(question);
 			
 			
 			List<EvalueteItem> entities = evaluateItemService.find(filter);

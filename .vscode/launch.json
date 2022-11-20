@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-AlysenseApplication<alysense>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.edu.ifpb.dac.alysense.alysense.AlysenseApplication",
+            "projectName": "alysense",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

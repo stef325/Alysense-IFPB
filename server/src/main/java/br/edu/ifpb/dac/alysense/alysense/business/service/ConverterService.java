@@ -2,6 +2,8 @@ package br.edu.ifpb.dac.alysense.alysense.business.service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Avaliation;
@@ -9,6 +11,7 @@ import br.edu.ifpb.dac.alysense.alysense.model.entity.EvalueteItem;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.EventSense;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Product;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.User;
+import br.edu.ifpb.dac.alysense.alysense.model.repository.UserRepository;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.AvaliationDTO;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EvalueteItemDTO;
 import br.edu.ifpb.dac.alysense.alysense.presentation.dto.EventDTO;
@@ -18,12 +21,16 @@ import br.edu.ifpb.dac.alysense.alysense.presentation.dto.UserDTO;
 @Service
 public class ConverterService {
 
+	@Autowired
+	 private UserRepository userRepository;
+
 		/*-------------------------- Avaliation to DTO -------------------------*/
 		public AvaliationDTO AvaliationToDTO(Avaliation entity){
 			AvaliationDTO dto = new AvaliationDTO();
 			dto.setId(entity.getId());
-			dto.setAnswer(entity.getAnswer());
-			dto.setTitleEvent(entity.getTitleEvent());
+			dto.setQuestion(entity.getQuestion());
+			dto.setProduct(entity.getProduct());
+			dto.setEvent(entity.getEvent());
 			dto.setEvalueteItems(entity.getEvalueteItems());
 			return dto;
 			
@@ -46,8 +53,9 @@ public class ConverterService {
 		public Avaliation DTOToAvaliation(AvaliationDTO dto) {
 			Avaliation entity = new Avaliation();
 			entity.setId(dto.getId());
-			entity.setAnswer(dto.getAnswer());
-			entity.setTitleEvent(dto.getTitleEvent());
+			entity.setQuestion(dto.getQuestion());
+			entity.setProduct(dto.getProduct());
+			entity.setEvent(dto.getEvent());
 			entity.setEvalueteItems(dto.getEvalueteItems());
 			return entity;
 	
@@ -70,10 +78,10 @@ public class ConverterService {
 	public EvalueteItemDTO EvalueteItemToDTO(EvalueteItem entity){
 		EvalueteItemDTO dto = new EvalueteItemDTO();
 		dto.setId(entity.getId());
-		dto.setEvaluator(entity.getEvaluator());
-		dto.setSample(entity.getSample());
+		dto.setSamples(entity.getSamples());
 		dto.setNote(entity.getNote());
-		dto.setQuestion(entity.getQuestion());
+		dto.setAnswer(entity.getAnswer());
+		dto.setEvaluator(entity.getEvaluatorUser());
 		return dto;
 		
 	}
@@ -95,10 +103,10 @@ public class ConverterService {
 	public EvalueteItem DTOToEvaluateItem(EvalueteItemDTO dto) {
 		EvalueteItem entity = new EvalueteItem();
 		entity.setId(dto.getId());
-		entity.setEvaluator(dto.getEvaluator());
-		entity.setSample(dto.getSample());
+		entity.setSamples(dto.getSamples());
 		entity.setNote(dto.getNote());
-		entity.setQuestion(dto.getQuestion());
+		entity.setEvaluatorUser(dto.getEvaluator());
+		entity.setAnswer(dto.getAnswer());
 		return entity;
 
 	}
@@ -162,6 +170,7 @@ public class ConverterService {
 		dto.setOwner(entity.getOwner());
 		dto.setUserId(entity.getUserId());
 		dto.setSamples(entity.getSamples());
+		dto.setAvaliation(entity.getAvaliation());
 		return dto;
 		
 	}
@@ -190,6 +199,7 @@ public class ConverterService {
 		entity.setOwner(dto.getOwner());
 		entity.setUserId(dto.getUserId());
 		entity.setSamples(dto.getSamples());
+		entity.setAvaliation(dto.getAvaliation());
 
 		return entity;
 
@@ -220,7 +230,7 @@ public class ConverterService {
 		dto.setItems(entity.getItems());
 		dto.setLocal(entity.getLocal());
 		dto.setAdmUser(entity.getAdmUser());
-		dto.setEvaluators(converterToDTO(entity.getEvaluators()));
+		dto.setAvaliation(AvaliationToDTO(entity.getAvaliations()));
 		dto.setNumberSample(entity.getNumberSample());
 		dto.setMinimunAge(entity.getMinimunAge());
 		return dto;
@@ -252,7 +262,7 @@ public class ConverterService {
 		entity.setLocal(dto.getLocal());
 		entity.setAdmUser(dto.getAdmUser());
 		entity.setNumberSample(dto.getNumberSample());
-		entity.setEvaluators(ConverterService.DTOToUser(dto.getEvaluators()));
+		entity.setAvaliations(DTOToAvaliation(dto.getAvaliation()));
 		entity.setMinimunAge(dto.getMinimunAge());
 		return entity;
 

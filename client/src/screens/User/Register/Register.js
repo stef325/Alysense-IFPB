@@ -11,7 +11,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import FormGroup from '../../../components/forms/FormGroup'
 import BigForm from '../../../components/forms/BigForm'
 import UserApiService from '../../../services/UserApiService';
-import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/toastr/Toastr'
+import{showSucessMessage, showErrorMessage, showWarningMessage} from '../../../components/Toastr/Toastr'
 export default class Register extends React.Component {
 
     state={

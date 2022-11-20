@@ -3,6 +3,7 @@ package br.edu.ifpb.dac.alysense.alysense.presentation.dto;
 import java.time.LocalDate;
 import java.util.List;
 
+import br.edu.ifpb.dac.alysense.alysense.model.entity.Avaliation;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Characteristic;
 import br.edu.ifpb.dac.alysense.alysense.model.entity.Sample;
 import lombok.Getter;
@@ -21,4 +22,5 @@ public class ProductDTO {
     private Long userId;
     private List<Characteristic> characteristics;
     private List<Sample> samples;
+    private Avaliation avaliation;
 }

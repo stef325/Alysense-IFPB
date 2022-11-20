@@ -6,6 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.ManyToAny;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -23,6 +27,10 @@ public class Sample {
 	private Long id;
 
     private Long code = (long) Math.floor(Math.random() * 1001);
+
+    @ManyToOne
+    @JoinColumn(name = "evaluate_id")
+    private EvalueteItem evalueteItem;
 
     private String detailsSample;
 

@@ -89,10 +89,7 @@ public class User implements UserDetails{
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return null;
 	}
-
-
 	
-
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;

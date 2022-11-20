@@ -39,9 +39,9 @@ public class EventSense {
     private Integer numberSample;
     private Integer minimunAge; 
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "users_avaliation", joinColumns = @JoinColumn(name= "eventid"), inverseJoinColumns = @JoinColumn(name = "userid"))
-    private List<User> evaluators;
+    @OneToMany
+    @JoinColumn(name = "avaliation_id")
+    private List<Avaliation> avaliations;
 
     @OneToMany(cascade = CascadeType.MERGE)
     private List<Product> items;
